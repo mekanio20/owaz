@@ -24,11 +24,12 @@ app.use(morgan("dev"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/uploads", express.static("public", {
-  setHeaders: (res) => {
-    res.setHeader('Cross-Origin-Resource-Policy', 'same-site');
-  }
-}));
+app.use("/uploads", express.static("public"));
+// app.use("/uploads", express.static("public", {
+//   setHeaders: (res) => {
+//     res.setHeader('Cross-Origin-Resource-Policy', 'same-site');
+//   }
+// }));
 
 app.use("/api", router);
 app.all("*", (req, res) => {
