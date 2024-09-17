@@ -84,7 +84,7 @@ export default {
     data() {
         return {
             brands: null,
-            image_url: `http://localhost:5050/uploads/images`,
+            image_url: `http://216.250.13.54:5050/uploads/images`,
             imageFile: null,
             title: null,
         }
