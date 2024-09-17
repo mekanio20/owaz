@@ -1,60 +1,82 @@
 <template>
-    <div class="flex items-center justify-center min-h-screen bg-gray-100">
-      <div class="w-full max-w-md p-8 bg-white rounded shadow-lg">
-        <h2 class="mb-6 text-2xl font-bold text-center">Upload Multiple Images</h2>
-        <form @submit.prevent="submitForm">
-          <div class="mb-4">
-            <label class="block mb-2 text-sm font-bold text-gray-700">Images</label>
-            <input
-              type="file"
-              accept="image/*"
-              multiple
-              @change="handleFileUpload"
-              class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:ring-indigo-500"
-            />
-          </div>
-          <div class="mb-6">
-            <button
-              type="submit"
-              class="w-full px-4 py-2 font-bold text-white bg-indigo-500 rounded hover:bg-indigo-700 focus:outline-none focus:ring focus:ring-indigo-500"
-            >
-              Submit
-            </button>
-          </div>
-          <div v-if="previewImages.length" class="grid grid-cols-2 gap-4">
-            <div v-for="(image, index) in previewImages" :key="index" class="relative">
-              <img :src="image" class="w-full h-32 object-cover rounded" />
-            </div>
-          </div>
-        </form>
+  <div class="relative overflow-hidden">
+    <!-- Kategorilerin sıralandığı yatay liste -->
+    <div ref="categoryList" class="flex space-x-4 transition-transform duration-300 ease-in-out">
+      <div v-for="(category, index) in visibleCategories" :key="index" class="whitespace-nowrap">
+        {{ category.name }}
       </div>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    data() {
-      return {
-        selectedFiles: [],
-        previewImages: [],
-      };
+
+    <!-- Sağda '>' ikonu -->
+    <button 
+      @click="nextCategory" 
+      v-if="canScrollNext" 
+      class="absolute right-0 top-1/2 transform -translate-y-1/2 bg-gray-300 p-2 rounded-full"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+  </div>
+</template>
+
+<script>
+export default {
+  data() {
+    return {
+      categories: [], // API'den gelecek kategori isimleri
+      currentIndex: 0, // Şu anki kaydırma başlangıç indexi
+      categoriesPerPage: 10, // Aynı anda gösterilecek kategori sayısı
+    };
+  },
+  computed: {
+    visibleCategories() {
+      return this.categories.slice(this.currentIndex, this.currentIndex + this.categoriesPerPage);
     },
-    methods: {
-      handleFileUpload(event) {
-        this.selectedFiles = Array.from(event.target.files);
-        this.previewImages = this.selectedFiles.map((file) =>
-          URL.createObjectURL(file)
-        );
-      },
-      submitForm() {
-        // Form submit işlemi burada yapılabilir
-        console.log("Selected files:", this.selectedFiles);
-      },
+    canScrollNext() {
+      return this.currentIndex + this.categoriesPerPage < this.categories.length;
     },
-  };
-  </script>
-  
-  <style scoped>
-  /* Tailwind CSS ile stiller */
-  </style>
-  
+  },
+  methods: {
+    fetchCategories() {
+      // API'den veri çekme işlemi
+      // Örnek bir API kullanarak verileri çekiyorum.
+      this.categories = [
+        { name: "Category 1" },
+        { name: "Category 2" },
+        { name: "Category 3" },
+        { name: "Category 4" },
+        { name: "Category 5" },
+        { name: "Category 6" },
+        { name: "Category 7" },
+        { name: "Category 8" },
+        { name: "Category 9" },
+        { name: "Category 10" },
+        { name: "Category 11" },
+        { name: "Category 12" },
+        { name: "Category 13" },
+        { name: "Category 14" },
+        { name: "Category 15" },
+        { name: "Category 16" },
+        { name: "Category 17" },
+        { name: "Category 18" },
+        { name: "Category 19" },
+        { name: "Category 20" },
+      ];
+    },
+    nextCategory() {
+      // Kaydırma işlemi
+      if (this.canScrollNext) {
+        this.currentIndex += this.categoriesPerPage;
+      }
+    },
+  },
+  mounted() {
+    this.fetchCategories(); // Bileşen monte edildiğinde API'den kategorileri al
+  },
+};
+</script>
+
+<style scoped>
+/* Ekstra isteğe bağlı stil */
+</style>

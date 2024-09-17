@@ -4,11 +4,7 @@ import { createRouter, createWebHistory } from "vue-router";
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    {
-      path: "/admin/home",
-      name: "Dashboard",
-      component: () => import("@/views/admin/DashboardView.vue"),
-    },
+    // ADMIN
     {
       path: "/test",
       name: "Test",
@@ -38,6 +34,12 @@ const router = createRouter({
       path: "/admin/product/:id",
       name: "ProductDetail",
       component: () => import("@/views/admin/ProductDetailView.vue"),
+    },
+    // CLIENT
+    {
+      path: "/",
+      name: "Home",
+      component: () => import("@/views/client/HomeView.vue"),
     },
   ],
 });

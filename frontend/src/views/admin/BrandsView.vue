@@ -109,6 +109,7 @@ export default {
                         'Content-Type': 'multipart/form-data'
                     }
                 })
+                console.log(brand);
                 let toast = useToast();
                 if (brand.data.status === 201) {
                     toast.success(brand.data.msg);
