@@ -39,7 +39,7 @@
                                         <th scope="row">
                                             <router-link :to="`/admin/product/${item.id}`"
                                                 class="flex items-center px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white hover:underline">
-                                                <img :src="`http://localhost:5050/uploads/images/${item.product_images[0].img}`"
+                                                <img :src="`http://216.250.13.54:5050/uploads/images/${item.product_images[0].img}`"
                                                     alt="iMac Front Image" class="w-auto h-8 mr-3">
                                                 {{ item.name_en }}
                                             </router-link>
@@ -273,7 +273,7 @@ export default {
             products: null,
             count: 0,
             dataLength: 0,
-            image_url: `http://localhost:5050/uploads/images`,
+            image_url: `http://216.250.13.54:5050/uploads/images`,
             name_tm: null,
             name_ru: null,
             name_en: null,
