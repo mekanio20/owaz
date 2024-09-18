@@ -4,7 +4,7 @@ const path = require('path')
 const fs = require('fs')
 
 module.exports = (dest) => {
-    const filepath = path.resolve(__dirname, '..', 'public', dest)
+    const filepath = path.resolve(__dirname, '../..', 'frontend/public', dest)
     if (!fs.existsSync(filepath)) {
         fs.mkdirSync(filepath, { recursive: true })
     }
