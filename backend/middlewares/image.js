@@ -4,7 +4,7 @@ const path = require('path')
 const fs = require('fs')
 
 module.exports = (dest) => {
-    const filepath = path.resolve(__dirname, '../..', 'frontend/public', dest)
+    const filepath = path.resolve(__dirname, '..', 'public', dest)
     if (!fs.existsSync(filepath)) {
         fs.mkdirSync(filepath, { recursive: true })
     }
@@ -17,7 +17,7 @@ module.exports = (dest) => {
     }
     return multer({
         storage: multer.diskStorage({
-            destination: (req, file, cb) => { cb(null, path.resolve(__dirname, '../..', 'frontend/public', dest)) },
+            destination: (req, file, cb) => { cb(null, path.resolve(__dirname, '..', 'public', dest)) },
             filename: (req, file, cb) => {
                 cb(null, `${uuid.v4()}-${file.originalname}`)
             }

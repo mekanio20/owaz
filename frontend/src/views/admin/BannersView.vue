@@ -42,7 +42,7 @@
                                 </th>
                                 <td class="px-6 py-4">
                                     <div class="w-10">
-                                        <img class="w-full h-full object-cover" :src="`/images/${item.img}`">
+                                        <img class="w-full h-full object-cover" :src="`../../${item.img}`">
                                     </div>
                                 </td>
                                 <td class="flex items-center px-6 py-4">
