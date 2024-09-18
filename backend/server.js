@@ -15,7 +15,7 @@ const database = require("./config/database");
 const router = require("./routers/index");
 
 app.use((req, res, next) => {
-  res.setHeader('Cross-Origin-Resource-Policy', 'same-site'); // or 'cross-origin'
+  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
   next();
 });
 app.disable("x-powered-by");
