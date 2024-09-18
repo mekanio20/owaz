@@ -16,5 +16,6 @@ app.use(Toast, {
   closeOnClick: true,
 });
 
+app.config.globalProperties.$uploadUrl = 'http://owaz.com.tm:5050/uploads'
 app.use(router);
 app.mount("#app");

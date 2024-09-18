@@ -52,7 +52,7 @@
                                 </th>
                                 <td class="px-6 py-4">
                                     <div class="w-10">
-                                        <img class="w-full h-full object-cover" :src="`${image_url}/${item.img}`">
+                                        <img class="w-full h-full object-cover" :src="`${$uploadUrl}/images/${item.img}`">
                                     </div>
                                 </td>
                                 <td class="px-6 py-4">
@@ -87,6 +87,7 @@ export default {
             image_url: `http://owaz.com.tm:5050/uploads/images`,
             imageFile: null,
             title: null,
+            image: null
         }
     },
     created() {

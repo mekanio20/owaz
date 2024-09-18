@@ -14,12 +14,22 @@ require("./config/models");
 const database = require("./config/database");
 const router = require("./routers/index");
 
-app.use((req, res, next) => {
-  res.setHeader('Cross-Origin-Resource-Policy', 'cross-origin');
-  next();
-});
 app.disable("x-powered-by");
-app.use(cors({ origin: "*", methods: ["GET", "POST", "PUT", "DELETE"] }));
+let whitelist = ['http://localhost:5050', 'http://localhost:5173'];
+let corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(null, false);
+    }
+  },
+  methods: ['GET', 'PUT', 'POST', 'DELETE', 'OPTIONS'],
+  optionsSuccessStatus: 200,
+  credentials: true,
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'device-remember-token', 'Access-Control-Allow-Origin', 'Origin', 'Accept']
+};
+app.use(cors(corsOptions))
 app.use(helmet());
 
 let accessLogStream = fs.createWriteStream(path.join(__dirname, "access.log"), { flags: "a" });
@@ -29,11 +39,6 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use("/uploads", express.static("public"));
-// app.use("/uploads", express.static("public", {
-//   setHeaders: (res) => {
-//     res.setHeader('Cross-Origin-Resource-Policy', 'same-site');
-//   }
-// }));
 
 app.use("/api", router);
 app.all("*", (req, res) => {
