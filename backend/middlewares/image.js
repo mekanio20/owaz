@@ -17,7 +17,7 @@ module.exports = (dest) => {
     }
     return multer({
         storage: multer.diskStorage({
-            destination: (req, file, cb) => { cb(null, path.resolve(__dirname, '..', 'public', dest)) },
+            destination: (req, file, cb) => { cb(null, path.resolve(__dirname, '../..', 'frontend/public', dest)) },
             filename: (req, file, cb) => {
                 cb(null, `${uuid.v4()}-${file.originalname}`)
             }
