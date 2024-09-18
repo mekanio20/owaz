@@ -7,7 +7,7 @@
                     <div class="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-x-2">
                         <div v-for="(image, index) in images" :key="index" class="relative h-48 mb-2 cursor-pointer"
                             @mouseover="hoveredImageIndex = index" @mouseleave="hoveredImageIndex = null">
-                            <img :src="`http://owaz.com.tm:5050/uploads/images/${image.img}`"
+                            <img :src="`/images/${image.img}`"
                                 class="w-full h-full object-cover rounded-lg shadow-md" />
                             <button v-if="hoveredImageIndex === index" @click="deleteImage(image.id)"
                                 class="absolute top-2 right-2 p-2 bg-red-500 text-white rounded-full">

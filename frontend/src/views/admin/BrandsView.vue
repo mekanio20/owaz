@@ -52,7 +52,7 @@
                                 </th>
                                 <td class="px-6 py-4">
                                     <div class="w-10">
-                                        <img class="w-full h-full object-cover" src="http://owaz.com.tm/api/uploads/images/2c3b70e9-f6b6-4cb8-b8c6-a861a1ea8baa-brand-1.png">
+                                        <img class="w-full h-full object-cover" :src="`/images/${item.img}`">
                                     </div>
                                 </td>
                                 <td class="px-6 py-4">
@@ -84,10 +84,8 @@ export default {
     data() {
         return {
             brands: null,
-            imageUrl: 'http://owaz.com.tm/api/uploads/images/2c3b70e9-f6b6-4cb8-b8c6-a861a1ea8baa-brand-1.png',
             imageFile: null,
             title: null,
-            image: null
         }
     },
     created() {

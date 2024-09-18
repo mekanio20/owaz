@@ -66,7 +66,7 @@
                                 </th>
                                 <td class="px-6 py-4">
                                     <div class="w-10">
-                                        <img class="w-full h-full object-cover" :src="`${image_url}/${item.img}`">
+                                        <img class="w-full h-full object-cover" :src="`/images/${item.img}`">
                                     </div>
                                 </td>
                                 <td class="px-6 py-4">
@@ -104,7 +104,6 @@ export default {
     data() {
         return {
             categories: null,
-            image_url: `http://owaz.com.tm:5050/uploads/images`,
             imageFile: null,
             name_tm: null,
             name_ru: null,
