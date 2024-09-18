@@ -273,7 +273,7 @@ export default {
             products: null,
             count: 0,
             dataLength: 0,
-            image_url: `http://216.250.13.54:5050/uploads/images`,
+            image_url: `http://owaz.com.tm:5050/uploads/images`,
             name_tm: null,
             name_ru: null,
             name_en: null,

@@ -42,7 +42,7 @@
                                 </th>
                                 <td class="px-6 py-4">
                                     <div class="w-10">
-                                        <img class="w-full h-full object-cover" :src="`http://216.250.13.54:5050/uploads/images/${item.img}`">
+                                        <img class="w-full h-full object-cover" :src="`http://owaz.com.tm:5050/uploads/images/${item.img}`">
                                     </div>
                                 </td>
                                 <td class="flex items-center px-6 py-4">
