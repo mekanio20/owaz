@@ -11,8 +11,8 @@ export default defineConfig({
     },
   },
   proxy: {
-    '/public/': {
-      target: 'http://localhost:5050/uploads/images/',
+    '/public': {
+      target: 'http://owaz.com.tm/api/uploads/images/',
       changeOrigin: true,
     },
   },
