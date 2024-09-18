@@ -52,7 +52,7 @@
                                 </th>
                                 <td class="px-6 py-4">
                                     <div class="w-10">
-                                        <img class="w-full h-full object-cover" :src="`/images/ff1ef65b-3df8-40a9-b2a9-69902c7ef414-coding.jpeg`">
+                                        <img class="w-full h-full object-cover" :src="`/public/uploads/images/${item.img}`">
                                     </div>
                                 </td>
                                 <td class="px-6 py-4">
