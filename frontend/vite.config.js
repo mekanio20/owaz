@@ -11,8 +11,8 @@ export default defineConfig({
     },
   },
   proxy: {
-    '/public': {
-      target: 'http://localhost:5050',
+    '/public/': {
+      target: 'http://localhost:5050/uploads/images/',
       changeOrigin: true,
     },
   },
