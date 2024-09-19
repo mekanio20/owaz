@@ -52,7 +52,7 @@
                                 </th>
                                 <td class="px-6 py-4">
                                     <div class="w-10">
-                                        <img class="w-full h-full object-cover" :src="`/public/${item.img}`">
+                                        <img crossorigin="anonymous" class="w-full h-full object-cover" :src="`${$uploadUrl}/${item.img}`">
                                     </div>
                                 </td>
                                 <td class="px-6 py-4">

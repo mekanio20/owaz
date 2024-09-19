@@ -9,11 +9,5 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
-  },
-  proxy: {
-    '/public': {
-      target: 'http://owaz.com.tm/api/uploads/images/',
-      changeOrigin: true,
-    },
-  },
+  }
 });

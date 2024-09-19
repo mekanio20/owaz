@@ -24,7 +24,7 @@ app.use(morgan("dev"));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/uploads", cors(), express.static("public"));
+app.use("/uploads", express.static("public"));
 
 app.use("/api", router);
 app.all("*", (req, res) => {
