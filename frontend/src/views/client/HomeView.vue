@@ -116,7 +116,7 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full relative my-20">
+            <div class="w-full relative mt-20 mb-10">
                 <img class="w-full h-full object-cover" src="/images/big-banner.png">
                 <div class="absolute inset-0 flex justify-center items-center">
                     <div class="flex items-center flex-col space-y-4">
@@ -134,12 +134,12 @@
             </div>
             <div class="w-full">
                 <div v-for="item in category_products.rows" :key="item.id" class="w-full flex flex-col mb-20">
-                    <div class="w-full flex items-center justify-between">
-                        <h2 class="font-sf_pro font-bold text-4xl">{{ item.name_en }}</h2>
+                    <div v-if="item.products.length > 0" class="w-full flex items-center justify-between">
+                        <h2 class="font-sf_pro font-bold text-4xl mb-10">{{ item.name_en }}</h2>
                     </div>
-                    <!-- <div v-for="product in item.products" :key="product.id"
+                    <div v-for="product in item.products" :key="product.id"
                         class="flex items-start flex-col space-y-4 w-[300px]">
-                        <div class="w-full relative bg-m_gray-100 rounded-xl">
+                        <div class="w-full bg-m_gray-100 rounded-xl">
                             <img class="w-full h-full mt-4" crossorigin="anonymous"
                                 :src="`${$uploadUrl}/${product.product_images[0].img}`">
                         </div>
@@ -147,7 +147,15 @@
                         <div class="flex items-center space-x-2">
                             <span class="font-sf_pro font-bold text-m_red-200">{{ product.final_price }} tmt</span>
                         </div>
-                    </div> -->
+                    </div>
+                </div>
+            </div>
+            <div class="w-full mb-20">
+                <h2 class="font-sf_pro font-bold text-4xl mb-10">Our top brands</h2>
+                <div class="grid grid-cols-5 gap-x-6">
+                    <div class="bg-m_gray-100 rounded-lg" v-for="item in brands.rows" :key="item.id">
+                        <img class="p-16" crossorigin="anonymous" :src="`${$uploadUrl}/${item.img}`">
+                    </div>
                 </div>
             </div>
         </div>
@@ -167,14 +175,16 @@ export default {
             banners: null,
             categories: null,
             offers: null,
-            category_products: null
+            brands: null,
+            category_products: null,
         }
     },
     created() {
         this.allBanners(),
-        this.allCategories(),
-        this.offerProducts(),
-        this.categoryProducts()
+            this.allCategories(),
+            this.offerProducts(),
+            this.categoryProducts(),
+            this.allBrands()
     },
     methods: {
         async allBanners() {
@@ -192,7 +202,10 @@ export default {
         async categoryProducts() {
             const data = await api.get('/category/products')
             this.category_products = data.data.detail
-            console.log(this.category_products);
+        },
+        async allBrands() {
+            const data = await api.get('/brands')
+            this.brands = data.data.detail
         }
     }
 }
