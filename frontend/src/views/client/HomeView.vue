@@ -159,16 +159,19 @@
                 </div>
             </div>
         </div>
+        <Footer />
     </div>
 </template>
 
 <script>
 import Navbar from '@/components/client/Navbar.vue';
+import Footer from '@/components/client/Footer.vue';
 import api from '@/api/index'
 export default {
     name: "Home",
     components: {
-        Navbar
+        Navbar,
+        Footer
     },
     data() {
         return {

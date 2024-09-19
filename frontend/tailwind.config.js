@@ -14,7 +14,11 @@ export default {
       m_gray: {
         100: '#F5F5F5',
         200: '#535353',
-        300: '#9B9B9B'
+        300: '#9B9B9B',
+        400: '#B3B3B3'
+      },
+      m_black: {
+        100: '#161616'
       }
     },
     fontFamily: {
