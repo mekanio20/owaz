@@ -3,13 +3,13 @@
         <Navbar />
         <div class="container">
             <div class="w-full flex items-center space-x-4">
-                <img class="w-[800px] h-[600px] object-contain rounded-xl"
-                    :src="`http://owaz.com.tm:5050/uploads/images/${banners[0]?.img}`">
+                <img crossorigin="anonymous" class="w-[800px] h-[600px] object-contain rounded-xl"
+                    :src="`${$uploadUrl}/${banners[0]?.img}`">
                 <div class="flex flex-col space-y-4">
-                    <img class="w-[450px] h-[250px] object-cover rounded-xl"
-                        :src="`http://owaz.com.tm:5050/uploads/images/${banners[1]?.img}`">
-                    <img class="w-[450px] h-[250px] object-cover rounded-xl"
-                        :src="`http://owaz.com.tm:5050/uploads/images/${banners[2]?.img}`">
+                    <img crossorigin="anonymous" class="w-[450px] h-[250px] object-cover rounded-xl"
+                        :src="`${$uploadUrl}/${banners[1]?.img}`">
+                    <img crossorigin="anonymous" class="w-[450px] h-[250px] object-cover rounded-xl"
+                        :src="`${$uploadUrl}/${banners[2]?.img}`">
                 </div>
             </div>
             <div class="w-full">
@@ -18,7 +18,7 @@
                     <router-link class="py-2 pl-6 mr-5 mb-5 bg-m_gray-100 rounded-xl flex items-center" v-for="item in categories" :key="item.id" :to="`/`">
                         <p class="font-sf_pro font-bold text-lg text-nowrap mr-14">{{ item.name_en }}</p>
                         <div class="w-[100px]">
-                            <img class="w-full h-full object-cover" :src="`http://owaz.com.tm:5050/uploads/images/${item?.img}`">
+                            <img crossorigin="anonymous" class="w-full h-full object-cover" :src="`${$uploadUrl}/${item?.img}`">
                         </div>
                     </router-link>
                 </div>
