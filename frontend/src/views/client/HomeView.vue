@@ -12,7 +12,7 @@
                         :src="`${$uploadUrl}/${banners[2]?.img}`">
                 </div>
             </div>
-            <div class="w-full flex items-center justify-between mb-20">
+            <div class="w-full flex items-center justify-between mt-4 mb-16">
                 <div class="flex items-center space-x-4">
                     <svg width="85" height="85" viewBox="0 0 85 85" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="42.5" cy="42.5" r="42.5" fill="#E83D46" fill-opacity="0.15" />
@@ -81,7 +81,7 @@
                 </div>
             </div>
             <div class="w-full">
-                <h2 class="font-sf_pro font-bold text-4xl mb-5">Browse by category</h2>
+                <h2 class="font-sf_pro font-bold text-4xl">Browse by category</h2>
                 <div class="flex items-center flex-wrap py-10">
                     <router-link class="py-2 pl-6 mr-5 mb-5 bg-m_gray-100 rounded-xl flex items-center"
                         v-for="item in categories" :key="item.id" :to="`/`">
@@ -93,25 +93,61 @@
                     </router-link>
                 </div>
             </div>
-            <div class="mt-10">
+            <div class="my-10">
                 <div class="w-full flex items-center justify-between">
-                    <h2 class="font-sf_pro font-bold text-4xl mb-20">The best offers for you</h2>
+                    <h2 class="font-sf_pro font-bold text-4xl mb-10">The best offers for you</h2>
                 </div>
                 <div class="flex items-center space-x-8">
-                    <div v-for="item in offers.rows" :key="item.id" class="flex items-start flex-col space-y-4 w-[300px]">
+                    <div v-for="item in offers.rows" :key="item.id"
+                        class="flex items-start flex-col space-y-4 w-[300px]">
                         <div class="w-full relative bg-m_gray-100 rounded-xl">
                             <div
                                 class="absolute left-0 top-4 bg-white px-4 py-2 rounded-e-lg font-sf_pro font-bold text-m_red-200 text-sm">
-                                {{ item.discount_price }} {{ item.discount_type }}
+                                {{ item.discount_price }} {{ item.discount_type == 'manat' ? 'tmt' : '%' }}
                             </div>
-                            <img class="w-full h-full mt-4" crossorigin="anonymous" :src="`${$uploadUrl}/${item.product_images[0].img}`">
+                            <img class="w-full h-full mt-4" crossorigin="anonymous"
+                                :src="`${$uploadUrl}/${item.product_images[0].img}`">
                         </div>
-                        <p class="font-sf_pro font-medium text-lg">{{ item.name_ne }}</p>
+                        <p class="font-sf_pro font-medium text-lg">{{ item.name_en }}</p>
                         <div class="flex items-center space-x-2">
                             <span class="font-sf_pro font-bold text-m_red-200">{{ item.final_price }} tmt</span>
                             <span class="font-sf_pro text-m_gray-300 line-through">{{ item.sale_price }} tmt</span>
                         </div>
                     </div>
+                </div>
+            </div>
+            <div class="w-full relative my-20">
+                <img class="w-full h-full object-cover" src="/images/big-banner.png">
+                <div class="absolute inset-0 flex justify-center items-center">
+                    <div class="flex items-center flex-col space-y-4">
+                        <div class="mb-5 text-center">
+                            <p class="font-sf_pro font-bold text-4xl mb-3">New Keyboards Collection</p>
+                            <p class="font-sf_pro text-lg text-m_gray-200">New the best and latest keyboard collection
+                            </p>
+                        </div>
+                        <router-link to="/"
+                            class="px-8 py-2 rounded-3xl bg-black text-white font-sf_pro font-bold text-lg">
+                            Explore Now
+                        </router-link>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full">
+                <div v-for="item in category_products.rows" :key="item.id" class="w-full flex flex-col mb-20">
+                    <div class="w-full flex items-center justify-between">
+                        <h2 class="font-sf_pro font-bold text-4xl">{{ item.name_en }}</h2>
+                    </div>
+                    <!-- <div v-for="product in item.products" :key="product.id"
+                        class="flex items-start flex-col space-y-4 w-[300px]">
+                        <div class="w-full relative bg-m_gray-100 rounded-xl">
+                            <img class="w-full h-full mt-4" crossorigin="anonymous"
+                                :src="`${$uploadUrl}/${product.product_images[0].img}`">
+                        </div>
+                        <p class="font-sf_pro font-medium text-lg">{{ product.name_en }}</p>
+                        <div class="flex items-center space-x-2">
+                            <span class="font-sf_pro font-bold text-m_red-200">{{ product.final_price }} tmt</span>
+                        </div>
+                    </div> -->
                 </div>
             </div>
         </div>
@@ -130,13 +166,15 @@ export default {
         return {
             banners: null,
             categories: null,
-            offers: null
+            offers: null,
+            category_products: null
         }
     },
     created() {
         this.allBanners(),
         this.allCategories(),
-        this.offerProducts()
+        this.offerProducts(),
+        this.categoryProducts()
     },
     methods: {
         async allBanners() {
@@ -150,6 +188,11 @@ export default {
         async offerProducts() {
             const data = await api.get('/products?dis=true')
             this.offers = data.data.detail
+        },
+        async categoryProducts() {
+            const data = await api.get('/category/products')
+            this.category_products = data.data.detail
+            console.log(this.category_products);
         }
     }
 }

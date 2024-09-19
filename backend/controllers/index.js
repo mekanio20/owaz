@@ -19,7 +19,7 @@ class IndexController {
                 }
             }
             const products = await Models.Products.findAll({
-                attributes: ['id', 'name_en', 'model', 'year', 'madeIn', 'inStock', 'sale_price', 'discount_type', 'discount_price', 'final_price', 'brandId', 'categoryId'],
+                attributes: ['id', 'name_en', 'name_ru', 'name_tm', 'model', 'year', 'madeIn', 'inStock', 'sale_price', 'discount_type', 'discount_price', 'final_price', 'brandId', 'categoryId'],
                 where: whereState,
                 include: {
                     model: Models.ProductImages,
@@ -30,6 +30,35 @@ class IndexController {
             }).catch((err) => console.log(err))
             const count = await Models.Products.count({ where: whereState }).catch((err) => console.log(err))
             const data = await Response.Success('Üstünlikli!', { count: count, rows: products })
+            return res.status(data.status).json(data)
+        } catch (error) {
+            return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
+        }
+    }
+    async categoryProducts(req, res) {
+        try {
+            let page = req.query.page || 1
+            let limit = req.query.limit || 10
+            let offset = page * limit - limit
+            const categoryProducts = await Models.Categories.findAll({
+                // where: { id: req.query.id },
+                attributes: { exclude: ['img', 'createdAt', 'updatedAt'] },
+                include: {
+                    model: Models.Products,
+                    required: true,
+                    limit: Number(limit),
+                    offset: Number(offset),
+                    include: {
+                        model: Models.ProductImages,
+                        attributes: ['img']
+                    }
+                },
+                group: ['id'],
+                order: [['id', 'DESC']]
+            }).catch((err) => console.log(err))
+            let count = 0
+            for (let item of categoryProducts) count += item.products.length
+            const data = await Response.Success('Üstünlikli!', { count: count, rows: categoryProducts })
             return res.status(data.status).json(data)
         } catch (error) {
             return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })

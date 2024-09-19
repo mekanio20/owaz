@@ -7,6 +7,11 @@ const IndexSchema = {
         page: Joi.number().positive().optional(),
         dis: Joi.boolean().optional()
     }),
+    categoryProducts: Joi.object({
+        // id: Joi.number().positive().required(),
+        limit: Joi.number().positive().optional(),
+        page: Joi.number().positive().optional(),
+    }),
     allCategories: Joi.object({
         limit: Joi.number().positive().optional(),
         page: Joi.number().positive().optional(),

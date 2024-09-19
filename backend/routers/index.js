@@ -34,6 +34,10 @@ router.get('/products',
   valdidationMiddleware(IndexSchema.allProducts, 'query'),
   IndexController.allProducts)
 
+router.get('/category/products',
+  valdidationMiddleware(IndexSchema.categoryProducts, 'query'),
+  IndexController.categoryProducts)
+
 router.get('/product/:id',
   valdidationMiddleware(IndexSchema.idController, 'params'),
   IndexController.fetchProduct)
