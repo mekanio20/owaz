@@ -13,7 +13,8 @@ export default {
       },
       m_gray: {
         100: '#F5F5F5',
-        200: '#535353'
+        200: '#535353',
+        300: '#9B9B9B'
       }
     },
     fontFamily: {

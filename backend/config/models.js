@@ -19,7 +19,7 @@ const Products = database.define('products', {
     final_price: { type: DataTypes.FLOAT, allowNull: false },
     createdAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
     updatedAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW }
-}, { paranoid: true })
+})
 
 const ProductImages = database.define('product_images', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, allowNull: false, unique: true },

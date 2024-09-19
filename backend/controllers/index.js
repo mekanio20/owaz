@@ -1,6 +1,7 @@
 const Response = require('../helpers/response')
 const Models = require('../config/models')
 const bcrypt = require('bcrypt')
+const { Sequelize, Op } = require('sequelize')
 
 class IndexController {
     // GET
@@ -9,16 +10,25 @@ class IndexController {
             let page = req.query.page || 1
             let limit = req.query.limit || 10
             let offset = page * limit - limit
+            let whereState = {}
+            if (req.query.dis) {
+                whereState = {
+                    discount_price: {
+                        [Sequelize.Op.gt]: 0
+                    }
+                }
+            }
             const products = await Models.Products.findAll({
-                attributes: ['id', 'name_en', 'model', 'year', 'madeIn', 'inStock', 'sale_price', 'final_price', 'brandId', 'categoryId'],
+                attributes: ['id', 'name_en', 'model', 'year', 'madeIn', 'inStock', 'sale_price', 'discount_type', 'discount_price', 'final_price', 'brandId', 'categoryId'],
+                where: whereState,
                 include: {
                     model: Models.ProductImages,
                     attributes: ['id', 'img']
                 },
                 limit: Number(limit),
                 offset: Number(offset)
-            })
-            const count = await Models.Products.count()
+            }).catch((err) => console.log(err))
+            const count = await Models.Products.count({ where: whereState }).catch((err) => console.log(err))
             const data = await Response.Success('Üstünlikli!', { count: count, rows: products })
             return res.status(data.status).json(data)
         } catch (error) {
@@ -97,8 +107,8 @@ class IndexController {
                 madeIn: req.body.madeIn,
                 inStock: req.body.inStock,
                 sale_price: req.body.sale_price,
-                discount_type: req.body.discount_type,
-                discount_price: req.body.discount_price,
+                discount_type: req.body?.discount_type,
+                discount_price: req.body?.discount_price,
                 final_price: final_price,
                 categoryId: req.body.categoryId,
                 brandId: req.body.brandId

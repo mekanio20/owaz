@@ -5,6 +5,7 @@ const IndexSchema = {
     allProducts: Joi.object({
         limit: Joi.number().positive().optional(),
         page: Joi.number().positive().optional(),
+        dis: Joi.boolean().optional()
     }),
     allCategories: Joi.object({
         limit: Joi.number().positive().optional(),
