@@ -43,7 +43,7 @@
             </div>
         </div>
         <div class="flex items-center pt-10 space-x-8 overflow-x-auto">
-            <router-link v-for="item in categories" :key="item.id" :to="item.route" class="font-sf_pro font-medium uppercase text-lg text-black">
+            <router-link v-for="item in categories" :key="item.id" :to="item.route" class="font-sf_pro font-medium uppercase text-base text-black">
                 {{ item.name }}
             </router-link>
         </div>
