@@ -12,7 +12,7 @@ const router = createRouter({
     },
     {
       path: "/admin/brands",
-      name: "Brands",
+      name: "AdminBrands",
       component: () => import("@/views/admin/BrandsView.vue"),
     },
     {
@@ -27,12 +27,12 @@ const router = createRouter({
     },
     {
       path: "/admin/products",
-      name: "Products",
+      name: "AdminProducts",
       component: () => import("@/views/admin/ProductsView.vue"),
     },
     {
-      path: "/admin/product/:id",
-      name: "ProductDetail",
+      path: "/admin/product/detail/:id",
+      name: "AdminProductDetail",
       component: () => import("@/views/admin/ProductDetailView.vue"),
     },
     // CLIENT
@@ -47,7 +47,7 @@ const router = createRouter({
       component: () => import("@/views/client/ProductsView.vue"),
     },
     {
-      path: "/product/:id",
+      path: "/product/detail/:id",
       name: "ProductDetail",
       component: () => import("@/views/client/ProductDetailView.vue"),
     },
@@ -61,7 +61,19 @@ const router = createRouter({
       name: "About",
       component: () => import("@/views/client/AboutView.vue"),
     },
+    {
+      path: "/contacts",
+      name: "Contacts",
+      component: () => import("@/views/client/ContactView.vue"),
+    },
   ],
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0 };
+    }
+  }
 });
 
 export default router;

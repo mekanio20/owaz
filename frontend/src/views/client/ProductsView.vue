@@ -16,7 +16,7 @@
                 {{ this.count }} Results
             </div>
             <div class="w-full my-10 grid grid-cols-4 gap-10">
-                <div v-for="item in products?.rows" :key="item.id"
+                <router-link v-for="item in products?.rows" :key="item.id" :to="`/product/detail/${item.id}`"
                     class="flex items-start flex-col space-y-4">
                     <div class="w-full bg-m_gray-100 rounded-xl">
                         <img class="w-full h-full mt-4" crossorigin="anonymous"
@@ -26,7 +26,7 @@
                     <div class="flex items-center space-x-2">
                         <span class="font-sf_pro font-bold text-m_red-200">{{ item.final_price }} tmt</span>
                     </div>
-                </div>
+                </router-link>
             </div>
         </div>
     </div>

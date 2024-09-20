@@ -98,7 +98,7 @@
                     <h2 class="font-sf_pro font-bold text-4xl mb-10">The best offers for you</h2>
                 </div>
                 <div class="flex items-center space-x-8">
-                    <div v-for="item in offers.rows" :key="item.id"
+                    <router-link v-for="item in offers.rows" :key="item.id" :to="`/product/detail/${item.id}`"
                         class="flex items-start flex-col space-y-4 w-[300px]">
                         <div class="w-full relative bg-m_gray-100 rounded-xl">
                             <div
@@ -113,7 +113,7 @@
                             <span class="font-sf_pro font-bold text-m_red-200">{{ item.final_price }} tmt</span>
                             <span class="font-sf_pro text-m_gray-300 line-through">{{ item.sale_price }} tmt</span>
                         </div>
-                    </div>
+                    </router-link>
                 </div>
             </div>
             <div class="w-full relative mt-20 mb-10">
@@ -137,7 +137,7 @@
                     <div v-if="item.products.length > 0" class="w-full flex items-center justify-between">
                         <h2 class="font-sf_pro font-bold text-4xl mb-10">{{ item.name_en }}</h2>
                     </div>
-                    <div v-for="product in item.products" :key="product.id"
+                    <router-link v-for="product in item.products" :key="product.id" :to="`/product/detail/${product.id}`"
                         class="flex items-start flex-col space-y-4 w-[300px]">
                         <div class="w-full bg-m_gray-100 rounded-xl">
                             <img class="w-full h-full mt-4" crossorigin="anonymous"
@@ -147,7 +147,7 @@
                         <div class="flex items-center space-x-2">
                             <span class="font-sf_pro font-bold text-m_red-200">{{ product.final_price }} tmt</span>
                         </div>
-                    </div>
+                    </router-link>
                 </div>
             </div>
             <div class="w-full mb-20">

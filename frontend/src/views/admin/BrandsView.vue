@@ -77,7 +77,7 @@ import Sidebar from '@/components/admin/Sidebar.vue';
 import { useToast } from 'vue-toastification';
 import api from '@/api/index'
 export default {
-    name: "Brands",
+    name: "AdminBrands",
     components: {
         Sidebar
     },

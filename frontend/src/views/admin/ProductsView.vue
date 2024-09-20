@@ -37,10 +37,9 @@
                                             </div>
                                         </th>
                                         <th scope="row">
-                                            <router-link :to="`/admin/product/${item.id}`"
+                                            <router-link :to="`/admin/product/detail/${item.id}`"
                                                 class="flex items-center px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white hover:underline">
-                                                <img crossorigin="anonymous" :src="`${$uploadUrl}/${item.product_images[0].img}`"
-                                                    alt="iMac Front Image" class="w-auto h-8 mr-3">
+                                                <img crossorigin="anonymous" :src="`${$uploadUrl}/${item.product_images[0].img}`" class="w-auto h-8 mr-3">
                                                 {{ item.name_en }}
                                             </router-link>
                                         </th>
@@ -212,7 +211,7 @@ import Sidebar from '@/components/admin/Sidebar.vue';
 import { useToast } from 'vue-toastification';
 import api from '@/api/index'
 export default {
-    name: "Products",
+    name: "AdminProducts",
     components: {
         Sidebar,
         Paginator

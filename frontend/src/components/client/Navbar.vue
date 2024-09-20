@@ -59,6 +59,7 @@ export default {
             categories: [
                 { id: 1, name: 'About us', route: '/about' },
                 { id: 2, name: 'Brands', route: '/brands' },
+                { id: 2, name: 'Contact us', route: '/contacts' },
                 { id: 3, name: 'Effects and Pedals', route: '/' },
                 { id: 4, name: 'Pro Audio', route: '/' },
                 { id: 5, name: 'DJ and Lighting Gear', route: '/' },
