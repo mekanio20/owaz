@@ -33,7 +33,7 @@
                                 <tbody>
                                     <tr>
                                         <td class="font-bold py-2">Brand</td>
-                                        <td class="py-2">{{ product.brands }}</td>
+                                        <td class="py-2">{{ product.brand.title }}</td>
                                     </tr>
                                     <tr>
                                         <td class="font-bold py-2">Model</td>
@@ -92,6 +92,7 @@ export default {
     methods: {
         async getProduct() {
             const data = await api.get(`/product/${this.$route.params.id}`)
+            console.log(data);
             this.product = data.data.detail
         }
     }

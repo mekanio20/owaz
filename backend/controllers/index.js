@@ -76,7 +76,7 @@ class IndexController {
                     },
                     {
                         model: Models.Brands,
-                        attributes: ['id', 'name']
+                        attributes: ['id', 'title']
                     }
                 ]
             })
