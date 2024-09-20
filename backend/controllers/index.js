@@ -69,10 +69,16 @@ class IndexController {
         try {
             const products = await Models.Products.findOne({
                 where: { id: req.params.id },
-                include: {
-                    model: Models.ProductImages,
-                    attributes: ['id', 'img']
-                }
+                include: [
+                    {
+                        model: Models.ProductImages,
+                        attributes: ['id', 'img']
+                    },
+                    {
+                        model: Models.Brands,
+                        attributes: ['id', 'name']
+                    }
+                ]
             })
             const data = await Response.Success('Üstünlikli!', products)
             return res.status(data.status).json(data)

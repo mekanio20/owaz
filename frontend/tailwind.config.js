@@ -15,10 +15,15 @@ export default {
         100: '#F5F5F5',
         200: '#535353',
         300: '#9B9B9B',
-        400: '#B3B3B3'
+        400: '#B3B3B3',
+        500: '#FAFAFA'
       },
       m_black: {
         100: '#161616'
+      },
+      m_orange: {
+        100: '#FF7F22',
+        200: '#FFF5E9'
       }
     },
     fontFamily: {

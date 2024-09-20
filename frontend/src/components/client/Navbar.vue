@@ -1,12 +1,12 @@
 <template>
     <div class="container py-5">
         <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-4">
+            <router-link to="/" class="flex items-center space-x-4">
                 <div class="w-14">
                     <img class="w-full h-full object-cover" src="/icons/logo.png">
                 </div>
                 <h1 class="font-poppins font-semibold text-xl text-m_red-100 text-nowrap">Owaz Store</h1>
-            </div>
+            </router-link>
             <form class="flex-1 mx-20">
                 <label
                     class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
