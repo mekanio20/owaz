@@ -6,7 +6,7 @@
                 <router-link to="/"
                     class=" font-sf_pro font-normal tablet:text-lg text-sm text-m_gray-200">Home</router-link>
                 <span class="tablet:text-lg text-sm text-m_gray-200">></span>
-                <router-link to="/news"
+                <router-link to="/brands"
                     class=" font-sf_pro font-normal tablet:text-lg text-sm text-m_gray-200">Brands</router-link>
             </div>
             <div class="my-3 font-sf_pro font-bold text-5xl">

@@ -18,6 +18,7 @@ class IndexController {
                     }
                 }
             }
+            if (req.query.categoryId) whereState.categoryId = req.query.categoryId
             const products = await Models.Products.findAll({
                 attributes: ['id', 'name_en', 'name_ru', 'name_tm', 'model', 'year', 'madeIn', 'inStock', 'sale_price', 'discount_type', 'discount_price', 'final_price', 'brandId', 'categoryId'],
                 where: whereState,
@@ -99,7 +100,9 @@ class IndexController {
     }
     async allCategories(req, res) {
         try {
-            const categorie = await Models.Categories.findAndCountAll({})
+            let whereState = {}
+            if (req.query.id) whereState.id = req.query.id
+            const categorie = await Models.Categories.findAndCountAll({ where: whereState })
             const data = await Response.Success('Üstünlikli!', categorie)
             return res.status(data.status).json(data)
         } catch (error) {

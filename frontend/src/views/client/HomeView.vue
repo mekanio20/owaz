@@ -84,7 +84,7 @@
                 <h2 class="font-sf_pro font-bold text-4xl">Browse by category</h2>
                 <div class="flex items-center flex-wrap py-10">
                     <router-link class="py-2 pl-6 mr-5 mb-5 bg-m_gray-100 rounded-xl flex items-center"
-                        v-for="item in categories" :key="item.id" :to="`/`">
+                        v-for="item in categories" :key="item.id" :to="`/products/${item.id}`">
                         <p class="font-sf_pro font-bold text-lg text-nowrap mr-14">{{ item.name_en }}</p>
                         <div class="w-[100px]">
                             <img crossorigin="anonymous" class="w-full h-full object-cover"
