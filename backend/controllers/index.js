@@ -77,6 +77,10 @@ class IndexController {
                     {
                         model: Models.Brands,
                         attributes: ['id', 'title']
+                    },
+                    {
+                        model: Models.Categories,
+                        attributes: ['id', 'name_tm', 'name_en', 'name_ru']
                     }
                 ]
             })

@@ -37,24 +37,16 @@
                                     </tr>
                                     <tr>
                                         <td class="font-bold py-2">Model</td>
-                                        <td class="py-2">WM20JB Smalls Deep State Conspiracy Theory Diodes Overdrive
+                                        <td class="py-2">{{ product.model }}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="font-bold py-2">Color</td>
-                                        <td class="py-2">Black</td>
-                                    </tr>
-                                    <tr>
                                         <td class="font-bold py-2">Year</td>
-                                        <td class="py-2">2024</td>
+                                        <td class="py-2">{{ product.year }}</td>
                                     </tr>
                                     <tr>
                                         <td class="font-bold py-2">Made in</td>
-                                        <td class="py-2">United States</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="font-bold py-2">Pedal Format</td>
-                                        <td class="py-2">Standard</td>
+                                        <td class="py-2">{{ product.madeIn }}</td>
                                     </tr>
                                     <tr>
                                         <td class="font-bold py-2 pr-4">Number of Strings</td>
