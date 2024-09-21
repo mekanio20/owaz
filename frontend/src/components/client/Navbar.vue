@@ -36,41 +36,49 @@
                         </clipPath>
                     </defs>
                 </svg>
-                <router-link to="/"
-                    class="px-8 py-2 xl:text-lg text-base text-nowrap font-sf_pro font-semibold bg-m_red-200 rounded-3xl hover:text-m_gray-300 duration-300 text-white">
+                <router-link to="/contacts"
+                    class="cursor-pointer px-8 py-2 xl:text-lg text-base text-nowrap font-sf_pro font-semibold bg-m_red-100 rounded-3xl hover:bg-m_red-200 duration-300 text-white">
                     Contact us
                 </router-link>
             </div>
         </div>
-        <div class="flex items-center pt-10 space-x-8 overflow-x-auto">
-            <router-link v-for="item in categories" :key="item.id" :to="item.route" class="font-sf_pro font-medium uppercase text-base text-black">
-                {{ item.name }}
+        <div class="flex items-center pt-10 space-x-8 overflow-x-auto scrollbar-hide">
+            <router-link to="/about" class="font-sf_pro font-medium uppercase text-base text-nowrap text-black">
+                About us
+            </router-link>
+            <router-link to="/contacts" class="font-sf_pro font-medium uppercase text-base text-nowrap text-black">
+                Contact us
+            </router-link>
+            <router-link to="/brands" class="font-sf_pro font-medium uppercase text-base text-nowrap text-black">
+                Brands
+            </router-link>
+            <router-link v-for="item in categories" :key="item.id" :to="`/products/${item.id}`" class="font-sf_pro font-medium uppercase text-base text-nowrap text-black">
+                {{ item.name_en }}
             </router-link>
         </div>
     </div>
 </template>
 
 <script>
+import api from '@/api/index'
 export default {
     name: "Navbar",
     data() {
         return {
             searchQuery: '',
-            categories: [
-                { id: 1, name: 'About us', route: '/about' },
-                { id: 2, name: 'Brands', route: '/brands' },
-                { id: 2, name: 'Contact us', route: '/contacts' },
-                { id: 3, name: 'Effects and Pedals', route: '/' },
-                { id: 4, name: 'Pro Audio', route: '/' },
-                { id: 5, name: 'DJ and Lighting Gear', route: '/' },
-                { id: 6, name: 'Acoustic Guitars', route: '/' },
-                { id: 7, name: 'Acoustic Guitars', route: '/' },
-            ]
+            categories: null
         };
+    },
+    created() {
+        this.allCategories()
     },
     methods: {
         performSearch() {
             console.log('Searching for:', this.searchQuery);
+        },
+        async allCategories() {
+            const data = await api.get('/categories')
+            this.categories = data.data.detail.rows
         }
     }
 }

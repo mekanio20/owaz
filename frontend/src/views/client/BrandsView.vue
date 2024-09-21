@@ -15,7 +15,7 @@
             <div class="font-sf_pro font-medium text-lg text-m_gray-200">
                 {{ brands.count }} Results
             </div>
-            <div class="grid grid-cols-5 gap-x-6 my-10">
+            <div class="grid grid-cols-5 gap-6 my-10">
                 <div class="bg-m_gray-100 rounded-lg" v-for="item in brands.rows" :key="item.id">
                     <img class="p-16" crossorigin="anonymous" :src="`${$uploadUrl}/${item.img}`">
                 </div>

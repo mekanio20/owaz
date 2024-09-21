@@ -4,9 +4,9 @@
         <div class="container">
             <div class="mt-10 flex items-center space-x-2">
                 <router-link to="/"
-                    class=" font-sf_pro font-normal tablet:text-lg text-sm text-m_gray-200">Home</router-link>
-                <span class="tablet:text-lg text-sm text-m_gray-200">></span>
-                <router-link to="/" class=" font-sf_pro font-normal tablet:text-lg text-sm text-m_gray-200">About
+                    class=" font-sf_pro font-normal tablet:text-xl text-lg text-m_gray-200">Home</router-link>
+                <span class="tablet:text-xl text-lg text-m_gray-200">></span>
+                <router-link to="/" class=" font-sf_pro font-normal tablet:text-xl text-lg text-m_gray-200">About
                     us</router-link>
             </div>
             <div class="w-full my-10">
