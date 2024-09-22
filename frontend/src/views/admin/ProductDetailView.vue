@@ -228,7 +228,7 @@ export default {
                         'Authorization': `Bearer ${token}`,
                     }
                 })
-                this.$router.push({ name: 'Products' })
+                this.$router.push({ name: 'AdminProducts' })
             }
         },
         async updateProduct() {

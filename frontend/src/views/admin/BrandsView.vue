@@ -2,28 +2,6 @@
     <div class="w-full">
         <Sidebar link="brands" />
         <div class="p-4 sm:ml-64">
-            <div class="w-full">
-                <form @submit.prevent="addBrand" class="max-w-lg mx-auto bg-slate-100 py-10 px-10 rounded-xl">
-                    <div class="mb-5">
-                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand
-                            title</label>
-                        <input type="text" id="title" v-model="title"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                            placeholder="Nike..." required />
-                    </div>
-                    <div class="mb-5">
-                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload
-                            file</label>
-                        <input
-                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
-                            aria-describedby="brand_img_help" type="file" @change="handleFileUpload" accept="image/*">
-                        <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="brand_img_help">For this brand
-                            picture</div>
-                    </div>
-                    <button type="submit"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
-                </form>
-            </div>
             <div class="w-full mt-10">
                 <h2 class="text-blue-700 text-lg m-2">Brands</h2>
                 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -52,7 +30,8 @@
                                 </th>
                                 <td class="px-6 py-4">
                                     <div class="w-10">
-                                        <img crossorigin="anonymous" class="w-full h-full object-cover" :src="`${$uploadUrl}/${item.img}`">
+                                        <img crossorigin="anonymous" class="w-full h-full object-cover"
+                                            :src="`${$uploadUrl}/${item.img}`">
                                     </div>
                                 </td>
                                 <td class="px-6 py-4">
@@ -67,6 +46,28 @@
                         </tbody>
                     </table>
                 </div>
+            </div>
+            <div class="w-full">
+                <form @submit.prevent="addBrand" class="max-w-lg mx-auto bg-slate-100 py-10 px-10 rounded-xl">
+                    <div class="mb-5">
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Brand
+                            title</label>
+                        <input type="text" id="title" v-model="title"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            placeholder="Nike..." required />
+                    </div>
+                    <div class="mb-5">
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload
+                            file</label>
+                        <input
+                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                            aria-describedby="brand_img_help" type="file" @change="handleFileUpload" accept="image/*">
+                        <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="brand_img_help">For this brand
+                            picture</div>
+                    </div>
+                    <button type="submit"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                </form>
             </div>
         </div>
     </div>
