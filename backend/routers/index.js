@@ -3,6 +3,7 @@ const IndexController = require("../controllers/index");
 const valdidationMiddleware = require("../middlewares/validation");
 const imageMiddleware = require('../middlewares/image')
 const IndexSchema = require("../validations/index");
+const authMiddleware = require('../middlewares/auth')
 
 // router.put('/update/admin',
 //   valdidationMiddleware(IndexSchema.updateAdmin, 'body'),
@@ -13,6 +14,7 @@ router.post('/login',
     IndexController.adminLogin)
 
 router.post('/add/product',
+  authMiddleware,
   imageMiddleware(process.env.IMAGES).fields([
     { name: 'img', maxCount: 10 }
   ]),
@@ -20,16 +22,19 @@ router.post('/add/product',
   IndexController.addProduct)
 
 router.post('/add/brand',
+  authMiddleware,
   imageMiddleware(process.env.IMAGES).single('img'),
   valdidationMiddleware(IndexSchema.addBrand, 'body'),
   IndexController.addBrand)
 
 router.post('/add/category',
+  authMiddleware,
   imageMiddleware(process.env.IMAGES).single('img'),
   valdidationMiddleware(IndexSchema.addCategory, 'body'),
   IndexController.addCategory)
 
 router.post('/add/banner',
+  authMiddleware,
   imageMiddleware(process.env.IMAGES).single('img'),
   IndexController.addBanner)
 
@@ -60,27 +65,33 @@ router.get('/categories',
 
 // UPDATE
 router.put('/update/product', 
+  authMiddleware,
   valdidationMiddleware(IndexSchema.updateProduct, 'body'),
   IndexController.updateProduct)
 
 // DELETE
 router.delete('/brand/:id',
+  authMiddleware,
   valdidationMiddleware(IndexSchema.idController, 'params'),
   IndexController.deleteBrand)
 
 router.delete('/banner/:id',
+  authMiddleware,
   valdidationMiddleware(IndexSchema.idController, 'params'),
   IndexController.deleteBanner)
 
 router.delete('/category/:id',
+  authMiddleware,
   valdidationMiddleware(IndexSchema.idController, 'params'),
   IndexController.deleteCategory)
 
 router.delete('/product/:id',
+  authMiddleware,
   valdidationMiddleware(IndexSchema.idController, 'params'),
   IndexController.deleteProduct)
 
 router.delete('/image/:id',
+  authMiddleware,
   valdidationMiddleware(IndexSchema.idController, 'params'),
   IndexController.deleteImage)
 

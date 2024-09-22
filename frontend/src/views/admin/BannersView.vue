@@ -83,13 +83,15 @@ export default {
         },
         async addBanner() {
             try {
+                const token = localStorage.getItem('token');
                 const formData = new FormData();
                 if (this.imageFile) {
                     formData.append('img', this.imageFile);
                 }
                 const banner = await api.post('/add/banner', formData, {
                     headers: {
-                        'Content-Type': 'multipart/form-data'
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': `Bearer ${token}`,
                     }
                 })
                 let toast = useToast();
@@ -113,9 +115,14 @@ export default {
         },
         async deleteBanner(id) {
             try {
+                const token = localStorage.getItem('token');
                 const confirmed = confirm("Banneri pozmak isleýärsiňizmi!");
                 if (confirmed) {
-                    const data = await api.delete(`/banner/${id}`)
+                    const data = await api.delete(`/banner/${id}`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                        }
+                    })
                     let toast = useToast();
                     if (data.data.status === 200) {
                         toast.success(data.data.msg);

@@ -200,9 +200,14 @@ export default {
         },
         async deleteImage(imageId) {
             try {
+                const token = localStorage.getItem('token');
                 if (confirm('Suraty pozmak isleýärsiňizmi?')) {
                     let toast = useToast();
-                    const product = await api.delete(`/image/${imageId}`)
+                    const product = await api.delete(`/image/${imageId}`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                        }
+                    })
                     if (product.data.status === 200) {
                         toast.success(product.data.msg);
                     } else {
@@ -216,13 +221,19 @@ export default {
             }
         },
         async deletProduct() {
+            const token = localStorage.getItem('token');
             if (confirm('Harydy pozmak isleýärsiňizmi?')) {
-                await api.delete(`/product/${this.productId}`)
+                await api.delete(`/product/${this.productId}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                    }
+                })
                 this.$router.push({ name: 'Products' })
             }
         },
         async updateProduct() {
             try {
+                const token = localStorage.getItem('token');
                 let postData = {
                     id: this.productId,
                     name_tm: this.name_tm,
@@ -241,7 +252,11 @@ export default {
                     categoryId: this.categoryId,
                     brandId: this.brandId
                 };
-                const product = await api.put('/update/product', postData)
+                const product = await api.put('/update/product', postData, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                    }
+                })
                 let toast = useToast();
                 if (product.data.status === 200) {
                     toast.success(product.data.msg);

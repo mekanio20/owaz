@@ -98,6 +98,7 @@ export default {
         // ##############
         async addBrand() {
             try {
+                const token = localStorage.getItem('token');
                 const formData = new FormData();
                 formData.append('title', this.title);
                 if (this.imageFile) {
@@ -105,10 +106,10 @@ export default {
                 }
                 const brand = await api.post('/add/brand', formData, {
                     headers: {
-                        'Content-Type': 'multipart/form-data'
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': `Bearer ${token}`,
                     }
                 })
-                console.log(brand);
                 let toast = useToast();
                 if (brand.data.status === 201) {
                     toast.success(brand.data.msg);
@@ -132,9 +133,14 @@ export default {
         },
         async deleteBrand(id) {
             try {
+                const token = localStorage.getItem('token');
                 const confirmed = confirm("Brendi pozmak isleýärsiňizmi!");
                 if (confirmed) {
-                    const data = await api.delete(`/brand/${id}`)
+                    const data = await api.delete(`/brand/${id}`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                        }
+                    })
                     let toast = useToast();
                     if (data.data.status === 200) {
                         toast.success(data.data.msg);

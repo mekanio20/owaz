@@ -273,6 +273,7 @@ export default {
         // ##############
         async addProduct() {
             try {
+                const token = localStorage.getItem('token');
                 const formData = new FormData();
                 formData.append('name_tm', this.name_tm);
                 formData.append('name_ru', this.name_ru);
@@ -296,7 +297,8 @@ export default {
                 }
                 const product = await api.post('/add/product', formData, {
                     headers: {
-                        'Content-Type': 'multipart/form-data'
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': `Bearer ${token}`,
                     }
                 })
                 let toast = useToast();
@@ -313,9 +315,14 @@ export default {
         },
         async deleteProduct(id) {
             try {
+                const token = localStorage.getItem('token');
                 const confirmed = confirm("Harydy pozmak isleýärsiňizmi!");
                 if (confirmed) {
-                    const data = await api.delete(`/product/${id}`)
+                    const data = await api.delete(`/product/${id}`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                        }
+                    })
                     let toast = useToast();
                     if (data.data.status === 200) {
                         toast.success(data.data.msg);

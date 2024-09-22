@@ -119,6 +119,7 @@ export default {
         },
         async addCategory() {
             try {
+                const token = localStorage.getItem('token');
                 const formData = new FormData();
                 formData.append('name_tm', this.name_tm)
                 formData.append('name_ru', this.name_ru)
@@ -128,7 +129,8 @@ export default {
                 }
                 const category = await api.post('/add/category', formData, {
                     headers: {
-                        'Content-Type': 'multipart/form-data'
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': `Bearer ${token}`,
                     }
                 })
                 let toast = useToast();
@@ -152,9 +154,14 @@ export default {
         },
         async deleteCategory(id) {
             try {
+                const token = localStorage.getItem('token');
                 const confirmed = confirm("Categoryyany pozmak isleýärsiňizmi!");
                 if (confirmed) {
-                    const data = await api.delete(`/category/${id}`)
+                    const data = await api.delete(`/category/${id}`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                        }
+                    })
                     let toast = useToast();
                     if (data.data.status === 200) {
                         toast.success(data.data.msg);
