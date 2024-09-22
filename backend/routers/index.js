@@ -54,10 +54,6 @@ router.get('/categories',
   valdidationMiddleware(IndexSchema.allCategories, 'query'),
   IndexController.allCategories)
 
-router.get('/banners',
-  valdidationMiddleware(IndexSchema.allBanners, 'query'),
-  IndexController.allBanners)
-
 // UPDATE
 router.put('/update/product', 
   valdidationMiddleware(IndexSchema.updateProduct, 'body'),

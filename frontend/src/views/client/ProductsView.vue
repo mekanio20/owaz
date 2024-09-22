@@ -6,7 +6,7 @@
                 <router-link to="/"
                     class=" font-sf_pro font-normal tablet:text-xl text-lg text-m_gray-200">Home</router-link>
                 <span class="tablet:text-xl text-lg text-m_gray-200">></span>
-                <router-link to="/"
+                <router-link :to="`/products/${this.$route.params.id}`"
                     class=" font-sf_pro font-normal tablet:text-xl text-lg text-m_gray-200">{{ this.name }}</router-link>
             </div>
             <div class="my-3 font-sf_pro font-bold text-5xl">
