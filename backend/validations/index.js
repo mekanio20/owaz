@@ -26,6 +26,10 @@ const IndexSchema = {
         limit: Joi.number().positive().optional(),
         page: Joi.number().positive().optional(),
     }),
+    adminLogin: Joi.object({
+        login: Joi.string().max(100).required(),
+        password: Joi.string().required()
+    }),
     // POST
     addProduct: Joi.object({
         name_tm: Joi.string().required(),

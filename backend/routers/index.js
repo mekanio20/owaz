@@ -8,6 +8,10 @@ const IndexSchema = require("../validations/index");
 //   valdidationMiddleware(IndexSchema.updateAdmin, 'body'),
 //   IndexController.updateAdmin)
 
+router.post('/login',
+    valdidationMiddleware(IndexSchema.adminLogin, 'body'),
+    IndexController.adminLogin)
+
 router.post('/add/product',
   imageMiddleware(process.env.IMAGES).fields([
     { name: 'img', maxCount: 10 }

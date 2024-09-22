@@ -20,7 +20,7 @@
                     </div>
                     <input type="text"
                         class="block w-full p-4 ps-10 text-sm text-gray-900 border-none rounded-xl placeholder:text-m_gray-200 bg-m_gray-100 focus:ring-blue-500 focus:border-blue-500"
-                        placeholder="Search Mockups, Logos..." required />
+                        placeholder="Search..." required />
                 </div>
             </form>
             <div class="flex items-center space-x-6">
