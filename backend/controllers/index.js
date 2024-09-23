@@ -123,7 +123,7 @@ class IndexController {
     async allSubcategories(req, res) {
         try {
             let whereState = {}
-            if (req.query.id) whereState.id = req.query.id
+            if (req.query.id) whereState.categoryId = req.query.id
             const subcategories = await Models.Subcategories.findAndCountAll({ where: whereState })
             const data = await Response.Success('Üstünlikli!', subcategories)
             return res.status(data.status).json(data)

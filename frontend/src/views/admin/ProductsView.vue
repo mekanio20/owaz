@@ -255,6 +255,7 @@ export default {
     },
     created() {
         this.allProducts(this.currentPage)
+        this.allSubcategories()
         this.allCategories()
         this.allBrands()
     },

@@ -47,6 +47,7 @@ export default {
         return {
             name: null,
             products: null,
+            subcategories: null,
             count: 0
         }
     },
@@ -64,6 +65,10 @@ export default {
             this.products = data.data.detail
             this.count = this.products.count
         },
+        async allSubcategories() {
+            const data = await api.get(`/subcategories?id=${this.$route.params.id}`)
+            this.subcategories = data.data.detail.rows
+        }
     }
 }
 </script>
