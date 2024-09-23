@@ -130,7 +130,7 @@ export default {
                     categoryId: this.categoryId
                 }
                 const token = localStorage.getItem('token');
-                const subcategory = await api.post('/add/category', postData, {
+                const subcategory = await api.post('/add/subcategory', postData, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                     }
