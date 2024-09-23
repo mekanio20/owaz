@@ -33,6 +33,11 @@ router.post('/add/category',
   valdidationMiddleware(IndexSchema.addCategory, 'body'),
   IndexController.addCategory)
 
+router.post('/add/subcategory',
+  authMiddleware,
+  valdidationMiddleware(IndexSchema.addSubcategory, 'body'),
+  IndexController.addSubcategory)
+
 router.post('/add/banner',
   authMiddleware,
   imageMiddleware(process.env.IMAGES).single('img'),
@@ -62,6 +67,10 @@ router.get('/banners',
 router.get('/categories',
   valdidationMiddleware(IndexSchema.allCategories, 'query'),
   IndexController.allCategories)
+  
+router.get('/subcategories',
+  valdidationMiddleware(IndexSchema.allSubcategories, 'query'),
+  IndexController.allSubcategories)
 
 // UPDATE
 router.put('/update/product', 
@@ -84,6 +93,11 @@ router.delete('/category/:id',
   authMiddleware,
   valdidationMiddleware(IndexSchema.idController, 'params'),
   IndexController.deleteCategory)
+
+router.delete('/subcategory/:id',
+  authMiddleware,
+  valdidationMiddleware(IndexSchema.idController, 'params'),
+  IndexController.deleteSubcategory)
 
 router.delete('/product/:id',
   authMiddleware,

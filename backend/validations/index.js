@@ -18,6 +18,11 @@ const IndexSchema = {
         limit: Joi.number().positive().optional(),
         page: Joi.number().positive().optional(),
     }),
+    allSubcategories: Joi.object({
+        id: Joi.number().positive().optional(),
+        limit: Joi.number().positive().optional(),
+        page: Joi.number().positive().optional(),
+    }),
     allBrands: Joi.object({
         limit: Joi.number().positive().optional(),
         page: Joi.number().positive().optional(),
@@ -46,6 +51,7 @@ const IndexSchema = {
         discount_type: Joi.string().valid('manat', 'goterim').optional(),
         discount_price: Joi.number().optional(),
         categoryId: Joi.number().positive().required(),
+        subcategoryId: Joi.number().positive().optional(),
         brandId: Joi.number().positive().required(),
     }),
     addBrand: Joi.object({
@@ -55,6 +61,12 @@ const IndexSchema = {
         name_tm: Joi.string().max(100).required(),
         name_ru: Joi.string().max(100).required(),
         name_en: Joi.string().max(100).required(),
+    }),
+    addSubcategory: Joi.object({
+        name_tm: Joi.string().max(100).required(),
+        name_ru: Joi.string().max(100).required(),
+        name_en: Joi.string().max(100).required(),
+        categoryId: Joi.number().positive().required()
     }),
     // PUT
     updateAdmin: Joi.object({

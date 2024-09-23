@@ -120,6 +120,17 @@ class IndexController {
             return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
         }
     }
+    async allSubcategories(req, res) {
+        try {
+            let whereState = {}
+            if (req.query.id) whereState.id = req.query.id
+            const subcategories = await Models.Subcategories.findAndCountAll({ where: whereState })
+            const data = await Response.Success('Üstünlikli!', subcategories)
+            return res.status(data.status).json(data)
+        } catch (error) {
+            return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
+        }
+    }
     // POST
     async adminLogin(req, res) {
         try {
@@ -175,6 +186,7 @@ class IndexController {
                 discount_price: req.body?.discount_price,
                 final_price: final_price,
                 categoryId: req.body.categoryId,
+                subcategoryId: req.body.subcategoryId,
                 brandId: req.body.brandId
             }).catch((err) => console.log(err))
             images.forEach(async (item) => {
@@ -223,6 +235,21 @@ class IndexController {
                 img: image
             }).catch((err) => console.log(err))
             data = await Response.Created('Category döredildi!', [])
+            return res.status(data.status).json(data)
+        } catch (error) {
+            return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
+        }
+    }
+    async addSubcategory(req, res) {
+        try {
+            let data = null
+            await Models.Subcategories.create({
+                name_tm: req.body.name_tm,
+                name_ru: req.body.name_ru,
+                name_en: req.body.name_en,
+                categoryId: req.body.categoryId
+            }).catch((err) => console.log(err))
+            data = await Response.Created('Subcategory döredildi!', [])
             return res.status(data.status).json(data)
         } catch (error) {
             return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
@@ -323,6 +350,20 @@ class IndexController {
                 return res.status(data.status).json(data)
             }
             data = await Response.Success('Category pozuldy!', [])
+            return res.status(data.status).json(data)
+        } catch (error) {
+            return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
+        }
+    }
+    async deleteSubcategory(req, res) {
+        try {
+            let data = null
+            const subcategory = await Models.Subcategories.destroy({ where: { id: req.params.id } })
+            if (!subcategory) {
+                data = await Response.BadRequest('Ýalňyşlyk ýüze çykdy!', [])
+                return res.status(data.status).json(data)
+            }
+            data = await Response.Success('Subcategory pozuldy!', [])
             return res.status(data.status).json(data)
         } catch (error) {
             return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })

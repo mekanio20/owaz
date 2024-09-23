@@ -45,6 +45,15 @@ const Categories = database.define('categories', {
     updatedAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW }
 })
 
+const Subcategories = database.define('subcategories', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, allowNull: false, unique: true },
+    name_tm: { type: DataTypes.STRING, allowNull: false },
+    name_ru: { type: DataTypes.STRING, allowNull: false },
+    name_en: { type: DataTypes.STRING, allowNull: false },
+    createdAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updatedAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW }
+})
+
 const Brands = database.define('brands', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, allowNull: false, unique: true },
     title: { type: DataTypes.STRING, allowNull: false },
@@ -76,6 +85,17 @@ ProductImages.belongsTo(Products)
 Categories.hasMany(Products)
 Products.belongsTo(Categories)
 
+// Subcategories -> CategoryId
+
+Categories.hasMany(Subcategories)
+Subcategories.belongsTo(Categories)
+
+// Products -> SubcategoryId
+
+Subcategories.hasMany(Products)
+Products.belongsTo(Subcategories)
+
+
 module.exports = {
-    Products, Banners, Categories, ProductImages, Brands, Users
+    Products, Banners, Categories, ProductImages, Brands, Users, Subcategories
 }
