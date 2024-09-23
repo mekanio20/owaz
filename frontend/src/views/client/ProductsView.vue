@@ -142,5 +142,10 @@ export default {
             this.count = this.products.count
         },
     },
+    watch: {
+    '$route.params.id': function() {
+      this.allProducts()
+    }
+  },
 }
 </script>
