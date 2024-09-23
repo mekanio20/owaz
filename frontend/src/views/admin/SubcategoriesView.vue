@@ -147,7 +147,7 @@ export default {
         },
         async allSubcategories() {
             const data = await api.get('/subcategories')
-            this.categories = data.data.detail.rows
+            this.subcategories = data.data.detail.rows
         },
         async deleteSubcategory(id) {
             try {
