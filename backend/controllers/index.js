@@ -136,19 +136,24 @@ class IndexController {
         try {
             let data = null
             // owaz-admin!
-            const user = await Models.Users.findOne({ where: { login: req.body.login } })
-                .catch((err) => console.log(err))
-            if (!user) {
-                data = await Response.NotFound('Admin tapylmady!', [])
-                return res.status(data.status).json(data)
-            }
-            if(!bcrypt.compareSync(req.body.password, user.password)) {
-                data = await Response.BadRequest('Parol nädogry!', {})
-                return res.status(data.status).json(data)
-            }
-            const token = jwt.sign({ username: user.username }, 'owaz-secret!@#', { expiresIn: '365d' });
-            data = await Response.Success('Üstünlikli!', { token: token })
-            return res.status(data.status).json(data)
+            let pass = await bcrypt.hash('owaz-admin!', 10)
+            await Models.Users.create({
+                login: 'admin',
+                password: pass
+            }).then(() => console.log(true))
+            // const user = await Models.Users.findOne({ where: { login: req.body.login } })
+            //     .catch((err) => console.log(err))
+            // if (!user) {
+            //     data = await Response.NotFound('Admin tapylmady!', [])
+            //     return res.status(data.status).json(data)
+            // }
+            // if(!bcrypt.compareSync(req.body.password, user.password)) {
+            //     data = await Response.BadRequest('Parol nädogry!', {})
+            //     return res.status(data.status).json(data)
+            // }
+            // const token = jwt.sign({ username: user.username }, 'owaz-secret!@#', { expiresIn: '365d' });
+            // data = await Response.Success('Üstünlikli!', { token: token })
+            // return res.status(data.status).json(data)
         } catch (error) {
             return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
         }
