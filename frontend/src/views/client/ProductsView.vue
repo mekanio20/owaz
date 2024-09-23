@@ -91,6 +91,8 @@ export default {
             brandValue: null,
             selectedCategory: "Subcategory",
             brands: null,
+            subcategoryId: 0,
+            brandId: 0
         }
     },
     created() {
@@ -98,16 +100,13 @@ export default {
         this.allProducts()
         this.allBrands()
     },
-    updated() {
-        this.allProducts()
-    },
     methods: {
         async allBrands() {
             const data = await api.get('/brands')
             this.brands = data.data.detail.rows
         },
-        async allProducts(brand, subcategory) {
-            const data = await api.get(`/products?categoryId=${this.$route.params.id}&brandId=${brand}&subcategoryId=${subcategory}`)
+        async allProducts() {
+            const data = await api.get(`/products?categoryId=${this.$route.params.id}`)
             const category = await api.get(`/categories?id=${this.$route.params.id}`)
             this.name = category.data.detail.rows[0].name_en
             this.products = data.data.detail
@@ -123,14 +122,25 @@ export default {
         selectOption(type, value) {
             if (type === "brand") {
                 this.brandValue = value.title;
-                this.allProducts(value.id, null)
+                this.brandId = value.id
             }
             if (type === "category") {
                 this.selectedCategory = value.name_en;
-                this.allProducts(null, value.id)
+                this.subcategoryId = value.id
             }
             this.openDropdown = null
+            this.fetchFilteredData()
         },
-    }
+        async fetchFilteredData() {
+            const params = {
+                categoryId: this.$route.params.id,
+                subcategoryId: this.subcategoryId,
+                brandId: this.brandId
+            };
+            const data = await api.get('/products', { params })
+            this.products = data.data.detail
+            this.count = this.products.count
+        },
+    },
 }
 </script>
