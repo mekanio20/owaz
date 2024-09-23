@@ -6,6 +6,8 @@ const IndexSchema = {
         limit: Joi.number().positive().optional(),
         page: Joi.number().positive().optional(),
         categoryId: Joi.number().positive().optional(),
+        subcategoryId: Joi.number().positive().optional(),
+        brandId: Joi.number().positive().optional(),
         dis: Joi.boolean().optional(),
     }),
     categoryProducts: Joi.object({
