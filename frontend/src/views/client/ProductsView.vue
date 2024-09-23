@@ -18,8 +18,8 @@
             <div class="w-full my-10 grid grid-cols-4 gap-10">
                 <router-link v-for="item in products?.rows" :key="item.id" :to="`/product/detail/${item.id}`"
                     class="flex items-start flex-col space-y-4">
-                    <div class="w-full bg-m_gray-100 rounded-xl">
-                        <img class="w-full h-full mt-4" crossorigin="anonymous"
+                    <div class="w-full h-64 bg-m_gray-100 rounded-xl">
+                        <img class="w-full h-full object-contain mt-4" crossorigin="anonymous"
                             :src="`${$uploadUrl}/${item.product_images[0].img}`">
                     </div>
                     <p class="font-sf_pro font-medium text-lg">{{ item.name_en }}</p>
@@ -51,6 +51,9 @@ export default {
         }
     },
     created() {
+        this.allProducts()
+    },
+    updated() {
         this.allProducts()
     },
     methods: {

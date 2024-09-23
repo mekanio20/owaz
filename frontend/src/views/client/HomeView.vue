@@ -144,7 +144,7 @@
                             <p class="font-sf_pro text-lg text-m_gray-200">New the best and latest keyboard collection
                             </p>
                         </div>
-                        <router-link to="/products/10"
+                        <router-link to="/products/8"
                             class="px-8 py-2 rounded-3xl bg-black text-white font-sf_pro font-bold text-lg">
                             Explore Now
                         </router-link>

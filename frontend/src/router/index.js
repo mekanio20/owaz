@@ -35,6 +35,12 @@ const router = createRouter({
       meta: { requiresAuth: true },
     },
     {
+      path: "/admin/subcategories",
+      name: "Subcategories",
+      component: () => import("@/views/admin/SubcategoriesView.vue"),
+      meta: { requiresAuth: true },
+    },
+    {
       path: "/admin/products",
       name: "AdminProducts",
       component: () => import("@/views/admin/ProductsView.vue"),
