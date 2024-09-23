@@ -110,10 +110,10 @@
                         </svg>
                     </div>
                 </div>
-                <div class="flex items-center space-x-8">
+                <div class="w-full flex items-center space-x-8">
                     <swiper :slides-per-view="slidesPerView" :breakpoints="p1_breakpoints" :spaceBetween="30" :modules="modules"
                         :navigation="{ nextEl: '.next-p', prevEl: '.prev-p' }"
-                        class="flex items-center space-x-8 select-none">
+                        class="w-full flex items-center space-x-8 select-none">
                         <swiper-slide v-for="item in offers?.rows" :key="item.id">
                             <router-link class="flex flex-col space-y-4" :to="`/product/detail/${item.id}`">
                                 <div class="w-full h-64 relative bg-m_gray-100 rounded-xl">
