@@ -18,7 +18,7 @@
             </div>
             <div class="flex space-x-4 my-5">
                 <!-- Category Dropdown -->
-                <div class="relative">
+                <!-- <div class="relative">
                     <button
                         class="px-4 py-2 bg-white border rounded-md shadow-sm focus:outline-none flex justify-between items-center"
                         @click="toggleDropdown('category')">
@@ -34,9 +34,9 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
                 <!-- Brand Dropdown -->
-                <div class="relative">
+                <!-- <div class="relative">
                     <button
                         class="px-4 py-2 bg-white border rounded-md shadow-sm focus:outline-none flex justify-between items-center"
                         @click="toggleDropdown('brand')">
@@ -51,7 +51,7 @@
                             </li>
                         </ul>
                     </div>
-                </div>
+                </div> -->
             </div>
             <div class="w-full my-10 grid grid-cols-4 gap-10">
                 <router-link v-for="item in products?.rows" :key="item.id" :to="`/product/detail/${item.id}`"

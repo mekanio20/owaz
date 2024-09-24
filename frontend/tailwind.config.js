@@ -33,6 +33,7 @@ export default {
     },
     container: {
       center: true,
+      padding: '1rem',
       screens: {
         sm: '95%',
         md: '768px',

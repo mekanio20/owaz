@@ -35,6 +35,31 @@ const Banners = database.define('banners', {
     updatedAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW }
 })
 
+const Ad = database.define('ads', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, allowNull: false, unique: true },
+    title: { type: DataTypes.STRING, allowNull: false },
+    desc: { type: DataTypes.STRING, allowNull: false },
+    img: { type: DataTypes.STRING, allowNull: false },
+    createdAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updatedAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW }
+})
+
+const Socials = database.define('socials', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, allowNull: false, unique: true },
+    title: { type: DataTypes.STRING, allowNull: false },
+    link: { type: DataTypes.STRING, allowNull: false },
+    createdAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updatedAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW }
+})
+
+const Explore = database.define('explores', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, allowNull: false, unique: true },
+    title: { type: DataTypes.STRING, allowNull: false },
+    desc: { type: DataTypes.STRING, allowNull: false },
+    createdAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updatedAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW }
+})
+
 const Categories = database.define('categories', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, allowNull: false, unique: true },
     name_tm: { type: DataTypes.STRING, allowNull: false },
@@ -50,6 +75,7 @@ const Subcategories = database.define('subcategories', {
     name_tm: { type: DataTypes.STRING, allowNull: false },
     name_ru: { type: DataTypes.STRING, allowNull: false },
     name_en: { type: DataTypes.STRING, allowNull: false },
+    img: { type: DataTypes.STRING, allowNull: false },
     createdAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
     updatedAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW }
 })
@@ -95,7 +121,11 @@ Subcategories.belongsTo(Categories)
 Subcategories.hasMany(Products)
 Products.belongsTo(Subcategories)
 
+// Explores -> CategoryId
+
+Categories.hasMany(Explore)
+Explore.belongsTo(Categories)
 
 module.exports = {
-    Products, Banners, Categories, ProductImages, Brands, Users, Subcategories
+    Products, Banners, Categories, ProductImages, Brands, Users, Subcategories, Ad, Socials, Explore
 }
