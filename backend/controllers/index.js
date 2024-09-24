@@ -39,6 +39,29 @@ class IndexController {
             return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
         }
     }
+    async searchProducts(req, res) {
+        try {
+            const search = req.query.q
+            let searchQuery = {
+                name_en: { [Op.like]: `%${search}%` },
+                name_ru: { [Op.like]: `%${search}%` },
+                name_tm: { [Op.like]: `%${search}%` },
+            }
+            const products = await Models.Products.findAll({
+                attributes: ['id', 'name_en', 'name_ru', 'name_tm', 'discount_type', 'discount_price', 'final_price'],
+                where: searchQuery,
+                include: {
+                    model: Models.ProductImages,
+                    attributes: ['id', 'img']
+                }
+            }).catch((err) => console.log(err))
+            const count = await Models.Products.count({ where: searchQuery }).catch((err) => console.log(err))
+            const data = await Response.Success('Üstünlikli!', { count: count, rows: products })
+            return res.status(data.status).json(data)
+        } catch (error) {
+            return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
+        }
+    }
     async categoryProducts(req, res) {
         try {
             let page = req.query.page || 1

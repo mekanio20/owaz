@@ -7,7 +7,7 @@
                 </div>
                 <h1 class="font-poppins font-semibold text-xl text-m_red-100 text-nowrap">Owaz Store</h1>
             </router-link>
-            <form class="flex-1 mx-20">
+            <form @submit.prevent="performSearch" class="flex-1 mx-20">
                 <label
                     class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                 <div class="relative">
@@ -18,7 +18,7 @@
                                 d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                         </svg>
                     </div>
-                    <input type="text"
+                    <input type="text" v-model="searchQuery" @keydown.enter="performSearch"
                         class="block w-full p-4 ps-10 text-sm text-gray-900 border-none rounded-xl placeholder:text-m_gray-200 bg-m_gray-100 focus:ring-blue-500 focus:border-blue-500"
                         placeholder="Search..." required />
                 </div>
@@ -65,7 +65,7 @@ export default {
     name: "Navbar",
     data() {
         return {
-            searchQuery: '',
+            searchQuery: null,
             categories: null
         };
     },
@@ -74,7 +74,7 @@ export default {
     },
     methods: {
         performSearch() {
-            console.log('Searching for:', this.searchQuery);
+            this.$router.push({ path: '/search', query: { q: this.searchQuery } });
         },
         async allCategories() {
             const data = await api.get('/categories')

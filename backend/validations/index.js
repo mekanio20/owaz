@@ -10,6 +10,9 @@ const IndexSchema = {
         brandId: Joi.number().positive().optional(),
         dis: Joi.boolean().optional(),
     }),
+    searchProducts: Joi.object({
+        q: Joi.string().min(2).max(100).required()
+    }),
     categoryProducts: Joi.object({
         // id: Joi.number().positive().required(),
         limit: Joi.number().positive().optional(),
