@@ -4,10 +4,10 @@
         <div class="container">
             <div class="mt-10 flex items-center space-x-2">
                 <router-link to="/"
-                    class=" font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">Home</router-link>
+                    class="font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">Home</router-link>
                 <span class="md:text-xl sm:text-lg text-base text-m_gray-200">></span>
                 <router-link to="/contacts"
-                    class=" font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">Contact us</router-link>
+                    class="font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">Contact us</router-link>
             </div>
             <div class="flex justify-center items-center my10">
                 <form class="bg-white p-8 rounded-lg lg:w-1/2 w-full">

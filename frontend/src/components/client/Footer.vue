@@ -17,8 +17,8 @@
                 <div class="font-sf_pro font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400 mt-24 mr-10 lg:hidden block">All Rights Reserved | <span class="text-m_green-100 underline">Terms and Conditions | Privacy Policy</span></div>
             </div>
             <div class="w-full flex flex-col items-end">
-                <div class="w-full flex flex-row items-center justify-between lg:pl-24 lg:pr-10">
-                    <div class="flex flex-col items-center justify-center">
+                <div class="w-full flex flex-row items-center lg:justify-end justify-center lg:pl-24 lg:pr-10">
+                    <!-- <div class="flex flex-col items-center justify-center">
                         <h3 class="font-sf_pro font-bold lg:text-lg sm:text-base mobile:text-sm text-xs text-white mb-10">Product</h3>
                         <div class="flex flex-col items-center space-y-4">
                             <router-link to="#" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
@@ -37,7 +37,7 @@
                                 Updates
                             </router-link>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="flex flex-col items-center justify-center">
                         <h3 class="font-sf_pro font-bold lg:text-lg sm:text-base mobile:text-sm text-xs text-white mb-10">Company</h3>
                         <div class="flex flex-col items-center space-y-4">
@@ -58,7 +58,7 @@
                             </router-link>
                         </div>
                     </div>
-                    <div class="flex flex-col items-center justify-center">
+                    <!-- <div class="flex flex-col items-center justify-center">
                         <h3 class="font-sf_pro font-bold lg:text-lg sm:text-base mobile:text-sm text-xs text-white mb-10">Support</h3>
                         <div class="flex flex-col items-center space-y-4">
                             <router-link to="#" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
@@ -77,7 +77,7 @@
                                 Chat support
                             </router-link>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="font-sf_pro font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400 mt-24 mr-10 lg:block hidden">All Rights Reserved | <span class="text-m_green-100 underline">Terms and Conditions | Privacy Policy</span></div>
             </div>

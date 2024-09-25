@@ -84,6 +84,15 @@
                             </option>
                         </select>
                     </div>
+                    <div class="mb-5">
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload
+                            file</label>
+                        <input
+                            class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-slate-50"
+                            aria-describedby="brand_img_help" type="file" @change="handleFileUpload" accept="image/*">
+                        <div class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="brand_img_help">For this subcateogry
+                            picture</div>
+                    </div>
                     <button type="submit"
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
                 </form>
@@ -103,6 +112,7 @@ export default {
     },
     data() {
         return {
+            imageFile: null,
             subcategories: null,
             categories: null,
             name_tm: null,
@@ -120,17 +130,21 @@ export default {
             const data = await api.get('/categories')
             this.categories = data.data.detail.rows
         },
+        handleFileUpload(event) {
+            this.imageFile = event.target.files[0];
+        },
         // #########
         async addSubcategory() {
             try {
-                const postData = {
-                    name_tm: this.name_tm,
-                    name_ru: this.name_ru,
-                    name_en: this.name_en,
-                    categoryId: this.categoryId
-                }
                 const token = localStorage.getItem('token');
-                const subcategory = await api.post('/add/subcategory', postData, {
+                const formData = new FormData();
+                formData.append('name_tm', this.name_tm)
+                formData.append('name_ru', this.name_ru)
+                formData.append('categoryId', this.categoryId)
+                if (this.imageFile) {
+                    formData.append('img', this.imageFile);
+                }
+                const subcategory = await api.post('/add/subcategory', formData, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                     }

@@ -80,6 +80,15 @@ const Subcategories = database.define('subcategories', {
     updatedAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW }
 })
 
+const Contacts = database.define('contacts', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, allowNull: false, unique: true },
+    fullanme: { type: DataTypes.STRING, allowNull: false },
+    phone: { type: DataTypes.STRING, allowNull: false },
+    message: { type: DataTypes.TEXT, allowNull: false },
+    createdAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updatedAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW }
+})
+
 const Brands = database.define('brands', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, allowNull: false, unique: true },
     title: { type: DataTypes.STRING, allowNull: false },
@@ -127,5 +136,5 @@ Categories.hasMany(Explore)
 Explore.belongsTo(Categories)
 
 module.exports = {
-    Products, Banners, Categories, ProductImages, Brands, Users, Subcategories, Ad, Socials, Explore
+    Products, Banners, Categories, ProductImages, Brands, Users, Subcategories, Ad, Socials, Explore, Contacts
 }

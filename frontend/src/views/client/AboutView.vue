@@ -4,46 +4,49 @@
         <div class="container">
             <div class="mt-10 flex items-center space-x-2">
                 <router-link to="/"
-                    class=" font-sf_pro font-normal tablet:text-xl text-lg text-m_gray-200">Home</router-link>
-                <span class="tablet:text-xl text-lg text-m_gray-200">></span>
-                <router-link to="/" class=" font-sf_pro font-normal tablet:text-xl text-lg text-m_gray-200">About
+                    class=" font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">Home</router-link>
+                <span class="md:text-xl sm:text-lg text-base text-m_gray-200">></span>
+                <router-link to="/"
+                    class=" font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">About
                     us</router-link>
             </div>
             <div class="w-full my-10">
-                <h1 class="text-center font-sf_pro font-bold text-5xl px-40 pb-20"><span class="text-m_red-200">Discover
+                <h1 class="text-center font-sf_pro font-bold md:text-4xl sm:text-3xl text-2xl sm:px-40 px-10 pb-20">
+                    <span class="text-m_red-200">Discover
                         Your Sound: </span>Premium Instruments for Every Musician's Journey</h1>
                 <div class="w-full min-h-screen relative">
-                    <div class="absolute z-10 w-[280px]">
+                    <div class="absolute z-10 lg:w-[280px] w-[200px]">
                         <img src="/images/about-1.png" class="rotate-[0.5deg] translate-x-[30%]" />
                     </div>
-                    <div class="absolute left-[400px] w-[400px]">
+                    <div class="absolute left-[400px] lg:w-[400px] w-[320px]">
                         <img src="/images/about-2.png" class="rotate-[1deg] translate-x-[30%]" />
                     </div>
-                    <div class="absolute top-[100px] left-[0px] w-[500px]">
+                    <div class="absolute top-[100px] left-[0px] lg:w-[500px] w-[420px]">
                         <img src="/images/about-3.png" class="rotate-[1deg] translate-x-[30%]" />
                     </div>
-                    <div class="absolute -z-10 bottom-[400px] right-[300px] w-[300px]">
+                    <div class="absolute -z-10 bottom-[400px] right-[300px] lg:w-[300px] w-[220px]">
                         <img src="/images/about-4.png" class="rotate-[1deg] translate-x-[30%]" />
                     </div>
-                    <div class="absolute -z-10 bottom-[200px] right-[600px] w-[300px]">
+                    <div class="absolute -z-10 bottom-[200px] right-[600px] lg:w-[300px] w-[220px]">
                         <img src="/images/about-5.png" class="rotate-[1deg] translate-x-[30%]" />
                     </div>
                 </div>
-                <div class="w-full px-20 py-6 bg-m_gray-500 rounded-lg flex items-center justify-between">
+                <div
+                    class="w-full px-20 py-6 mb-20 bg-m_gray-500 rounded-lg flex lg:flex-row flex-col lg:space-y-0 space-y-8 items-center justify-between">
                     <div class="flex items-center space-x-4">
                         <div class="w-full">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            <svg class="lg:w-[24px] w-[20px]" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M21.9999 16.92V19.92C22.0011 20.1985 21.944 20.4742 21.8324 20.7293C21.7209 20.9845 21.5572 21.2136 21.352 21.4019C21.1468 21.5901 20.9045 21.7335 20.6407 21.8227C20.3769 21.9119 20.0973 21.9451 19.8199 21.92C16.7428 21.5856 13.7869 20.5341 11.1899 18.85C8.77376 17.3147 6.72527 15.2662 5.18993 12.85C3.49991 10.2412 2.44818 7.27099 2.11993 4.18C2.09494 3.90347 2.12781 3.62476 2.21643 3.36162C2.30506 3.09849 2.4475 2.85669 2.6347 2.65162C2.82189 2.44655 3.04974 2.28271 3.30372 2.17052C3.55771 2.05833 3.83227 2.00026 4.10993 2H7.10993C7.59524 1.99522 8.06572 2.16708 8.43369 2.48353C8.80166 2.79999 9.04201 3.23945 9.10993 3.72C9.23656 4.68007 9.47138 5.62273 9.80993 6.53C9.94448 6.88792 9.9736 7.27691 9.89384 7.65088C9.81408 8.02485 9.6288 8.36811 9.35993 8.64L8.08993 9.91C9.51349 12.4135 11.5864 14.4864 14.0899 15.91L15.3599 14.64C15.6318 14.3711 15.9751 14.1858 16.3491 14.1061C16.723 14.0263 17.112 14.0555 17.4699 14.19C18.3772 14.5286 19.3199 14.7634 20.2799 14.89C20.7657 14.9585 21.2093 15.2032 21.5265 15.5775C21.8436 15.9518 22.0121 16.4296 21.9999 16.92Z"
                                     stroke="#E83D46" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </div>
-                        <p class="font-sf_pro font-bold text-base text-nowrap">+99361 616161</p>
+                        <p class="font-sf_pro font-bold lg:text-base text-sm text-nowrap">+99361 616161</p>
                     </div>
                     <div class="flex items-center space-x-4">
                         <div class="w-full">
-                            <svg width="24" height="24" viewBox="0 0 22 22" fill="none"
+                            <svg class="lg:w-[24px] w-[20px]" viewBox="0 0 22 22" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_238_174)">
                                     <path
@@ -62,12 +65,13 @@
                                 </defs>
                             </svg>
                         </div>
-                        <p class="font-sf_pro font-bold text-base text-nowrap">Ashgabat s. Bitarap Türkmenistan şayoly
+                        <p class="font-sf_pro font-bold lg:text-base text-sm text-nowrap">Ashgabat s. Bitarap
+                            Türkmenistan şayoly
                         </p>
                     </div>
                     <div class="flex items-center space-x-4">
-                        <div class="w-full flex items-center space-x-10">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                        <div class="w-full flex items-center lg:space-x-10 space-x-6">
+                            <svg class="lg:w-[24px] w-[20px]" viewBox="0 0 24 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_238_177)">
                                     <path
@@ -101,7 +105,7 @@
                                     </clipPath>
                                 </defs>
                             </svg>
-                            <svg width="21" height="24" viewBox="0 0 21 24" fill="none"
+                            <svg class="lg:w-[24px] w-[20px]" viewBox="0 0 21 24" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <g clip-path="url(#clip0_238_182)">
                                     <path
