@@ -2,7 +2,7 @@
     <div class="w-full py-5">
         <div class="container">
             <div class="flex items-center justify-between">
-                <router-link to="/" class="flex items-center space-x-4">
+                <router-link to="/" class="flex items-center sm:space-x-4 space-x-2">
                     <div class="md:w-14 w-10">
                         <img class="w-full h-full object-cover" src="/icons/logo.png">
                     </div>

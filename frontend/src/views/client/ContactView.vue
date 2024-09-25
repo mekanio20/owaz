@@ -4,14 +4,14 @@
         <div class="container">
             <div class="mt-10 flex items-center space-x-2">
                 <router-link to="/"
-                    class=" font-sf_pro font-normal tablet:text-xl text-lg text-m_gray-200">Home</router-link>
-                <span class="tablet:text-xl text-lg text-m_gray-200">></span>
+                    class=" font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">Home</router-link>
+                <span class="md:text-xl sm:text-lg text-base text-m_gray-200">></span>
                 <router-link to="/contacts"
-                    class=" font-sf_pro font-normal tablet:text-xl text-lg text-m_gray-200">Contact us</router-link>
+                    class=" font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">Contact us</router-link>
             </div>
             <div class="flex justify-center items-center my10">
-                <form class="bg-white p-8 rounded-lg w-1/2">
-                    <h2 class="text-4xl font-bold text-center mb-10">Contact us</h2>
+                <form class="bg-white p-8 rounded-lg lg:w-1/2 w-full">
+                    <h2 class="md:text-4xl sm:text-3xl text-2xl font-bold text-center mb-10">Contact us</h2>
                     <div class="mb-6">
                         <label for="fullName" class="block font-sf_pro text-gray-700">Full name</label>
                         <input id="fullName" type="text"
@@ -34,20 +34,20 @@
                     </button>
                 </form>
             </div>
-            <div class="w-full px-20 py-6 mb-20 bg-m_gray-500 rounded-lg flex items-center justify-between">
+            <div class="w-full px-20 py-6 mb-20 bg-m_gray-500 rounded-lg flex lg:flex-row flex-col lg:space-y-0 space-y-8 items-center justify-between">
                 <div class="flex items-center space-x-4">
                     <div class="w-full">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="lg:w-[24px] w-[20px]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
                                 d="M21.9999 16.92V19.92C22.0011 20.1985 21.944 20.4742 21.8324 20.7293C21.7209 20.9845 21.5572 21.2136 21.352 21.4019C21.1468 21.5901 20.9045 21.7335 20.6407 21.8227C20.3769 21.9119 20.0973 21.9451 19.8199 21.92C16.7428 21.5856 13.7869 20.5341 11.1899 18.85C8.77376 17.3147 6.72527 15.2662 5.18993 12.85C3.49991 10.2412 2.44818 7.27099 2.11993 4.18C2.09494 3.90347 2.12781 3.62476 2.21643 3.36162C2.30506 3.09849 2.4475 2.85669 2.6347 2.65162C2.82189 2.44655 3.04974 2.28271 3.30372 2.17052C3.55771 2.05833 3.83227 2.00026 4.10993 2H7.10993C7.59524 1.99522 8.06572 2.16708 8.43369 2.48353C8.80166 2.79999 9.04201 3.23945 9.10993 3.72C9.23656 4.68007 9.47138 5.62273 9.80993 6.53C9.94448 6.88792 9.9736 7.27691 9.89384 7.65088C9.81408 8.02485 9.6288 8.36811 9.35993 8.64L8.08993 9.91C9.51349 12.4135 11.5864 14.4864 14.0899 15.91L15.3599 14.64C15.6318 14.3711 15.9751 14.1858 16.3491 14.1061C16.723 14.0263 17.112 14.0555 17.4699 14.19C18.3772 14.5286 19.3199 14.7634 20.2799 14.89C20.7657 14.9585 21.2093 15.2032 21.5265 15.5775C21.8436 15.9518 22.0121 16.4296 21.9999 16.92Z"
                                 stroke="#E83D46" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg>
                     </div>
-                    <p class="font-sf_pro font-bold text-base text-nowrap">+99361 616161</p>
+                    <p class="font-sf_pro font-bold lg:text-base text-sm text-nowrap">+99361 616161</p>
                 </div>
                 <div class="flex items-center space-x-4">
                     <div class="w-full">
-                        <svg width="24" height="24" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="lg:w-[24px] w-[20px]" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_238_174)">
                                 <path
                                     d="M19.25 9.16667C19.25 15.5833 11 21.0833 11 21.0833C11 21.0833 2.75 15.5833 2.75 9.16667C2.75 6.97863 3.61919 4.88021 5.16637 3.33304C6.71354 1.78586 8.81196 0.916667 11 0.916667C13.188 0.916667 15.2865 1.78586 16.8336 3.33304C18.3808 4.88021 19.25 6.97863 19.25 9.16667Z"
@@ -63,12 +63,12 @@
                             </defs>
                         </svg>
                     </div>
-                    <p class="font-sf_pro font-bold text-base text-nowrap">Ashgabat s. Bitarap Türkmenistan şayoly
+                    <p class="font-sf_pro font-bold lg:text-base text-sm text-nowrap">Ashgabat s. Bitarap Türkmenistan şayoly
                     </p>
                 </div>
                 <div class="flex items-center space-x-4">
-                    <div class="w-full flex items-center space-x-10">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <div class="w-full flex items-center lg:space-x-10 space-x-6">
+                        <svg class="lg:w-[24px] w-[20px]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_238_177)">
                                 <path
                                     d="M18.375 0H5.625C2.5184 0 0 2.5184 0 5.625V18.375C0 21.4816 2.5184 24 5.625 24H18.375C21.4816 24 24 21.4816 24 18.375V5.625C24 2.5184 21.4816 0 18.375 0Z"
@@ -101,7 +101,7 @@
                                 </clipPath>
                             </defs>
                         </svg>
-                        <svg width="21" height="24" viewBox="0 0 21 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg class="lg:w-[24px] w-[20px]" viewBox="0 0 21 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_238_182)">
                                 <path
                                     d="M15.5631 8.64174C17.0953 9.74615 18.9723 10.396 20.9995 10.396V6.46245C20.6158 6.46261 20.2332 6.42222 19.8578 6.34196V9.43821C17.8307 9.43821 15.9539 8.78847 14.4214 7.68414V15.7114C14.4214 19.7271 11.193 22.9821 7.21089 22.9821C5.72506 22.9821 4.34398 22.5292 3.19678 21.7524C4.50616 23.1024 6.33218 23.9398 8.35228 23.9398C12.3347 23.9398 15.5632 20.6848 15.5632 16.6689V8.64174H15.5631ZM16.9715 4.6733C16.1885 3.8107 15.6743 2.69594 15.5631 1.4635V0.9576H14.4812C14.7535 2.52397 15.6825 3.86218 16.9715 4.6733ZM5.71546 18.6709C5.27794 18.0926 5.04145 17.3849 5.04256 16.6574C5.04256 14.8208 6.51921 13.3317 8.34104 13.3317C8.6805 13.3315 9.01797 13.384 9.34157 13.4875V9.46601C8.96341 9.41379 8.5818 9.39153 8.20036 9.39972V12.5298C7.87659 12.4263 7.53895 12.3738 7.19933 12.3741C5.37758 12.3741 3.90102 13.8631 3.90102 15.6999C3.90102 16.9987 4.63905 18.1231 5.71546 18.6709Z"
