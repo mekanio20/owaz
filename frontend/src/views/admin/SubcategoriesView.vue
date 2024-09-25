@@ -146,6 +146,7 @@ export default {
                 }
                 const subcategory = await api.post('/add/subcategory', formData, {
                     headers: {
+                        'Content-Type': 'multipart/form-data',
                         'Authorization': `Bearer ${token}`,
                     }
                 })

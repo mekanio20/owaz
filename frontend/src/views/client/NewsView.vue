@@ -32,7 +32,7 @@ import Navbar from '@/components/client/Navbar.vue';
 import Footer from '@/components/client/Footer.vue';
 import api from '@/api/index'
 export default {
-    name: "Products",
+    name: "News",
     components: {
         Navbar,
         Footer
