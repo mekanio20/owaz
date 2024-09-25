@@ -44,6 +44,10 @@ router.post('/add/banner',
   imageMiddleware(process.env.IMAGES).single('img'),
   IndexController.addBanner)
 
+router.post('/add/contact',
+  valdidationMiddleware(IndexSchema.addContact, 'body'),
+  IndexController.addContact)
+
 // GET
 router.get('/products',
   valdidationMiddleware(IndexSchema.allProducts, 'query'),
@@ -76,6 +80,10 @@ router.get('/categories',
 router.get('/subcategories',
   valdidationMiddleware(IndexSchema.allSubcategories, 'query'),
   IndexController.allSubcategories)
+  
+router.get('/contacts',
+  authMiddleware,
+  IndexController.allContacts)
 
 // UPDATE
 router.put('/update/product', 
@@ -113,5 +121,10 @@ router.delete('/image/:id',
   authMiddleware,
   valdidationMiddleware(IndexSchema.idController, 'params'),
   IndexController.deleteImage)
+
+router.delete('/contact/:id',
+  authMiddleware,
+  valdidationMiddleware(IndexSchema.idController, 'params'),
+  IndexController.deleteContact)
 
 module.exports = router;

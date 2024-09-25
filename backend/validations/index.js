@@ -10,6 +10,11 @@ const IndexSchema = {
         brandId: Joi.number().positive().optional(),
         dis: Joi.boolean().optional(),
     }),
+    addContact: Joi.object({
+        fullname: Joi.string().max(100).required(),
+        phone: Joi.string().max(100).required(),
+        message: Joi.string().required(),
+    }),
     searchProducts: Joi.object({
         q: Joi.string().min(2).max(100).required()
     }),
@@ -68,7 +73,7 @@ const IndexSchema = {
         name_ru: Joi.string().max(100).required(),
         name_en: Joi.string().max(100).required(),
     }),
-    addSubcategory: Joi.object({
+        addSubcategory: Joi.object({
         name_tm: Joi.string().max(100).required(),
         name_ru: Joi.string().max(100).required(),
         name_en: Joi.string().max(100).required(),

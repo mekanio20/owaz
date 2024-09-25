@@ -158,6 +158,16 @@ class IndexController {
             return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
         }
     }
+    async allContacts(req, res) {
+        try {
+            const contacts = await Models.Contacts.findAndCountAll({})
+                .catch((err) => console.log(err))
+            const data = await Response.Success('Üstünlikli!', contacts)
+            return res.status(data.status).json(data)
+        } catch (error) {
+            return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
+        }
+    }
     // POST
     async adminLogin(req, res) {
         try {
@@ -309,6 +319,20 @@ class IndexController {
             return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
         }
     }
+    async addContact(req, res) {
+        try {
+            let data = null
+            await Models.Contacts.create({
+                fullname: req.body.fullname,
+                phone: req.body.phone,
+                message: req.body.message
+            }).catch((err) => console.log(err))
+            data = await Response.Created('Habar ugradyldy!', [])
+            return res.status(data.status).json(data)
+        } catch (error) {
+            return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
+        }
+    }
     // PUT
     async updateAdmin(req, res) {
         try {
@@ -425,6 +449,20 @@ class IndexController {
                 return res.status(data.status).json(data)
             }
             data = await Response.Success('Surat pozuldy!', [])
+            return res.status(data.status).json(data)
+        } catch (error) {
+            return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
+        }
+    }
+    async deleteContact(req, res) {
+        try {
+            let data = null
+            const contact = await Models.Contacts.destroy({ where: { id: req.params.id } })
+            if (!contact) {
+                data = await Response.BadRequest('Ýalňyşlyk ýüze çykdy!', [])
+                return res.status(data.status).json(data)
+            }
+            data = await Response.Success('Contact pozuldy!', [])
             return res.status(data.status).json(data)
         } catch (error) {
             return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
