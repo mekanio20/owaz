@@ -35,6 +35,7 @@ router.post('/add/category',
 
 router.post('/add/subcategory',
   authMiddleware,
+  imageMiddleware(process.env.IMAGES).single('img'),
   valdidationMiddleware(IndexSchema.addSubcategory, 'body'),
   IndexController.addSubcategory)
 
