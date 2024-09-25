@@ -140,6 +140,7 @@ export default {
                 const formData = new FormData();
                 formData.append('name_tm', this.name_tm)
                 formData.append('name_ru', this.name_ru)
+                formData.append('name_en', this.name_en)
                 formData.append('categoryId', this.categoryId)
                 if (this.imageFile) {
                     formData.append('img', this.imageFile);
