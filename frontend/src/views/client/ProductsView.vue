@@ -16,43 +16,6 @@
             <div class="font-sf_pro font-medium md:text-lg sm:text-base text-sm text-m_gray-200">
                 {{ this.count }} Results
             </div>
-            <div class="flex space-x-4 my-5">
-                <!-- Category Dropdown -->
-                <!-- <div class="relative">
-                    <button
-                        class="px-4 py-2 bg-white border rounded-md shadow-sm focus:outline-none flex justify-between items-center"
-                        @click="toggleDropdown('category')">
-                        {{ selectedCategory }}
-                        <span class="ml-2">&#9662;</span>
-                    </button>
-                    <div v-if="openDropdown === 'category'" class="absolute mt-2 w-full bg-white shadow-lg rounded-md">
-                        <ul>
-                            <li v-for="item in subcategories" :key="item"
-                                class="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                                @click="selectOption('category', item)">
-                                {{ item.name_en }}
-                            </li>
-                        </ul>
-                    </div>
-                </div> -->
-                <!-- Brand Dropdown -->
-                <!-- <div class="relative">
-                    <button
-                        class="px-4 py-2 bg-white border rounded-md shadow-sm focus:outline-none flex justify-between items-center"
-                        @click="toggleDropdown('brand')">
-                        Brand {{ brandValue }}
-                        <span class="ml-2">&#9662;</span>
-                    </button>
-                    <div v-if="openDropdown === 'brand'" class="absolute mt-2 w-full bg-white shadow-lg rounded-md">
-                        <ul>
-                            <li v-for="brand in brands" :key="brand" class="px-4 py-2 hover:bg-gray-100 cursor-pointer"
-                                @click="selectOption('brand', brand)">
-                                {{ brand.title }}
-                            </li>
-                        </ul>
-                    </div>
-                </div> -->
-            </div>
             <div class="w-full my-10 grid lg:grid-cols-4 md:grid-cols-3 min-[400px]:grid-cols-2 grid-cols-1 gap-10">
                 <router-link v-for="item in products?.rows" :key="item.id" :to="`/product/detail/${item.id}`"
                     class="flex items-start flex-col space-y-4">
@@ -86,13 +49,6 @@ export default {
             count: 0,
             name: null,
             products: null,
-            subcategories: null,
-            openDropdown: null,
-            brandValue: null,
-            selectedCategory: "Subcategory",
-            brands: null,
-            subcategoryId: 0,
-            brandId: 0
         }
     },
     created() {
@@ -101,36 +57,11 @@ export default {
     methods: {
         async allProducts() {
             const data = await api.get(`/products?subcategoryId=${this.$route.params.id}`)
-            const category = await api.get(`/subcategories?id=${this.$route.params.id}`)
+            const category = await api.get(`/subcategories?subId=${this.$route.params.id}`)
             this.name = category.data.detail.rows[0].name_en
             this.products = data.data.detail
             this.count = this.products.count
-        },
-        // toggleDropdown(type) {
-        //     this.openDropdown = this.openDropdown === type ? null : type;
-        // },
-        // selectOption(type, value) {
-        //     if (type === "brand") {
-        //         this.brandValue = value.title;
-        //         this.brandId = value.id
-        //     }
-        //     if (type === "category") {
-        //         this.selectedCategory = value.name_en;
-        //         this.subcategoryId = value.id
-        //     }
-        //     this.openDropdown = null
-        //     this.fetchFilteredData()
-        // },
-        // async fetchFilteredData() {
-        //     const params = {
-        //         categoryId: this.$route.params.id,
-        //         subcategoryId: this.subcategoryId,
-        //         brandId: this.brandId
-        //     };
-        //     const data = await api.get('/products', { params })
-        //     this.products = data.data.detail
-        //     this.count = this.products.count
-        // },
+        }
     },
     watch: {
     '$route.params.id': function() {
