@@ -269,10 +269,16 @@ class IndexController {
     async addSubcategory(req, res) {
         try {
             let data = null
+            const image = req?.file?.filename
+            if (!image) {
+                data = await Response.BadRequest('Surat gerek!', [])
+                return res.status(data.status).json(data)
+            }
             await Models.Subcategories.create({
                 name_tm: req.body.name_tm,
                 name_ru: req.body.name_ru,
                 name_en: req.body.name_en,
+                img: image,
                 categoryId: req.body.categoryId
             }).catch((err) => console.log(err))
             data = await Response.Created('Subcategory döredildi!', [])
