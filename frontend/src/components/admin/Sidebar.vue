@@ -19,8 +19,7 @@
             <div class="h-full px-3 py-4 overflow-y-auto bg-gray-100 dark:bg-gray-800">
                 <a class="flex items-center sm:justify-start justify-between ps-2.5 mb-5">
                     <img src="/icons/logo.png" class="h-6 me-3 sm:h-7" alt="Flowbite Logo" />
-                    <span
-                        class="self-center text-xl font-semibold whitespace-nowrap text-black sm:block hidden">Admin
+                    <span class="self-center text-xl font-semibold whitespace-nowrap text-black sm:block hidden">Admin
                         Panel</span>
                     <button type="button" @click="hideSidebar"
                         class="text-xl font-semibold whitespace-nowrap dark:text-white sm:hidden block">
@@ -97,6 +96,20 @@
                                     d="M10 12v1h4v-1m4 7H6a1 1 0 0 1-1-1V9h14v9a1 1 0 0 1-1 1ZM4 5h16a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z" />
                             </svg>
                             <span class="flex-1 ms-3 whitespace-nowrap">Products</span>
+                        </router-link>
+                    </li>
+                    <li>
+                        <router-link to="/admin/contacts"
+                            class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 group"
+                            :class="[link === 'contacts' ? 'bg-gray-200' : '']">
+                            <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true"
+                                xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+                                viewBox="0 0 24 24">
+                                <path fill-rule="evenodd"
+                                    d="M3 5.983C3 4.888 3.895 4 5 4h14c1.105 0 2 .888 2 1.983v8.923a1.992 1.992 0 0 1-2 1.983h-6.6l-2.867 2.7c-.955.899-2.533.228-2.533-1.08v-1.62H5c-1.105 0-2-.888-2-1.983V5.983Zm5.706 3.809a1 1 0 1 0-1.412 1.417 1 1 0 1 0 1.412-1.417Zm2.585.002a1 1 0 1 1 .003 1.414 1 1 0 0 1-.003-1.414Zm5.415-.002a1 1 0 1 0-1.412 1.417 1 1 0 1 0 1.412-1.417Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                            <span class="flex-1 ms-3 whitespace-nowrap">Contacts</span>
                         </router-link>
                     </li>
                 </ul>
