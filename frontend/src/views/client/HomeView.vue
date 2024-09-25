@@ -83,7 +83,7 @@
                 <h2 class="font-sf_pro font-bold md:text-4xl sm:text-3xl text-2xl">Browse by category</h2>
                 <div class="flex items-center flex-wrap pt-10">
                     <router-link class="py-2 pl-6 mr-5 mb-5 bg-m_gray-100 rounded-xl flex items-center"
-                        v-for="item in categories" :key="item.id" :to="`/products/${item.id}`">
+                        v-for="item in categories" :key="item.id" :to="`/subcategories/${item.id}`">
                         <p class="font-sf_pro font-bold md:text-lg text-base text-nowrap mr-14">{{ item.name_en }}</p>
                         <div class="md:w-[100px] sm:w-[70px] w-[50px]">
                             <img crossorigin="anonymous" class="w-full h-full object-cover"
@@ -156,7 +156,7 @@
             <div class="w-full">
                 <div v-for="item in category_products?.rows" :key="item.id" class="w-full flex flex-col">
                     <div v-if="item.products.length > 0" class="w-full flex items-center justify-between mb-10">
-                        <router-link :to="`/products/${item.id}`" class="font-sf_pro font-bold md:text-4xl sm:text-3xl text-2xl">{{ item.name_en }}</router-link>
+                        <router-link :to="`/subcategories/${item.id}`" class="font-sf_pro font-bold md:text-4xl sm:text-3xl text-2xl">{{ item.name_en }}</router-link>
                         <div class="hidden md:flex items-center space-x-2">
                             <svg class="p-2 rounded-full bg-m_gray-100 stroke-black cursor-pointer duration-200"
                                 :class="[`prev-p-${item.id}`]"

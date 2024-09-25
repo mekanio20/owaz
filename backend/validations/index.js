@@ -25,6 +25,7 @@ const IndexSchema = {
     }),
     allSubcategories: Joi.object({
         id: Joi.number().positive().optional(),
+        subId: Joi.number().positive().optional(),
         limit: Joi.number().positive().optional(),
         page: Joi.number().positive().optional(),
     }),

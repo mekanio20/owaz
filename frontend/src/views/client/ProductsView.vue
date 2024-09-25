@@ -96,51 +96,41 @@ export default {
         }
     },
     created() {
-        this.allSubcategories()
         this.allProducts()
-        this.allBrands()
     },
     methods: {
-        async allBrands() {
-            const data = await api.get('/brands')
-            this.brands = data.data.detail.rows
-        },
         async allProducts() {
-            const data = await api.get(`/products?categoryId=${this.$route.params.id}`)
-            const category = await api.get(`/categories?id=${this.$route.params.id}`)
+            const data = await api.get(`/products?subcategoryId=${this.$route.params.id}`)
+            const category = await api.get(`/subcategories?id=${this.$route.params.id}`)
             this.name = category.data.detail.rows[0].name_en
             this.products = data.data.detail
             this.count = this.products.count
         },
-        async allSubcategories() {
-            const data = await api.get(`/subcategories?id=${this.$route.params.id}`)
-            this.subcategories = data.data.detail.rows
-        },
-        toggleDropdown(type) {
-            this.openDropdown = this.openDropdown === type ? null : type;
-        },
-        selectOption(type, value) {
-            if (type === "brand") {
-                this.brandValue = value.title;
-                this.brandId = value.id
-            }
-            if (type === "category") {
-                this.selectedCategory = value.name_en;
-                this.subcategoryId = value.id
-            }
-            this.openDropdown = null
-            this.fetchFilteredData()
-        },
-        async fetchFilteredData() {
-            const params = {
-                categoryId: this.$route.params.id,
-                subcategoryId: this.subcategoryId,
-                brandId: this.brandId
-            };
-            const data = await api.get('/products', { params })
-            this.products = data.data.detail
-            this.count = this.products.count
-        },
+        // toggleDropdown(type) {
+        //     this.openDropdown = this.openDropdown === type ? null : type;
+        // },
+        // selectOption(type, value) {
+        //     if (type === "brand") {
+        //         this.brandValue = value.title;
+        //         this.brandId = value.id
+        //     }
+        //     if (type === "category") {
+        //         this.selectedCategory = value.name_en;
+        //         this.subcategoryId = value.id
+        //     }
+        //     this.openDropdown = null
+        //     this.fetchFilteredData()
+        // },
+        // async fetchFilteredData() {
+        //     const params = {
+        //         categoryId: this.$route.params.id,
+        //         subcategoryId: this.subcategoryId,
+        //         brandId: this.brandId
+        //     };
+        //     const data = await api.get('/products', { params })
+        //     this.products = data.data.detail
+        //     this.count = this.products.count
+        // },
     },
     watch: {
     '$route.params.id': function() {

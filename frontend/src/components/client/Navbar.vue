@@ -83,7 +83,7 @@
                     class="font-sf_pro font-medium uppercase md:text-base text-sm text-nowrap text-black">
                     Brands
                 </router-link>
-                <router-link v-for="item in categories" :key="item.id" :to="`/products/${item.id}`"
+                <router-link v-for="item in categories" :key="item.id" :to="`/subcategories/${item.id}`"
                     class="font-sf_pro font-medium uppercase md:text-base text-sm text-nowrap text-black">
                     {{ item.name_en }}
                 </router-link>
