@@ -416,7 +416,7 @@ class IndexController {
             console.log(body);
             await Models.Explore.update(body, { where: { id: 2 } })
                 .catch((err) => console.log(err))
-            data = await Response.Created('Explore üýtgedildi!', [])
+            data = await Response.Success('Explore üýtgedildi!', [])
             return res.status(data.status).json(data)
         } catch (error) {
             console.log(error);
