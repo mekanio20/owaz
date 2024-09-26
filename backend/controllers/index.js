@@ -170,7 +170,7 @@ class IndexController {
     }
     async getExplore(req, res) {
         try {
-            const explore = await Models.Explore.findOne({})
+            const explore = await Models.Explore.findOne()
                 .catch((err) => console.log(err))
             const data = await Response.Success('Üstünlikli!', explore)
             return res.status(data.status).json(data)
