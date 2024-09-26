@@ -137,16 +137,15 @@
             </div>
             <div class="w-full relative my-10 select-none">
                 <div class="w-full h-[300px] rounded-xl">
-                    <img class="w-full h-full object-cover" src="/images/big-banner.png">
+                    <img crossorigin="anonymous" class="w-full h-full object-cover" :src="`${$uploadUrl}/${banner.img}`">
                 </div>
                 <div class="absolute inset-0 flex justify-center items-center">
                     <div class="flex items-center flex-col space-y-4">
                         <div class="mb-5 text-center">
-                            <p class="font-sf_pro font-bold md:text-3xl sm:text-2xl text-xl mb-3">New Keyboards Collection</p>
-                            <p class="font-sf_pro md:text-base text-sm text-m_gray-200">New the best and latest keyboard collection
-                            </p>
+                            <p class="font-sf_pro font-bold md:text-3xl sm:text-2xl text-xl mb-3">{{ banner.title }}</p>
+                            <p class="font-sf_pro md:text-base text-sm text-m_gray-200">{{ banner.desc }}</p>
                         </div>
-                        <router-link to="/products/8"
+                        <router-link :to="`/subcategories/${banner.categoryId}`"
                             class="px-8 py-2 rounded-3xl bg-black text-white font-sf_pro font-bold md:text-lg sm:text-base text-sm">
                             Explore Now
                         </router-link>
@@ -239,14 +238,21 @@ export default {
                 950: { slidesPerView: 3 },
                 1200: { slidesPerView: 4 },
             },
+            banner: {
+                title: null,
+                desc: null,
+                categoryId: null,
+                img: null
+            }
         }
     },
     created() {
         this.allBanners(),
-            this.allCategories(),
-            this.offerProducts(),
-            this.categoryProducts(),
-            this.allBrands()
+        this.allCategories(),
+        this.offerProducts(),
+        this.categoryProducts(),
+        this.allBrands(),
+        this.getBanner()
     },
     methods: {
         async allBanners() {
@@ -268,6 +274,14 @@ export default {
         async allBrands() {
             const data = await api.get('/brands')
             this.brands = data.data.detail
+        },
+        async getBanner() {
+            const banner = await api.get('/explore')
+            this.explore = banner.data.detail
+            this.banner.title = this.explore.title
+            this.banner.desc = this.explore.desc
+            this.banner.categoryId = this.explore.categoryId
+            this.banner.img = this.explore.img
         }
     }
 }

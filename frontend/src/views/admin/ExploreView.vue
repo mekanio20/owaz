@@ -3,7 +3,7 @@
         <Sidebar link="explore" />
         <div class="p-4 sm:ml-64">
             <div class="container mx-auto p-8">
-                <div class="max-w-xl mx-auto bg-white shadow-lg rounded-lg p-6">
+                <form @submit.prevent="saveBanner" class="max-w-xl mx-auto bg-white shadow-lg rounded-lg p-6">
 
                     <!-- Image Upload Placeholder -->
                     <div class="relative mb-6">
@@ -50,12 +50,12 @@
 
                     <!-- Save Button -->
                     <div class="flex justify-end">
-                        <button @click="saveBanner"
+                        <button type="submit"
                             class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 transition-all">
                             Save Changes
                         </button>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
     </div>
@@ -73,6 +73,7 @@ export default {
     data() {
         return {
             imageFile: null,
+            img: null,
             explore: null,
             local: false,
             categories: null,
@@ -91,6 +92,7 @@ export default {
         handleFileUpload(event) {
             this.local = true
             this.imageFile = URL.createObjectURL(event.target.files[0])
+            this.img = event.target.files[0]
         },
         async allCategories() {
             const data = await api.get('/categories')
@@ -98,28 +100,32 @@ export default {
         },
         // ########
         async saveBanner() {
-            const token = localStorage.getItem('token');
-            const formData = new FormData();
-            formData.append('title', this.banner.title);
-            formData.append('subtitle', this.banner.description);
-            formData.append('categoryId', this.banner.categoryId);
-            if (this.imageFile && this.local) {
-                console.log(this.imageFile);
-                formData.append('img', this.imageFile)
-            }
-            const banner = await api.put('/update/explore', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    'Authorization': `Bearer ${token}`,
+            try {
+                const token = localStorage.getItem('token');
+                const formData = new FormData();
+                formData.append('title', this.banner.title);
+                formData.append('subtitle', this.banner.description);
+                formData.append('categoryId', this.banner.categoryId);
+                if (this.imageFile && this.local) {
+                    formData.append('img', this.img)
                 }
-            })
-            let toast = useToast();
-            if (banner.data.status === 200) {
-                toast.success(banner.data.msg);
-            } else {
-                toast.error(banner.data.msg);
+                const banner = await api.put('/update/explore', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': `Bearer ${token}`,
+                    }
+                })
+                let toast = useToast();
+                if (banner.data.status === 200) {
+                    toast.success(banner.data.msg);
+                } else {
+                    toast.error(banner.data.msg);
+                }
+                this.getBanner();
+            } catch (error) {
+                let toast = useToast();
+                toast.error(error.response.data.msg);
             }
-            this.getBanner();
         },
         async getBanner() {
             const banner = await api.get('/explore')
