@@ -67,10 +67,6 @@
                 </div>
             </div>
             <div class="flex items-center pt-10 space-x-8 overflow-x-auto scrollbar-hide">
-                <!-- <router-link to="/about"
-                    class="font-sf_pro font-medium uppercase md:text-base text-sm text-nowrap text-black">
-                    About us
-                </router-link> -->
                 <router-link to="/news"
                     class="font-sf_pro font-medium uppercase md:text-base text-sm text-nowrap text-black">
                     News

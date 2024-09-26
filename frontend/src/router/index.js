@@ -58,6 +58,12 @@ const router = createRouter({
       component: () => import("@/views/admin/ContactsView.vue"),
       meta: { requiresAuth: true },
     },
+    {
+      path: "/admin/explore",
+      name: "Explore",
+      component: () => import("@/views/admin/ExploreView.vue"),
+      meta: { requiresAuth: true },
+    },
     // CLIENT
     {
       path: "/",

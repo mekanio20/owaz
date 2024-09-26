@@ -10,11 +10,6 @@ const IndexSchema = {
         brandId: Joi.number().positive().optional(),
         dis: Joi.boolean().optional(),
     }),
-    addContact: Joi.object({
-        fullname: Joi.string().max(100).required(),
-        phone: Joi.string().max(100).required(),
-        message: Joi.string().required(),
-    }),
     searchProducts: Joi.object({
         q: Joi.string().min(2).max(100).required()
     }),
@@ -65,6 +60,11 @@ const IndexSchema = {
         subcategoryId: Joi.number().positive().optional(),
         brandId: Joi.number().positive().required(),
     }),
+    addContact: Joi.object({
+        fullname: Joi.string().max(100).required(),
+        phone: Joi.string().max(100).required(),
+        message: Joi.string().required()
+    }),
     addBrand: Joi.object({
         title: Joi.string().max(100).required()
     }),
@@ -73,16 +73,26 @@ const IndexSchema = {
         name_ru: Joi.string().max(100).required(),
         name_en: Joi.string().max(100).required(),
     }),
-        addSubcategory: Joi.object({
+    addSubcategory: Joi.object({
         name_tm: Joi.string().max(100).required(),
         name_ru: Joi.string().max(100).required(),
         name_en: Joi.string().max(100).required(),
+        categoryId: Joi.number().positive().required()
+    }),
+    addExplore: Joi.object({
+        title: Joi.string().max(100).required(),
+        subtitle: Joi.string().max(255).required(),
         categoryId: Joi.number().positive().required()
     }),
     // PUT
     updateAdmin: Joi.object({
         login: Joi.string().max(50).required(),
         password: Joi.string().max(50).required()
+    }),
+    updateExplore: Joi.object({
+        title: Joi.string().max(100).required(),
+        subtitle: Joi.string().max(255).required(),
+        categoryId: Joi.number().positive().required()
     }),
     updateProduct: Joi.object({
         id: Joi.number().positive().required(),

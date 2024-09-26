@@ -5,9 +5,10 @@
             <div class="mt-10 flex items-center space-x-2">
                 <router-link to="/"
                     class=" font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">Home</router-link>
-                    <span class="md:text-xl sm:text-lg text-base text-m_gray-200">></span>
+                <span class="md:text-xl sm:text-lg text-base text-m_gray-200">></span>
                 <router-link :to="`/subcategories/${categoryId}`"
-                    class=" font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">{{ name }}</router-link>
+                    class=" font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">{{ name
+                    }}</router-link>
             </div>
             <div class="my-3 font-sf_pro font-bold md:text-4xl sm:text-3xl text-2xl">
                 {{ name }}
@@ -56,5 +57,10 @@ export default {
             this.name = categories.data.detail.rows[0].name_en
         },
     },
+    watch: {
+        '$route.params.id': function () {
+            this.allSubcategories()
+        }
+    }
 }
 </script>

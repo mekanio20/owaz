@@ -41,20 +41,14 @@
                     <div class="flex flex-col items-center justify-center">
                         <h3 class="font-sf_pro font-bold lg:text-lg sm:text-base mobile:text-sm text-xs text-white mb-10">Company</h3>
                         <div class="flex flex-col items-center space-y-4">
-                            <router-link to="#" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
-                                About
+                            <router-link to="/news" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
+                                News
                             </router-link>
-                            <router-link to="#" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
+                            <router-link to="/contacts" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
                                 Contact us
                             </router-link>
-                            <router-link to="#" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
-                                Careers
-                            </router-link>
-                            <router-link to="#" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
-                                Culture
-                            </router-link>
-                            <router-link to="#" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
-                                Blog
+                            <router-link to="/brands" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
+                                Brands
                             </router-link>
                         </div>
                     </div>

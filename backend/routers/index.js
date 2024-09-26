@@ -48,6 +48,12 @@ router.post('/add/contact',
   valdidationMiddleware(IndexSchema.addContact, 'body'),
   IndexController.addContact)
 
+router.post('/add/explore',
+  authMiddleware,
+  imageMiddleware(process.env.IMAGES).single('img'),
+  valdidationMiddleware(IndexSchema.addExplore, 'body'),
+  IndexController.addExplore)
+
 // GET
 router.get('/products',
   valdidationMiddleware(IndexSchema.allProducts, 'query'),
@@ -84,12 +90,20 @@ router.get('/subcategories',
 router.get('/contacts',
   authMiddleware,
   IndexController.allContacts)
+  
+router.get('/explore', IndexController.getExplore)
 
 // UPDATE
 router.put('/update/product', 
   authMiddleware,
   valdidationMiddleware(IndexSchema.updateProduct, 'body'),
   IndexController.updateProduct)
+
+router.put('/update/explore', 
+  authMiddleware,
+  imageMiddleware(process.env.IMAGES).single('img'),
+  valdidationMiddleware(IndexSchema.updateExplore, 'body'),
+  IndexController.updateExplore)
 
 // DELETE
 router.delete('/brand/:id',

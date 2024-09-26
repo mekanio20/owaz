@@ -168,6 +168,16 @@ class IndexController {
             return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
         }
     }
+    async getExplore(req, res) {
+        try {
+            const explore = await Models.Explore.findOne({})
+                .catch((err) => console.log(err))
+            const data = await Response.Success('Üstünlikli!', explore)
+            return res.status(data.status).json(data)
+        } catch (error) {
+            return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
+        }
+    }
     // POST
     async adminLogin(req, res) {
         try {
@@ -333,6 +343,31 @@ class IndexController {
             return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
         }
     }
+    async addExplore(req, res) {
+        try {
+            let data = null
+            const image = req?.file?.filename
+            if (!image) {
+                data = await Response.BadRequest('Surat gerek!', [])
+                return res.status(data.status).json(data)
+            }
+            const count = await Models.Explore.count()
+            if (count >= 1) {
+                data = await Response.BadRequest('1 bannerden artyk goşup bolmaýar!', [])
+                return res.status(data.status).json(data)
+            }
+            await Models.Explore.create({
+                title: req.body.title,
+                desc: req.body.subtitle,
+                categoryId: req.body.categoryId,
+                img: image
+            }).catch((err) => console.log(err))
+            data = await Response.Created('Explore goşuldy!', [])
+            return res.status(data.status).json(data)
+        } catch (error) {
+            return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
+        }
+    }
     // PUT
     async updateAdmin(req, res) {
         try {
@@ -363,6 +398,24 @@ class IndexController {
                 return res.status(data.status).json(data)
             }
             data = await Response.Success('Haryt üýtgedildi', [])
+            return res.status(data.status).json(data)
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
+        }
+    }
+    async updateExplore(req, res) {
+        try {
+            let data = null
+            let body = {}
+            const image = req?.file?.filename
+            if (image) { body.img = image }
+            if (req.body.title) { body.title = req.body.title }
+            if (req.body.subtitle) { body.desc = req.body.subtitle }
+            if (req.body.categoryId) { body.categoryId = req.body.categoryId }
+            await Models.Explore.update(body)
+                .catch((err) => console.log(err))
+            data = await Response.Created('Explore üýtgedildi!', [])
             return res.status(data.status).json(data)
         } catch (error) {
             console.log(error);
