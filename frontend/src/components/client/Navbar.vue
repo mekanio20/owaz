@@ -25,22 +25,24 @@
                     </div>
                 </form>
                 <div class="md:flex items-center space-x-6 hidden">
-                    <svg class="md:w-[24px] w-[20px]" viewBox="0 0 24 24" fill="none"
-                        xmlns="http://www.w3.org/2000/svg">
-                        <g clip-path="url(#clip0_8_59)">
+                    <div class="cursor-pointer relative">
+                        <svg @click="openLang" width="28" height="28" viewBox="0 0 35 35" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
                             <path
-                                d="M12 23C18.075 23 23 18.075 23 12C23 5.925 18.075 1 12 1M12 23C5.925 23 1 18.075 1 12C1 5.925 5.925 1 12 1M12 23C15 23 16 18 16 12C16 6 15 1 12 1M12 23C9 23 8 18 8 12C8 6 9 1 12 1M2 16H22M2 8H22"
-                                stroke="black" stroke-width="2" />
-                        </g>
-                        <defs>
-                            <clipPath id="clip0_8_59">
-                                <rect width="24" height="24" fill="white" />
-                            </clipPath>
-                        </defs>
-                    </svg>
+                                d="M17.4987 33.5423C26.3581 33.5423 33.5404 26.36 33.5404 17.5007C33.5404 8.64128 26.3581 1.45898 17.4987 1.45898M17.4987 33.5423C8.63932 33.5423 1.45703 26.36 1.45703 17.5007C1.45703 8.64128 8.63932 1.45898 17.4987 1.45898M17.4987 33.5423C21.8737 33.5423 23.332 26.2507 23.332 17.5007C23.332 8.75065 21.8737 1.45898 17.4987 1.45898M17.4987 33.5423C13.1237 33.5423 11.6654 26.2507 11.6654 17.5007C11.6654 8.75065 13.1237 1.45898 17.4987 1.45898M2.91536 23.334H32.082M2.91536 11.6673H32.082"
+                                stroke="black" stroke-width="2.4" />
+                        </svg>
+                        <div v-show="isLang" class="absolute top-10 z-50 -left-3 bg-gray-200 py-2">
+                            <div class="font-sf_pro font-medium py-2 px-4 text-base uppercase duration-300"
+                                v-for="item in langs" :key="item" @click="updateLang(item)"
+                                :class="[this.$i18n.locale == item ? 'text-m_red-200' : 'text-black']">
+                                {{ item }}
+                            </div>
+                        </div>
+                    </div>
                     <router-link to="/contacts"
                         class="cursor-pointer px-8 py-2 xl:text-lg text-base text-nowrap font-sf_pro font-semibold bg-m_red-100 rounded-3xl hover:bg-m_red-200 duration-300 text-white">
-                        Contact us
+                        {{ $t('routes.title3') }}
                     </router-link>
                 </div>
                 <div class="flex items-center space-x-6">
@@ -69,19 +71,19 @@
             <div class="flex items-center pt-10 space-x-8 overflow-x-auto scrollbar-hide">
                 <router-link to="/news"
                     class="font-sf_pro font-medium uppercase md:text-base text-sm text-nowrap text-black">
-                    News
+                    {{ $t('routes.title4') }}
                 </router-link>
                 <router-link to="/contacts"
                     class="font-sf_pro font-medium uppercase md:text-base text-sm text-nowrap text-black">
-                    Contact us
+                    {{ $t('routes.title3') }}
                 </router-link>
                 <router-link to="/brands"
                     class="font-sf_pro font-medium uppercase md:text-base text-sm text-nowrap text-black">
-                    Brands
+                    {{ $t('routes.title2') }}
                 </router-link>
                 <router-link v-for="item in categories" :key="item.id" :to="`/subcategories/${item.id}`"
                     class="font-sf_pro font-medium uppercase md:text-base text-sm text-nowrap text-black">
-                    {{ item.name_en }}
+                    {{ getLocalizedName(item) }}
                 </router-link>
             </div>
         </div>
@@ -115,23 +117,41 @@ export default {
         return {
             isBurger: false,
             searchQuery: null,
-            categories: null
+            categories: null,
+            isLang: false,
+            langs: ['tm', 'ru', 'en']
         };
     },
     created() {
         this.allCategories()
     },
     methods: {
+        openLang() {
+            this.isLang = !this.isLang
+        },
         openBurger() {
             this.isBurger = !this.isBurger
         },
         performSearch() {
             this.$router.push({ path: '/search', query: { q: this.searchQuery } });
         },
+        updateLang(lang) {
+            localStorage.setItem('lang', lang)
+            this.locale = lang
+            this.isLang = !this.isLang
+            this.$i18n.locale = lang
+        },
         async allCategories() {
             const data = await api.get('/categories')
             this.categories = data.data.detail.rows
-        }
+        },
+        getLocalizedName(item) {
+            const locale = this.$i18n.locale;
+            if (locale === 'tm') return item.name_tm;
+            if (locale === 'ru') return item.name_ru;
+            if (locale === 'en') return item.name_en;
+            return item.name_ru;
+        },
     }
 }
 </script>
