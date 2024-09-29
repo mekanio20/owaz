@@ -47,7 +47,13 @@ const messages = {
       madeIn: 'Ýeri',
       category: 'Kategoriýa',
       desc: 'Beýleki maglumat'
-    }
+    },
+    contact: {
+      fullname: 'Doly ady',
+      phone: 'Telefon belgisi',
+      message: 'Habar',
+      send: 'Ugrat'
+    }    
   },
   ru: {    
     routes: {
@@ -95,6 +101,12 @@ const messages = {
       madeIn: 'Произведено в',
       category: 'Категория',
       desc: 'Описание'
+    },
+    contact: {
+      fullname: 'Полное имя',
+      phone: 'Номер телефона',
+      message: 'Сообщение',
+      send: 'Отправить'
     }    
   },
   en: {
@@ -143,6 +155,12 @@ const messages = {
       madeIn: 'Made in',
       category: 'Category',
       desc: 'Description',
+    },
+    contact: {
+      fullname: 'Full name',
+      phone: 'Phone number',
+      message: 'Message',
+      send: 'Send'
     }
   },
 };

@@ -4,34 +4,33 @@
         <div class="container">
             <div class="mt-10 flex items-center space-x-2">
                 <router-link to="/"
-                    class="font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">Home</router-link>
+                    class="font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">{{ $t('routes.title1') }}</router-link>
                 <span class="md:text-xl sm:text-lg text-base text-m_gray-200">></span>
                 <router-link to="/contacts"
-                    class="font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">Contact
-                    us</router-link>
+                    class="font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">{{ $t('routes.title3') }}</router-link>
             </div>
             <div class="flex justify-center items-center my10">
                 <form @submit.prevent="addContact" class="bg-white p-8 rounded-lg lg:w-1/2 w-full">
-                    <h2 class="md:text-4xl sm:text-3xl text-2xl font-bold text-center mb-10">Contact us</h2>
+                    <h2 class="md:text-4xl sm:text-3xl text-2xl font-bold text-center mb-10">{{ $t('routes.title3') }}</h2>
                     <div class="mb-6">
-                        <label for="fullName" class="block font-sf_pro text-gray-700">Full name</label>
+                        <label for="fullName" class="block font-sf_pro text-gray-700">{{ $t('contact.fullname') }}</label>
                         <input id="fullName" type="text" v-model="fullname"
                             class="mt-2 w-full rounded-lg p-3 bg-m_gray-100 border-none focus:outline-none" />
                     </div>
                     <div class="mb-6">
-                        <label for="phoneNumber" class="block font-sf_pro text-gray-700">Phone number</label>
+                        <label for="phoneNumber" class="block font-sf_pro text-gray-700">{{ $t('contact.phone') }}</label>
                         <input id="phoneNumber" type="text" v-model="phone"
                             class="mt-2 w-full rounded-lg p-3 bg-m_gray-100 border-none focus:outline-none"
                             value="+993" />
                     </div>
                     <div class="mb-6">
-                        <label for="message" class="block font-sf_pro text-gray-700">Message</label>
+                        <label for="message" class="block font-sf_pro text-gray-700">{{ $t('contact.message') }}</label>
                         <textarea id="message" rows="4" v-model="message"
                             class="mt-2 w-full rounded-lg p-3 bg-m_gray-100 border-none focus:outline-none"></textarea>
                     </div>
                     <button type="submit"
                         class="w-full bg-red-500 text-white font-bold py-3 rounded hover:bg-red-600 transition duration-300">
-                        Send
+                        {{ $t('contact.send') }}
                     </button>
                 </form>
             </div>

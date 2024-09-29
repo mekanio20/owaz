@@ -43,9 +43,9 @@ class IndexController {
         try {
             const search = req.query.q
             let searchQuery = {
-                name_en: { [Op.like]: `%${search}%` },
-                name_ru: { [Op.like]: `%${search}%` },
-                name_tm: { [Op.like]: `%${search}%` },
+                name_en: { [Op.iLike]: `%${search}%` },
+                name_ru: { [Op.iLike]: `%${search}%` },
+                name_tm: { [Op.iLike]: `%${search}%` },
             }
             const products = await Models.Products.findAll({
                 attributes: ['id', 'name_en', 'name_ru', 'name_tm', 'discount_type', 'discount_price', 'final_price'],
