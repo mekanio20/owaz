@@ -4,13 +4,13 @@
         <div class="container">
             <div class="mt-10 flex items-center space-x-2">
                 <router-link to="/"
-                    class=" font-sf_pro font-normal tablet:text-xl text-lg text-m_gray-200">Home</router-link>
+                    class=" font-sf_pro font-normal tablet:text-xl text-lg text-m_gray-200">{{ $t('routes.title1') }}</router-link>
             </div>
             <div class="my-3 font-sf_pro font-bold text-5xl">
                 {{ this.searchQuery }}
             </div>
             <div class="font-sf_pro font-medium text-lg text-m_gray-200">
-                {{ this.count }} Results
+                {{ this.count }} {{ $t('routes.title6') }}
             </div>
             <div class="w-full my-10 grid grid-cols-4 gap-10">
                 <router-link v-for="item in products" :key="item.id" :to="`/product/detail/${item.id}`"
@@ -19,7 +19,7 @@
                         <img class="w-full h-full object-contain mt-4" crossorigin="anonymous"
                             :src="`${$uploadUrl}/${item.product_images[0].img}`">
                     </div>
-                    <p class="font-sf_pro font-medium text-lg">{{ item.name_en }}</p>
+                    <p class="font-sf_pro font-medium text-lg">{{ getLocalizedName(item) }}</p>
                     <div class="flex items-center space-x-2">
                         <span class="font-sf_pro font-bold text-m_red-200">{{ item.final_price }} tmt</span>
                     </div>
@@ -61,6 +61,13 @@ export default {
                 this.products = data.data.detail.rows
                 this.count = data.data.detail.count
             }
+        },
+        getLocalizedName(item) {
+            const locale = this.$i18n.locale;
+            if (locale === 'tm') return item.name_tm;
+            if (locale === 'ru') return item.name_ru;
+            if (locale === 'en') return item.name_en;
+            return item.name_ru;
         },
     },
 }

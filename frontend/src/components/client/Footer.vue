@@ -7,73 +7,33 @@
                     <h2 class="font-poppins font-bold lg:text-2xl text-xl text-m_green-100 text-white">Owaz Strore</h2>
                 </router-link>
                 <p class="font-sf_pro font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400 my-10">
-                    Owaz is the store selling high quality musical instruments.
+                    {{ $t('footer.desc') }}
                 </p>
                 <div class="flex items-center space-x-6">
                     <router-link v-for="item in icons" :key="item.id" :to="item.url">
                         <img :src="item.icon">
                     </router-link>
                 </div>
-                <div class="font-sf_pro font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400 mt-24 mr-10 lg:hidden block">All Rights Reserved | <span class="text-m_green-100 underline">Terms and Conditions | Privacy Policy</span></div>
+                <p class="font-sf_pro font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400 mt-24 mr-10 lg:hidden block">{{ $t('footer.privacy') }}</p>
             </div>
             <div class="w-full flex flex-col items-end">
                 <div class="w-full flex flex-row items-center lg:justify-end justify-center lg:pl-24 lg:pr-10">
-                    <!-- <div class="flex flex-col items-center justify-center">
-                        <h3 class="font-sf_pro font-bold lg:text-lg sm:text-base mobile:text-sm text-xs text-white mb-10">Product</h3>
-                        <div class="flex flex-col items-center space-y-4">
-                            <router-link to="#" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
-                                Features
-                            </router-link>
-                            <router-link to="#" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
-                                Pricing
-                            </router-link>
-                            <router-link to="#" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
-                                Case studies
-                            </router-link>
-                            <router-link to="#" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
-                                Reviews
-                            </router-link>
-                            <router-link to="#" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
-                                Updates
-                            </router-link>
-                        </div>
-                    </div> -->
                     <div class="flex flex-col items-center justify-center">
-                        <h3 class="font-sf_pro font-bold lg:text-lg sm:text-base mobile:text-sm text-xs text-white mb-10">Company</h3>
+                        <h3 class="font-sf_pro font-bold lg:text-lg sm:text-base mobile:text-sm text-xs text-white mb-10">{{ $t('footer.company') }}</h3>
                         <div class="flex flex-col items-center space-y-4">
                             <router-link to="/news" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
-                                News
+                                {{ $t('routes.title4') }}
                             </router-link>
                             <router-link to="/contacts" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
-                                Contact us
+                                {{ $t('routes.title3') }}
                             </router-link>
                             <router-link to="/brands" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
-                                Brands
+                                {{ $t('routes.title2') }}
                             </router-link>
                         </div>
                     </div>
-                    <!-- <div class="flex flex-col items-center justify-center">
-                        <h3 class="font-sf_pro font-bold lg:text-lg sm:text-base mobile:text-sm text-xs text-white mb-10">Support</h3>
-                        <div class="flex flex-col items-center space-y-4">
-                            <router-link to="#" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
-                                Getting started
-                            </router-link>
-                            <router-link to="#" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
-                                Help center
-                            </router-link>
-                            <router-link to="#" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
-                                Server status
-                            </router-link>
-                            <router-link to="#" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
-                                Report a bug
-                            </router-link>
-                            <router-link to="#" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
-                                Chat support
-                            </router-link>
-                        </div>
-                    </div> -->
                 </div>
-                <div class="font-sf_pro font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400 mt-24 mr-10 lg:block hidden">All Rights Reserved | <span class="text-m_green-100 underline">Terms and Conditions | Privacy Policy</span></div>
+                <p class="font-sf_pro font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400 mt-24 mr-10 lg:block hidden">{{ $t('footer.privacy') }}</p>
             </div>
         </div>
     </div>

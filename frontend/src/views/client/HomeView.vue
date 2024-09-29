@@ -23,8 +23,8 @@
                             stroke="#E83D46" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                     <div class="flex flex-col space-y-1">
-                        <p class="font-sf_pro text-nowrap font-bold md:text-lg text-base">Free Delivery</p>
-                        <p class="font-sf_pro text-nowrap md:text-base text-sm">Free delivery on all orders</p>
+                        <p class="font-sf_pro text-nowrap font-bold md:text-lg text-base">{{ $t('banners.free.title') }}</p>
+                        <p class="font-sf_pro text-nowrap md:text-base text-sm">{{ $t('banners.free.desc') }}</p>
                     </div>
                 </div>
                 <div class="flex items-center mr-10">
@@ -37,8 +37,8 @@
                             stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                     <div class="flex flex-col space-y-1">
-                        <p class="font-sf_pro text-nowrap font-bold md:text-lg text-base">Guarantee</p>
-                        <p class="font-sf_pro text-nowrap md:text-base text-sm">12 months guarantee</p>
+                        <p class="font-sf_pro text-nowrap font-bold md:text-lg text-base">{{ $t('banners.guarantee.title') }}</p>
+                        <p class="font-sf_pro text-nowrap md:text-base text-sm">{{ $t('banners.guarantee.desc') }}</p>
                     </div>
                 </div>
                 <div class="flex items-center mr-10">
@@ -62,8 +62,8 @@
                         </defs>
                     </svg>
                     <div class="flex flex-col space-y-1">
-                        <p class="font-sf_pro text-nowrap font-bold md:text-lg text-base">The best prices</p>
-                        <p class="font-sf_pro text-nowrap md:text-base text-sm">The cheapest prices</p>
+                        <p class="font-sf_pro text-nowrap font-bold md:text-lg text-base">{{ $t('banners.prices.title') }}</p>
+                        <p class="font-sf_pro text-nowrap md:text-base text-sm">{{ $t('banners.prices.desc') }}</p>
                     </div>
                 </div>
                 <div class="flex items-center mr-10">
@@ -74,17 +74,17 @@
                             fill="#E83D46" />
                     </svg>
                     <div class="flex flex-col space-y-1">
-                        <p class="font-sf_pro text-nowrap font-bold md:text-lg text-base">Online support 24/7</p>
-                        <p class="font-sf_pro text-nowrap md:text-base text-sm">24 hours online support</p>
+                        <p class="font-sf_pro text-nowrap font-bold md:text-lg text-base">{{ $t('banners.online.title') }}</p>
+                        <p class="font-sf_pro text-nowrap md:text-base text-sm">{{ $t('banners.online.desc') }}</p>
                     </div>
                 </div>
             </div>
             <div class="w-full">
-                <h2 class="font-sf_pro font-bold md:text-4xl sm:text-3xl text-2xl">Browse by category</h2>
+                <h2 class="font-sf_pro font-bold md:text-4xl sm:text-3xl text-2xl">{{ $t('titles.cat') }}</h2>
                 <div class="flex items-center flex-wrap pt-10">
                     <router-link class="py-2 pl-6 mr-5 mb-5 bg-m_gray-100 rounded-xl flex items-center"
                         v-for="item in categories" :key="item.id" :to="`/subcategories/${item.id}`">
-                        <p class="font-sf_pro font-bold md:text-lg text-base text-nowrap mr-14">{{ item.name_en }}</p>
+                        <p class="font-sf_pro font-bold md:text-lg text-base text-nowrap mr-14">{{ getLocalizedName(item) }}</p>
                         <div class="md:w-[100px] sm:w-[70px] w-[50px]">
                             <img crossorigin="anonymous" class="w-full h-full object-cover"
                                 :src="`${$uploadUrl}/${item?.img}`">
@@ -94,7 +94,7 @@
             </div>
             <div class="my-10">
                 <div class="w-full flex items-center justify-between mb-10">
-                    <h2 class="font-sf_pro font-bold md:text-4xl sm:text-3xl text-2xl">The best offers for you</h2>
+                    <h2 class="font-sf_pro font-bold md:text-4xl sm:text-3xl text-2xl">{{ $t('titles.offer') }}</h2>
                     <div class="hidden md:flex items-center space-x-2">
                         <svg class="p-2 rounded-full bg-m_gray-100 stroke-black cursor-pointer duration-200 prev-p"
                             width="55px" height="55px" viewBox="0 0 24 24" fill="none"
@@ -124,7 +124,7 @@
                                     <img class="w-full h-full object-contain mt-4" crossorigin="anonymous"
                                         :src="`${$uploadUrl}/${item.product_images[0].img}`">
                                 </div>
-                                <p class="font-sf_pro font-medium md:text-lg text-base">{{ item.name_en }}</p>
+                                <p class="font-sf_pro font-medium md:text-lg text-base">{{ getLocalizedName(item) }}</p>
                                 <div class="flex items-center space-x-2">
                                     <span class="font-sf_pro font-bold text-m_red-200">{{ item.final_price }} tmt</span>
                                     <span class="font-sf_pro text-m_gray-300 line-through">{{ item.sale_price }}
@@ -147,7 +147,7 @@
                         </div>
                         <router-link :to="`/subcategories/${banner.categoryId}`"
                             class="px-8 py-2 rounded-3xl bg-black text-white font-sf_pro font-bold md:text-lg sm:text-base text-sm">
-                            Explore Now
+                            {{ $t('titles.explore') }}
                         </router-link>
                     </div>
                 </div>
@@ -155,7 +155,7 @@
             <div class="w-full">
                 <div v-for="item in category_products?.rows" :key="item.id" class="w-full flex flex-col">
                     <div v-if="item.products.length > 0" class="w-full flex items-center justify-between mb-10">
-                        <router-link :to="`/subcategories/${item.id}`" class="font-sf_pro font-bold md:text-4xl sm:text-3xl text-2xl">{{ item.name_en }}</router-link>
+                        <router-link :to="`/subcategories/${item.id}`" class="font-sf_pro font-bold md:text-4xl sm:text-3xl text-2xl">{{ getLocalizedName(item) }}</router-link>
                         <div class="hidden md:flex items-center space-x-2">
                             <svg class="p-2 rounded-full bg-m_gray-100 stroke-black cursor-pointer duration-200"
                                 :class="[`prev-p-${item.id}`]"
@@ -182,7 +182,7 @@
                                     <img class="w-full h-full object-contain mt-4" crossorigin="anonymous"
                                         :src="`${$uploadUrl}/${product.product_images[0].img}`">
                                 </div>
-                                <p class="font-sf_pro font-medium md:text-lg text-base">{{ product.name_en }}</p>
+                                <p class="font-sf_pro font-medium md:text-lg text-base">{{ getLocalizedName(product) }}</p>
                                 <div class="flex items-center space-x-2">
                                     <span class="font-sf_pro font-bold text-m_red-200">{{ product.final_price }}
                                         tmt</span>
@@ -193,7 +193,7 @@
                 </div>
             </div>
             <div class="w-full mb-20">
-                <h2 class="font-sf_pro font-bold md:text-4xl sm:text-3xl text-2xl mb-10">Our top brands</h2>
+                <h2 class="font-sf_pro font-bold md:text-4xl sm:text-3xl text-2xl mb-10">{{ $t('titles.brand') }}</h2>
                 <div class="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-6">
                     <div class="bg-m_gray-100 rounded-lg" v-for="item in brands?.rows" :key="item.id">
                         <img class="lg:p-16 p-14" crossorigin="anonymous" :src="`${$uploadUrl}/${item.img}`">
@@ -282,7 +282,14 @@ export default {
             this.banner.desc = this.explore.desc
             this.banner.categoryId = this.explore.categoryId
             this.banner.img = this.explore.img
-        }
+        },
+        getLocalizedName(item) {
+            const locale = this.$i18n.locale;
+            if (locale === 'tm') return item.name_tm;
+            if (locale === 'ru') return item.name_ru;
+            if (locale === 'en') return item.name_en;
+            return item.name_ru;
+        },
     }
 }
 </script>

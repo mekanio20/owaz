@@ -4,13 +4,13 @@
         <div class="container">
             <div class="mt-10 flex items-center space-x-2">
                 <router-link to="/"
-                    class=" font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">Home</router-link>
+                    class=" font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">{{ $t('routes.title1') }}</router-link>
                 <span class="md:text-xl sm:text-lg text-base text-m_gray-200">></span>
                 <router-link to="/news"
-                    class=" font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">News</router-link>
+                    class=" font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">{{ $t('routes.title4') }}</router-link>
             </div>
             <div class="my-3 font-sf_pro font-bold md:text-4xl sm:text-3xl text-2xl">
-                News
+                
             </div>
             <div class="w-full my-10 grid lg:grid-cols-4 md:grid-cols-3 min-[400px]:grid-cols-2 grid-cols-1 gap-10">
                 <router-link to="/"

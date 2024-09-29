@@ -21,7 +21,7 @@
                         </div>
                         <input type="text" v-model="searchQuery" @keydown.enter="performSearch"
                             class="block w-full p-4 pr-16 md:text-sm text-xs text-gray-900 border-none rounded-xl placeholder:text-m_gray-200 bg-m_gray-100 focus:ring-blue-500 focus:border-blue-500"
-                            placeholder="Search..." required />
+                            :placeholder="$t('routes.title5')" required />
                     </div>
                 </form>
                 <div class="md:flex items-center space-x-6 hidden">
@@ -102,7 +102,7 @@
                 <form @submit.prevent="performSearch">
                     <input type="text" v-model="searchQuery"
                         class="block w-full p-4 pr-16 md:text-sm text-xs text-gray-900 border-none rounded-xl placeholder:text-m_gray-200 bg-m_gray-100 focus:ring-red-500 focus:border-red-500"
-                        placeholder="Search..." required />
+                        :placeholder="$t('routes.title5')" required />
                 </form>
             </div>
         </div>

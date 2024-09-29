@@ -4,11 +4,12 @@
         <div class="container">
             <div class="mt-10 flex items-center space-x-2">
                 <router-link to="/"
-                    class=" font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">Home</router-link>
+                    class=" font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">{{ $t('routes.title1') }}</router-link>
                 <span class="md:text-xl sm:text-lg text-base text-m_gray-200">></span>
                 <router-link :to="`/product/detail/${product?.id}`"
-                    class=" font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">{{
-                    product?.name_en }}</router-link>
+                    class=" font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">
+                    {{ getLocalizedName(product) }}
+                </router-link>
             </div>
             <div class="w-full flex lg:flex-row flex-col lg:space-y-0 space-y-10 items-start lg:space-x-10 my-10">
                 <div class="flex-1 flex flex-col space-y-4">
@@ -26,7 +27,7 @@
                     <div
                         class="w-fit rounded-2xl px-6 py-2 font-sf_pro font-medium md:text-base sm:text-sm text-xs text-m_orange-100 bg-m_orange-200">
                         {{ product?.inStock === true ? 'In stock' : 'Out stock' }}</div>
-                    <h1 class="font-sf_pro font-bold md:text-4xl sm:text-3xl text-2xl">{{ product?.name_en }}</h1>
+                    <h1 class="font-sf_pro font-bold md:text-4xl sm:text-3xl text-2xl">{{ getLocalizedName(product) }}</h1>
                     <div class="flex items-center space-x-6">
                         <p class="font-sf_pro font-bold md:text-3xl sm:text-2xl text-xl text-m_red-200">{{ product?.final_price }} TMT</p>
                         <p v-if="product?.discount_price > 0"
@@ -39,24 +40,24 @@
                             <table class="w-full text-left font-sf_pro text-gray-700">
                                 <tbody>
                                     <tr>
-                                        <td class="font-bold py-2 md:text-base sm:text-sm text-xs">Brand</td>
+                                        <td class="font-bold py-2 md:text-base sm:text-sm text-xs">{{ $t('product.brand') }}</td>
                                         <td class="py-2">{{ product?.brand.title }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="font-bold py-2 md:text-base sm:text-sm text-xs">Model</td>
+                                        <td class="font-bold py-2 md:text-base sm:text-sm text-xs">{{ $t('product.model') }}</td>
                                         <td class="py-2">{{ product?.model }}
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td class="font-bold py-2 md:text-base sm:text-sm text-xs">Year</td>
+                                        <td class="font-bold py-2 md:text-base sm:text-sm text-xs">{{ $t('product.year') }}</td>
                                         <td class="py-2">{{ product?.year }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="font-bold py-2 md:text-base sm:text-sm text-xs">Made in</td>
+                                        <td class="font-bold py-2 md:text-base sm:text-sm text-xs">{{ $t('product.madeIn') }}</td>
                                         <td class="py-2">{{ product?.madeIn }}</td>
                                     </tr>
                                     <tr>
-                                        <td class="font-bold py-2 md:text-base sm:text-sm text-xs pr-4">Category</td>
+                                        <td class="font-bold py-2 md:text-base sm:text-sm text-xs pr-4">{{ $t('product.category') }}</td>
                                         <td class="py-2">{{ product?.category?.name_en }}</td>
                                     </tr>
                                 </tbody>
@@ -66,12 +67,12 @@
                 </div>
             </div>
             <div class="w-full sm:my-20 mb-10">
-                <h3 class="font-sf_pro font-bold md:text-3xl sm:text-2xl text-xl">Description</h3>
-                <p class="font-sf_pro font-normal md:text-lg sm:text-base text-sm text-m_gray-600 my-5">{{ product?.desc_en }}</p>
+                <h3 class="font-sf_pro font-bold md:text-3xl sm:text-2xl text-xl">{{ $t('product.desc') }}</h3>
+                <p class="font-sf_pro font-normal md:text-lg sm:text-base text-sm text-m_gray-600 my-5">{{ getLocalizedDesc(product) }}</p>
             </div>
             <div class="w-full mb-20">
                 <div class="w-full flex items-center justify-between mb-10">
-                    <h2 class="font-sf_pro font-bold md:text-4xl sm:text-3xl text-2xl">You may also like</h2>
+                    <h2 class="font-sf_pro font-bold md:text-4xl sm:text-3xl text-2xl">{{ $t('titles.like') }}</h2>
                     <div class="hidden md:flex items-center space-x-2">
                         <svg class="p-2 rounded-full bg-m_gray-100 stroke-black cursor-pointer duration-200 prev-p-1"
                             width="55px" height="55px" viewBox="0 0 24 24" fill="none"
@@ -96,7 +97,7 @@
                                 <img class="w-full h-full object-contain mt-4" crossorigin="anonymous"
                                     :src="`${$uploadUrl}/${item?.product_images[0]?.img}`">
                             </div>
-                            <p class="font-sf_pro font-medium text-lg">{{ item.name_en }}</p>
+                            <p class="font-sf_pro font-medium text-lg">{{ getLocalizedName(item) }}</p>
                             <div class="flex items-center space-x-2">
                                 <span class="font-sf_pro font-bold text-m_red-200">{{ item.final_price }} tmt</span>
                             </div>
@@ -153,6 +154,20 @@ export default {
         async allProducts() {
             const data = await api.get(`/products?limit=10`)
             this.products = data.data.detail
+        },
+        getLocalizedName(item) {
+            const locale = this.$i18n.locale;
+            if (locale === 'tm') return item.name_tm;
+            if (locale === 'ru') return item.name_ru;
+            if (locale === 'en') return item.name_en;
+            return item.name_ru;
+        },
+        getLocalizedDesc(item) {
+            const locale = this.$i18n.locale;
+            if (locale === 'tm') return item.desc_tm;
+            if (locale === 'ru') return item.desc_ru;
+            if (locale === 'en') return item.desc_en;
+            return item.name_ru;
         },
     }
 }

@@ -4,7 +4,7 @@
         <div class="container">
             <div class="mt-10 flex items-center space-x-2">
                 <router-link to="/"
-                    class=" font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">Home</router-link>
+                    class=" font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">{{ $t('routes.title1') }}</router-link>
                 <span class="md:text-xl sm:text-lg text-base text-m_gray-200">></span>
                 <router-link :to="`/subcategories/${categoryId}`"
                     class=" font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">{{ name
@@ -20,7 +20,7 @@
                         <img class="w-full h-full object-contain mt-4" crossorigin="anonymous"
                             :src="`${$uploadUrl}/${item.img}`">
                     </div>
-                    <p class="font-sf_pro font-medium md:text-xl text-lg">{{ item.name_en }}</p>
+                    <p class="font-sf_pro font-medium md:text-xl text-lg">{{ getLocalizedName(item) }}</p>
                 </router-link>
             </div>
         </div>
@@ -50,11 +50,21 @@ export default {
     },
     methods: {
         async allSubcategories() {
+            const locale = this.$i18n.locale;
             this.categoryId = this.$route.params.id
             const data = await api.get(`/subcategories?id=${this.categoryId}`)
             const categories = await api.get(`/categories?id=${this.categoryId}`)
             this.subcategories = data.data.detail.rows
-            this.name = categories.data.detail.rows[0].name_en
+            if (locale === 'tm') this.name = categories.data.detail.rows[0].name_tm
+            if (locale === 'ru') this.name = categories.data.detail.rows[0].name_ru
+            if (locale === 'en') this.name = categories.data.detail.rows[0].name_en
+        },
+        getLocalizedName(item) {
+            const locale = this.$i18n.locale;
+            if (locale === 'tm') return item.name_tm;
+            if (locale === 'ru') return item.name_ru;
+            if (locale === 'en') return item.name_en;
+            return item.name_ru;
         },
     },
     watch: {
