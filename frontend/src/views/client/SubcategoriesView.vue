@@ -7,7 +7,7 @@
                     class=" font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">{{ $t('routes.title1') }}</router-link>
                 <span class="md:text-xl sm:text-lg text-base text-m_gray-200">></span>
                 <router-link :to="`/subcategories/${categoryId}`"
-                    class=" font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">{{ name
+                    class=" font-sf_pro font-normal md:text-xl sm:text-lg text-base text-m_gray-200">{{ this.name
                     }}</router-link>
             </div>
             <div class="my-3 font-sf_pro font-bold md:text-4xl sm:text-3xl text-2xl">
@@ -50,7 +50,7 @@ export default {
     },
     methods: {
         async allSubcategories() {
-            const locale = this.$i18n.locale;
+            const locale = this.$i18n.locale.toLowerCase();
             this.categoryId = this.$route.params.id
             const data = await api.get(`/subcategories?id=${this.categoryId}`)
             const categories = await api.get(`/categories?id=${this.categoryId}`)
@@ -69,6 +69,9 @@ export default {
     },
     watch: {
         '$route.params.id': function () {
+            this.allSubcategories()
+        },
+        '$i18n.locale': function () {
             this.allSubcategories()
         }
     }
