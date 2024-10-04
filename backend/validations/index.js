@@ -108,6 +108,7 @@ const IndexSchema = {
         year: Joi.number().positive().required(),
         madeIn: Joi.string().required(),
         inStock: Joi.boolean().optional(),
+        isNew: Joi.boolean().optional(),
         sale_price: Joi.number().positive().required(),
         discount_type: Joi.string().valid('manat', 'goterim').optional(),
         discount_price: Joi.number().optional(),
