@@ -22,6 +22,7 @@ class IndexController {
             if (req.query.categoryId) whereState.categoryId = req.query.categoryId
             if (req.query.subcategoryId) whereState.subcategoryId = req.query.subcategoryId
             if (req.query.brandId) whereState.brandId = req.query.brandId
+            if (req.query.isNew) whereState.isNew = req.query.isNew
             const products = await Models.Products.findAll({
                 attributes: ['id', 'name_en', 'name_ru', 'name_tm', 'model', 'year', 'madeIn', 'inStock', 'sale_price', 'discount_type', 'discount_price', 'final_price', 'brandId', 'categoryId', 'subcategoryId'],
                 where: whereState,

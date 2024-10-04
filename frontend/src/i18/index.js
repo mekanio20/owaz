@@ -33,7 +33,8 @@ const messages = {
       offer: 'Siziň üçin iň gowy teklipler',
       explore: 'Häzirki wagtda öwreniň',
       brand: 'Biziň öňdebaryjy brendlerimiz',
-      like: 'Bulary hem halap bilersiňiz'
+      like: 'Bulary hem halap bilersiňiz',
+      news: 'Täze harytlar'
     },
     footer: {
       desc: 'Owaz, ýokary hilli aýdym-saz gurallaryny satýan dükan.',
@@ -87,7 +88,8 @@ const messages = {
       offer: 'Лучшие предложения для вас',
       explore: 'Изучить сейчас',
       brand: 'Наши лучшие бренды',
-      like: 'Вам также может понравиться'
+      like: 'Вам также может понравиться',
+      news: 'Новые товары'
     },
     footer: {
       desc: 'Owaz — это магазин, продающий музыкальные инструменты высокого качества.',
@@ -141,7 +143,8 @@ const messages = {
       offer: 'The best offers for you',
       explore: 'Explore Now',
       brand: 'Our top brands',
-      like: 'You may also like'
+      like: 'You may also like',
+      news: 'New products'
     },
     footer: {
       desc: 'Owaz is the store selling high quality musical instruments.',

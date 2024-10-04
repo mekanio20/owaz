@@ -13,6 +13,7 @@ const Products = database.define('products', {
     year: { type: DataTypes.INTEGER, allowNull: false },
     madeIn: { type: DataTypes.STRING, allowNull: false },
     inStock: { type: DataTypes.BOOLEAN, defaultValue: true },
+    isNew: { type: DataTypes.BOOLEAN, defaultValue: true },
     sale_price: { type: DataTypes.FLOAT, allowNull: false },
     discount_type: { type: DataTypes.ENUM({ values: ['manat', 'goterim'] }), defaultValue: 'goterim' },
     discount_price: { type: DataTypes.INTEGER, defaultValue: 0 },

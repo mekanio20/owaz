@@ -94,6 +94,49 @@
             </div>
             <div class="my-10">
                 <div class="w-full flex items-center justify-between mb-10">
+                    <h2 class="font-sf_pro font-bold md:text-4xl sm:text-3xl text-2xl">{{ $t('titles.news') }}</h2>
+                    <div class="hidden md:flex items-center space-x-2">
+                        <svg class="p-2 rounded-full bg-m_gray-100 stroke-black cursor-pointer duration-200 prev-p-news"
+                            width="55px" height="55px" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 12H18M6 12L11 7M6 12L11 17" stroke-width="1" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                        <svg class="p-2 rounded-full bg-m_gray-100 stroke-black cursor-pointer duration-200 next-p-news"
+                            width="55px" height="55px" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M6 12H18M18 12L13 7M18 12L13 17" stroke-width="1" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="w-full flex items-center space-x-8">
+                    <swiper :slides-per-view="slidesPerView" :breakpoints="p1_breakpoints" :spaceBetween="30" :modules="modules"
+                        :navigation="{ nextEl: '.next-p-news', prevEl: '.prev-p-news' }"
+                        class="w-full flex items-center space-x-8 select-none">
+                        <swiper-slide v-for="item in new_products?.rows" :key="item.id">
+                            <router-link class="flex flex-col space-y-4" :to="`/product/detail/${item.id}`">
+                                <div class="w-full h-64 relative bg-m_gray-100 rounded-xl">
+                                    <div
+                                        class="absolute left-0 top-4 bg-white px-4 py-2 rounded-e-lg font-sf_pro font-bold text-m_red-200 text-sm">
+                                        {{ item.discount_price }} {{ item.discount_type == 'manat' ? 'tmt' : '%' }}
+                                    </div>
+                                    <img class="w-full h-full object-contain mt-4" crossorigin="anonymous"
+                                        :src="`${$uploadUrl}/${item.product_images[0].img}`">
+                                </div>
+                                <p class="font-sf_pro font-medium md:text-lg text-base">{{ getLocalizedName(item) }}</p>
+                                <div class="flex items-center space-x-2">
+                                    <span class="font-sf_pro font-bold text-m_red-200">{{ item.final_price }} tmt</span>
+                                    <span class="font-sf_pro text-m_gray-300 line-through">{{ item.sale_price }}
+                                        tmt</span>
+                                </div>
+                            </router-link>
+                        </swiper-slide>
+                    </swiper>
+                </div>
+            </div>
+            <div class="my-10">
+                <div class="w-full flex items-center justify-between mb-10">
                     <h2 class="font-sf_pro font-bold md:text-4xl sm:text-3xl text-2xl">{{ $t('titles.offer') }}</h2>
                     <div class="hidden md:flex items-center space-x-2">
                         <svg class="p-2 rounded-full bg-m_gray-100 stroke-black cursor-pointer duration-200 prev-p"
@@ -232,6 +275,7 @@ export default {
             brands: null,
             category_products: null,
             slidesPerView: null,
+            new_products: null,
             p1_breakpoints: {
                 200: { slidesPerView: 1 },
                 500: { slidesPerView: 2 },
@@ -264,11 +308,15 @@ export default {
             this.categories = data.data.detail.rows
         },
         async offerProducts() {
-            const data = await api.get('/products?dis=true&limit=10')
+            const data = await api.get('/products?dis=true&limit=30')
             this.offers = data.data.detail
         },
+        async newProducts() {
+            const data = await api.get('/products?isNew=true&limit=30')
+            this.new_products = data.data.detail
+        },
         async categoryProducts() {
-            const data = await api.get('/category/products?limit=10')
+            const data = await api.get('/category/products?limit=30')
             this.category_products = data.data.detail
         },
         async allBrands() {
