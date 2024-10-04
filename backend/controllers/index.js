@@ -229,6 +229,7 @@ class IndexController {
                 year: req.body.year,
                 madeIn: req.body.madeIn,
                 inStock: req.body.inStock,
+                isNew: req.body.isNew,
                 sale_price: req.body.sale_price,
                 discount_type: req.body?.discount_type,
                 discount_price: req.body?.discount_price,

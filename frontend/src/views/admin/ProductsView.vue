@@ -169,6 +169,14 @@
                         </select>
                     </div>
                     <div class="mb-5">
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Is new</label>
+                        <select v-model="isNew"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option value="true">True</option>
+                            <option value="false">False</option>
+                        </select>
+                    </div>
+                    <div class="mb-5">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
                         <select v-model="categoryId"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -241,6 +249,7 @@ export default {
             year: 0,
             madeIn: null,
             inStock: true,
+            isNew: true,
             sale_price: 0,
             discount_type: 'manat',
             discount_price: 0,
@@ -300,6 +309,7 @@ export default {
                 formData.append('year', this.year);
                 formData.append('madeIn', this.madeIn);
                 formData.append('inStock', this.inStock);
+                formData.append('isNew', this.isNew);
                 formData.append('sale_price', this.sale_price);
                 formData.append('discount_type', this.discount_type);
                 formData.append('discount_price', this.discount_price);

@@ -79,6 +79,14 @@
                                 </select>
                             </div>
                             <div>
+                                <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Is new</label>
+                                <select v-model="isNew"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                    <option value="true">True</option>
+                                    <option value="false">False</option>
+                                </select>
+                            </div>
+                            <div>
                                 <label class="block text-sm font-medium text-gray-700">Sale Price</label>
                                 <input v-model="sale_price" type="number"
                                     class="mt-1 p-2 border border-gray-300 rounded-md shadow-sm w-full" />
@@ -158,6 +166,7 @@ export default {
             year: '',
             madeIn: '',
             inStock: '',
+            isNew: '',
             sale_price: '',
             discount_type: '',
             discount_price: '',
@@ -192,6 +201,7 @@ export default {
             this.year = data.data.detail.year;
             this.madeIn = data.data.detail.madeIn;
             this.inStock = data.data.detail.inStock;
+            this.isNew = data.data.detail.isNew;
             this.sale_price = data.data.detail.sale_price;
             this.discount_type = data.data.detail.discount_type;
             this.discount_price = data.data.detail.discount_price;
@@ -246,6 +256,7 @@ export default {
                     year: this.year,
                     madeIn: this.madeIn,
                     inStock: this.inStock,
+                    isNew: this.isNew,
                     sale_price: this.sale_price,
                     discount_type: this.discount_type,
                     discount_price: this.discount_price,
