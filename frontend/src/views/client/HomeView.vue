@@ -117,18 +117,12 @@
                         <swiper-slide v-for="item in new_products?.rows" :key="item.id">
                             <router-link class="flex flex-col space-y-4" :to="`/product/detail/${item.id}`">
                                 <div class="w-full h-64 relative bg-m_gray-100 rounded-xl">
-                                    <div
-                                        class="absolute left-0 top-4 bg-white px-4 py-2 rounded-e-lg font-sf_pro font-bold text-m_red-200 text-sm">
-                                        {{ item.discount_price }} {{ item.discount_type == 'manat' ? 'tmt' : '%' }}
-                                    </div>
                                     <img class="w-full h-full object-contain mt-4" crossorigin="anonymous"
                                         :src="`${$uploadUrl}/${item.product_images[0].img}`">
                                 </div>
                                 <p class="font-sf_pro font-medium md:text-lg text-base">{{ getLocalizedName(item) }}</p>
                                 <div class="flex items-center space-x-2">
                                     <span class="font-sf_pro font-bold text-m_red-200">{{ item.final_price }} tmt</span>
-                                    <span class="font-sf_pro text-m_gray-300 line-through">{{ item.sale_price }}
-                                        tmt</span>
                                 </div>
                             </router-link>
                         </swiper-slide>

@@ -3,7 +3,7 @@
         <div class="container">
             <div class="flex items-center justify-between">
                 <router-link to="/" class="flex items-center sm:space-x-4 space-x-2">
-                    <div class="md:w-14 w-10">
+                    <div class="md:w-20 w-14">
                         <img class="w-full h-full object-cover" src="/icons/logo.png">
                     </div>
                     <h1 class="font-poppins font-semibold md:text-xl sm:text-lg text-base text-m_red-100 text-nowrap">

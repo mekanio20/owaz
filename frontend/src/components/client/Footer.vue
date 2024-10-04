@@ -3,7 +3,7 @@
         <div class="sm:container flex lg:flex-row flex-col-reverse items-start justify-between bg-m_black-200 px-10 py-20">
             <div class="lg:w-2/3 w-full flex lg:items-start items-center lg:justify-start justify-center flex-col lg:mt-0 mt-20">
                 <router-link to="/" class="flex items-center space-x-4 cursor-pointer">
-                    <img class="w-[40px]" src="/icons/logo.png">
+                    <img class="w-[70px]" src="/icons/logo.png">
                     <h2 class="font-poppins font-bold lg:text-2xl text-xl text-m_green-100 text-white">Owaz Strore</h2>
                 </router-link>
                 <p class="font-sf_pro font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400 my-10">
