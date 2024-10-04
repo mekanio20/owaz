@@ -291,6 +291,7 @@ export default {
         }
     },
     created() {
+        this.newProducts()
         this.allBanners(),
         this.allCategories(),
         this.offerProducts(),

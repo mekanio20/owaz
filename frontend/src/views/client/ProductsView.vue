@@ -58,7 +58,7 @@ export default {
     methods: {
         async allProducts() {
             const locale = this.$i18n.locale.toLowerCase();
-            const data = await api.get(`/products?subcategoryId=${this.$route.params.id}`)
+            const data = await api.get(`/products?subcategoryId=${this.$route.params.id}&limit=1000`)
             const category = await api.get(`/subcategories?subId=${this.$route.params.id}`)
             if (locale === 'tm') this.name = category.data.detail.rows[0].name_tm
             if (locale === 'ru') this.name = category.data.detail.rows[0].name_ru
