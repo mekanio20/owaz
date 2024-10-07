@@ -45,9 +45,9 @@ export default {
     data() {
         return {
             icons: [
-                { id: 1, icon: '/svgs/facebook.svg', url: '/' },
-                { id: 2, icon: '/svgs/instagram.svg', url: '/' },
-                { id: 3, icon: '/svgs/linkedin.svg', url: '/' },
+                { id: 1, icon: '/svgs/facebook.svg', url: 'https://www.facebook.com/owazmusic.musicowaz?mibextid=LQQJ4d' },
+                { id: 2, icon: '/svgs/instagram.svg', url: 'https://www.instagram.com/owaz.store?igsh=YnNrbGh6dWJmMHAx' },
+                { id: 3, icon: '/svgs/tiktok.svg', url: 'https://www.tiktok.com/@owaz_dukan?_r=1&_d=eaml7f0il4k390&sec_uid=MS4wLjABAAAA7sJL7t8eXFlmbwUvLDgxyRlxPYZkuTv-Ob6PIR9IYF4Uxja3IsHKqDuarpfC83ez&share_author_id=7297505601432404994&sharer_language=ru&source=h5_m&u_code=eamla6al6dmdhb&ug_btm=b8727,b0&social_share_type=4&utm_source=copy&sec_user_id=MS4wLjABAAAA7sJL7t8eXFlmbwUvLDgxyRlxPYZkuTv-Ob6PIR9IYF4Uxja3IsHKqDuarpfC83ez&tt_from=copy&utm_medium=ios&utm_campaign=client_share&enable_checksum=1&user_id=7297505601432404994&share_link_id=CFA1E534-1D9F-477F-BE4B-8FF9FFFBD0E3&share_app_id=1233' },
                 { id: 4, icon: '/svgs/youtube.svg', url: '/' },
             ]
         }
