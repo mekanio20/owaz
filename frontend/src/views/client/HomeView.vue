@@ -6,7 +6,7 @@
                 <swiper :slides-per-view="1" :spaceBetween="30" :modules="modules"
                     :autoplay="{ delay: 2000, disableOnInteraction: false, }" :speed="1000">
                     <swiper-slide class="w-full lg:!h-[600px] my-5" v-for="item in banners" :key="item.id">
-                        <img crossorigin="anonymous" class="w-full h-full object-cover rounded-xl"
+                        <img crossorigin="anonymous" class="w-full h-full object-contain rounded-xl"
                             :src="`${$uploadUrl}/${item.img}`">
                     </swiper-slide>
                 </swiper>
