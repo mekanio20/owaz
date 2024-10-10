@@ -204,7 +204,7 @@ class IndexController {
     async addProduct(req, res) {
         try {
             let data = null
-            console.log(req.files);
+            console.log(req.files)
             const images = req?.files?.img
             console.log(images);
             if (images === undefined) {
