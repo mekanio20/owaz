@@ -205,6 +205,7 @@ class IndexController {
         try {
             let data = null
             const images = req?.files?.img
+            console.log(images);
             if (images === undefined) {
                 data = await Response.BadRequest('Surat gerek!', [])
                 return res.status(data.status).json(data)
@@ -238,6 +239,7 @@ class IndexController {
                 subcategoryId: req.body.subcategoryId,
                 brandId: req.body.brandId
             }).catch((err) => console.log(err))
+            console.log(JSON.stringify(product, null, 2))
             images.forEach(async (item) => {
                 await Models.ProductImages.create({
                     productId: product.id,
