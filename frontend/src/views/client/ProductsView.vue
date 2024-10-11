@@ -16,6 +16,9 @@
             <div class="font-sf_pro font-medium md:text-lg sm:text-base text-sm text-m_gray-200">
                 {{ this.count }} {{ $t('routes.title6') }}
             </div>
+            <div class="my-3 font-sf_pro font-medium md:text-xl sm:text-lg text-base">
+                {{ desc }}
+            </div>
             <div class="w-full my-10 grid lg:grid-cols-4 md:grid-cols-3 min-[400px]:grid-cols-2 grid-cols-1 gap-10">
                 <router-link v-for="item in products?.rows" :key="item.id" :to="`/product/detail/${item.id}`"
                     class="flex items-start flex-col space-y-4">
@@ -49,6 +52,7 @@ export default {
         return {
             count: 0,
             name: null,
+            desc: null,
             products: null,
         }
     },
@@ -63,12 +67,18 @@ export default {
             if (locale === 'tm') this.name = category.data.detail.rows[0].name_tm
             if (locale === 'ru') this.name = category.data.detail.rows[0].name_ru
             if (locale === 'en') this.name = category.data.detail.rows[0].name_en
+            if (locale === 'tm') this.desc = category.data.detail.rows[0].desc_tm
+            if (locale === 'ru') this.desc = category.data.detail.rows[0].desc_ru
+            if (locale === 'en') this.desc = category.data.detail.rows[0].desc_en
             this.products = data.data.detail
             this.count = this.products.count
         }
     },
     watch: {
         '$route.params.id': function () {
+            this.allProducts()
+        },
+        '$i18n.locale': function () {
             this.allProducts()
         }
     },
