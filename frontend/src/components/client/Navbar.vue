@@ -71,23 +71,34 @@
                     </div>
                 </div>
             </div>
-            <div class="flex items-center pt-10 space-x-8 overflow-x-auto scrollbar-hide">
-                <router-link to="/news"
-                    class="font-sf_pro font-medium uppercase md:text-base text-sm text-nowrap text-black">
-                    {{ $t('routes.title4') }}
-                </router-link>
-                <router-link to="/contacts"
-                    class="font-sf_pro font-medium uppercase md:text-base text-sm text-nowrap text-black">
-                    {{ $t('routes.title3') }}
-                </router-link>
-                <router-link to="/brands"
-                    class="font-sf_pro font-medium uppercase md:text-base text-sm text-nowrap text-black">
-                    {{ $t('routes.title2') }}
-                </router-link>
-                <router-link v-for="item in categories" :key="item.id" :to="`/subcategories/${item.id}`"
-                    class="font-sf_pro font-medium uppercase md:text-base text-sm text-nowrap text-black">
-                    {{ getLocalizedName(item) }}
-                </router-link>
+            <div class="w-full flex items-center relative select-none">
+                <svg v-if="!isAtStart" @click="scrollLeft" xmlns="http://www.w3.org/2000/svg" class="absolute left-0 sm:top-[39px] top-[38px] h-6 w-6 bg-white text-gray-500 cursor-pointer"
+                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 18l-6-6 6-6" />
+                </svg>
+                <div ref="scrollContainer" class="flex items-center pt-10 space-x-8 overflow-x-auto scrollbar-hide">
+                    <router-link to="/news"
+                        class="font-sf_pro font-medium uppercase md:text-base text-sm text-nowrap text-black">
+                        {{ $t('routes.title4') }}
+                    </router-link>
+                    <router-link to="/contacts"
+                        class="font-sf_pro font-medium uppercase md:text-base text-sm text-nowrap text-black">
+                        {{ $t('routes.title3') }}
+                    </router-link>
+                    <router-link to="/brands"
+                        class="font-sf_pro font-medium uppercase md:text-base text-sm text-nowrap text-black">
+                        {{ $t('routes.title2') }}
+                    </router-link>
+                    <router-link v-for="item in categories" :key="item.id" :to="`/subcategories/${item.id}`"
+                        class="font-sf_pro font-medium uppercase md:text-base text-sm text-nowrap text-black flex items-center">
+                        {{ getLocalizedName(item) }}
+                    </router-link>
+                </div>
+                <svg v-if="!isAtEnd" @click="scrollRight" xmlns="http://www.w3.org/2000/svg"
+                    class="absolute right-0 sm:top-[39px] top-[38px] h-6 w-6 bg-white text-gray-500 cursor-pointer" fill="none"
+                    viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 18l6-6-6-6" />
+                </svg>
             </div>
         </div>
         <!-- Mobile navbar -->
@@ -122,6 +133,8 @@ export default {
             searchQuery: null,
             categories: null,
             isLang: false,
+            isAtStart: true,
+            isAtEnd: false,
             langs: ['tm', 'ru', 'en']
         };
     },
@@ -155,6 +168,27 @@ export default {
             if (locale === 'en') return item.name_en;
             return item.name_ru;
         },
+        scrollRight() {
+            const container = this.$refs.scrollContainer;
+            container.scrollBy({
+                left: 300,
+                behavior: 'smooth'
+            })
+            this.checkScroll()
+        },
+        scrollLeft() {
+            const container = this.$refs.scrollContainer;
+            container.scrollBy({
+                left: -300,
+                behavior: 'smooth'
+            })
+            this.checkScroll()
+        },
+        checkScroll() {
+            const container = this.$refs.scrollContainer;
+            this.isAtStart = container.scrollLeft === 0;
+            this.isAtEnd = container.scrollWidth - container.clientWidth === container.scrollLeft;
+        }
     }
 }
 </script>
