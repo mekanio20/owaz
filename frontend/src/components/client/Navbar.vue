@@ -1,9 +1,12 @@
 <template>
     <div class="w-full py-5">
         <div class="container">
+            <div class="w-full flex items-center justify-start">
+                <div class=" font-sf_pro text-xs text-m_red-100">+99365863633</div>
+            </div>
             <div class="flex items-center justify-between">
                 <router-link to="/" class="flex items-center sm:space-x-4 space-x-2">
-                    <div class="md:w-20 w-14">
+                    <div class="md:w-[85px] w-14">
                         <img class="w-full h-full object-cover" src="/icons/logo.png">
                     </div>
                     <h1 class="font-poppins font-semibold md:text-xl sm:text-lg text-base text-m_red-100 text-nowrap">

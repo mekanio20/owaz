@@ -77,6 +77,24 @@
                             required />
                     </div>
                     <div class="mb-5">
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tm Desc</label>
+                        <input type="text" id="title" v-model="desc_tm"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            required />
+                    </div>
+                    <div class="mb-5">
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Ru Desc</label>
+                        <input type="text" id="title" v-model="desc_ru"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            required />
+                    </div>
+                    <div class="mb-5">
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">En Desc</label>
+                        <input type="text" id="title" v-model="desc_en"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            required />
+                    </div>
+                    <div class="mb-5">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
                         <select v-model="categoryId"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -118,6 +136,9 @@ export default {
             name_tm: null,
             name_ru: null,
             name_en: null,
+            desc_tm: null,
+            desc_ru: null,
+            desc_en: null,
             categoryId: 0
         }
     },
@@ -141,6 +162,9 @@ export default {
                 formData.append('name_tm', this.name_tm)
                 formData.append('name_ru', this.name_ru)
                 formData.append('name_en', this.name_en)
+                formData.append('desc_tm', this.desc_tm)
+                formData.append('desc_ru', this.desc_ru)
+                formData.append('desc_en', this.desc_en)
                 formData.append('categoryId', this.categoryId)
                 if (this.imageFile) {
                     formData.append('img', this.imageFile);

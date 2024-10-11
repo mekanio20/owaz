@@ -79,6 +79,9 @@ const IndexSchema = {
         name_tm: Joi.string().max(100).required(),
         name_ru: Joi.string().max(100).required(),
         name_en: Joi.string().max(100).required(),
+        desc_tm: Joi.string().required(),
+        desc_ru: Joi.string().required(),
+        desc_en: Joi.string().required(),
         categoryId: Joi.number().positive().required()
     }),
     addExplore: Joi.object({

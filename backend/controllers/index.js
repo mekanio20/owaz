@@ -302,6 +302,9 @@ class IndexController {
                 name_tm: req.body.name_tm,
                 name_ru: req.body.name_ru,
                 name_en: req.body.name_en,
+                desc_tm: req.body.desc_tm,
+                desc_ru: req.body.desc_ru,
+                desc_en: req.body.desc_en,
                 img: image,
                 categoryId: req.body.categoryId
             }).catch((err) => console.log(err))

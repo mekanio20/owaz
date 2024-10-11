@@ -13,6 +13,9 @@
             <div class="my-3 font-sf_pro font-bold md:text-4xl sm:text-3xl text-2xl">
                 {{ name }}
             </div>
+            <div v-if="desc" class="my-3 font-sf_pro font-medium md:text-3xl sm:text-2xl text-xl">
+                {{ desc }}
+            </div>
             <div class="w-full my-10 grid lg:grid-cols-4 md:grid-cols-3 min-[400px]:grid-cols-2 grid-cols-1 gap-10">
                 <router-link v-for="item in subcategories" :key="item.id" :to="`/products/${item.id}`"
                     class="flex items-center flex-col space-y-4">
@@ -41,6 +44,7 @@ export default {
     data() {
         return {
             name: null,
+            desc: null,
             categoryId: null,
             subcategories: null
         }
@@ -58,6 +62,9 @@ export default {
             if (locale === 'tm') this.name = categories.data.detail.rows[0].name_tm
             if (locale === 'ru') this.name = categories.data.detail.rows[0].name_ru
             if (locale === 'en') this.name = categories.data.detail.rows[0].name_en
+            if (locale === 'tm') this.desc = categories.data.detail.rows[0].desc_tm
+            if (locale === 'ru') this.desc = categories.data.detail.rows[0].desc_ru
+            if (locale === 'en') this.desc = categories.data.detail.rows[0].desc_en
         },
         getLocalizedName(item) {
             const locale = this.$i18n.locale;

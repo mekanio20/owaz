@@ -78,6 +78,9 @@ const Subcategories = database.define('subcategories', {
     name_ru: { type: DataTypes.STRING, allowNull: false },
     name_en: { type: DataTypes.STRING, allowNull: false },
     img: { type: DataTypes.STRING, allowNull: false },
+    desc_tm: { type: DataTypes.TEXT, allowNull: true },
+    desc_ru: { type: DataTypes.TEXT, allowNull: true },
+    desc_en: { type: DataTypes.TEXT, allowNull: true },
     createdAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
     updatedAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW }
 })
