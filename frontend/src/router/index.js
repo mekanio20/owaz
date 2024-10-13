@@ -70,6 +70,12 @@ const router = createRouter({
       component: () => import("@/views/admin/AdminNews.vue"),
       meta: { requiresAuth: true },
     },
+    {
+      path: "/admin/news/detail/:id",
+      name: "AdminNewsDetail",
+      component: () => import("@/views/admin/AdminNewsDetail.vue"),
+      meta: { requiresAuth: true },
+    },
     // CLIENT
     {
       path: "/",

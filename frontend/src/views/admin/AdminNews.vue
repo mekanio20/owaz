@@ -133,7 +133,7 @@ export default {
         // ##########
         async allNews(page) {
             this.currentPage = page
-            const data = await api.get(`/news?page=${page}`)
+            const data = await api.get(`/news?page=${Number(page)}`)
             this.dataLength = Math.ceil((await data.data.detail.count) / 10)
             this.news = await data.data.detail.rows
             this.count = await data.data.detail.count
@@ -161,35 +161,12 @@ export default {
                 if (news.data.status === 201) {
                     toast.success(news.data.msg);
                 }
-                await this.allNews()
+                await this.allNews(this.currentPage)
             } catch (error) {
                 let toast = useToast();
                 toast.error(error.response.data.msg);
             }
         },
-        async deleteNews(id) {
-            try {
-                const token = localStorage.getItem('token');
-                const confirmed = confirm("News pozmak isleýärsiňizmi!");
-                if (confirmed) {
-                    const data = await api.delete(`/news/${id}`, {
-                        headers: {
-                            'Authorization': `Bearer ${token}`,
-                        }
-                    })
-                    let toast = useToast();
-                    if (data.data.status === 200) {
-                        toast.success(data.data.msg);
-                    } else {
-                        toast.error(data.data.msg);
-                    }
-                    await this.allNews()
-                }
-            } catch (error) {
-                let toast = useToast();
-                toast.error(error.response.data.msg);
-            }
-        }
     }
 }
 </script>
