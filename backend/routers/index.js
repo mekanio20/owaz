@@ -54,6 +54,12 @@ router.post('/add/explore',
   valdidationMiddleware(IndexSchema.addExplore, 'body'),
   IndexController.addExplore)
 
+router.post('/add/news',
+  authMiddleware,
+  imageMiddleware(process.env.IMAGES).single('img'),
+  valdidationMiddleware(IndexSchema.addNews, 'body'),
+  IndexController.addNews)
+
 // GET
 router.get('/products',
   valdidationMiddleware(IndexSchema.allProducts, 'query'),
@@ -90,6 +96,10 @@ router.get('/subcategories',
 router.get('/contacts',
   authMiddleware,
   IndexController.allContacts)
+  
+router.get('/news',
+  valdidationMiddleware(IndexSchema.allNews, 'query'),
+  IndexController.allNews)
   
 router.get('/explore', IndexController.getExplore)
 

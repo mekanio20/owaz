@@ -36,7 +36,7 @@ app.all("*", (req, res) => {
 app.listen(port, async () => {
   try {
     await database.authenticate();
-    await database.sync({ alter: true });
+    await database.sync({});
     console.log("Database connected...");
     console.log(`Server is running: http://${ip}:${port}`);
   } catch (error) {

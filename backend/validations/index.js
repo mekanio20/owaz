@@ -37,6 +37,12 @@ const IndexSchema = {
     allBanners: Joi.object({
         limit: Joi.number().positive().optional(),
         page: Joi.number().positive().optional(),
+        type: Joi.string().valid('home', 'category', 'subcategory', 'product')
+    }),
+    allNews: Joi.object({
+        id: Joi.number().positive().optional(),
+        limit: Joi.number().positive().optional(),
+        page: Joi.number().positive().optional(),
     }),
     adminLogin: Joi.object({
         login: Joi.string().max(100).required(),
@@ -61,6 +67,14 @@ const IndexSchema = {
         categoryId: Joi.number().positive().required(),
         subcategoryId: Joi.number().positive().optional(),
         brandId: Joi.number().positive().required(),
+    }),
+    addNews: Joi.object({
+        name_tm: Joi.string().required(),
+        name_ru: Joi.string().required(),
+        name_en: Joi.string().required(),
+        desc_tm: Joi.string().required(),
+        desc_ru: Joi.string().required(),
+        desc_en: Joi.string().required(),
     }),
     addContact: Joi.object({
         fullname: Joi.string().max(100).required(),

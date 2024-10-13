@@ -128,7 +128,8 @@ class IndexController {
     }
     async allBanners(req, res) {
         try {
-            const banners = await Models.Banners.findAndCountAll({})
+            const whereState = { ...(req.query.type && { types: req.query.type }) }
+            const banners = await Models.Banners.findAndCountAll({ where: whereState })
             const data = await Response.Success('Üstünlikli!', banners)
             return res.status(data.status).json(data)
         } catch (error) {
@@ -174,6 +175,21 @@ class IndexController {
             const explore = await Models.Explore.findOne()
                 .catch((err) => console.log(err))
             const data = await Response.Success('Üstünlikli!', explore)
+            return res.status(data.status).json(data)
+        } catch (error) {
+            return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
+        }
+    }
+    async allNews(req, res) {
+        try {
+            const { page = 1, limit = 10 } = req.query
+            const whereState = { ...(req.query.id && { id: req.query.id }) }
+            const news = await Models.News.findAndCountAll({
+                where: whereState,
+                limit: limit,
+                offset: (page - 1) * limit
+            })
+            const data = await Response.Success('Üstünlikli!', news)
             return res.status(data.status).json(data)
         } catch (error) {
             return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
@@ -322,7 +338,7 @@ class IndexController {
                 data = await Response.BadRequest('Surat gerek!', [])
                 return res.status(data.status).json(data)
             }
-            const count = await Models.Banners.count()
+            const count = await Models.Banners.count({})
             if (count >= 3) {
                 data = await Response.BadRequest('3 bannerden artyk goşup bolmaýar!', [])
                 return res.status(data.status).json(data)
@@ -369,6 +385,30 @@ class IndexController {
                 img: image
             }).catch((err) => console.log(err))
             data = await Response.Created('Explore goşuldy!', [])
+            return res.status(data.status).json(data)
+        } catch (error) {
+            return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
+        }
+    }
+    async addNews(req, res) {
+        try {
+            let data = null
+            const image = req?.file?.filename
+            if (!image) {
+                data = await Response.BadRequest('Surat gerek!', [])
+                return res.status(data.status).json(data)
+            }
+            await Models.News.create({
+                name_tm: req.body.name_tm,
+                name_ru: req.body.name_ru,
+                name_en: req.body.name_en,
+                desc_tm: req.body.desc_tm,
+                desc_ru: req.body.desc_ru,
+                desc_en: req.body.desc_en,
+                desc: req.body.subtitle,
+                img: image
+            }).catch((err) => console.log(err))
+            data = await Response.Created('News goşuldy!', [])
             return res.status(data.status).json(data)
         } catch (error) {
             return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })

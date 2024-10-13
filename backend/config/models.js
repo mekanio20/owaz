@@ -32,6 +32,7 @@ const ProductImages = database.define('product_images', {
 const Banners = database.define('banners', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, allowNull: false, unique: true },
     img: { type: DataTypes.STRING, allowNull: false },
+    types: { type: DataTypes.ENUM({ values: ['home', 'category', 'subcategory', 'product'] }), defaultValue: 'home' },
     createdAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
     updatedAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW }
 })
@@ -40,6 +41,19 @@ const Ad = database.define('ads', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, allowNull: false, unique: true },
     title: { type: DataTypes.STRING, allowNull: false },
     desc: { type: DataTypes.STRING, allowNull: false },
+    img: { type: DataTypes.STRING, allowNull: false },
+    createdAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updatedAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW }
+})
+
+const News = database.define('news', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, allowNull: false, unique: true },
+    name_tm: { type: DataTypes.STRING, allowNull: false },
+    name_ru: { type: DataTypes.STRING, allowNull: false },
+    name_en: { type: DataTypes.STRING, allowNull: false },
+    desc_tm: { type: DataTypes.TEXT, allowNull: true },
+    desc_ru: { type: DataTypes.TEXT, allowNull: true },
+    desc_en: { type: DataTypes.TEXT, allowNull: true },
     img: { type: DataTypes.STRING, allowNull: false },
     createdAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
     updatedAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW }
@@ -141,5 +155,6 @@ Categories.hasMany(Explore)
 Explore.belongsTo(Categories)
 
 module.exports = {
-    Products, Banners, Categories, ProductImages, Brands, Users, Subcategories, Ad, Socials, Explore, Contacts
+    Products, Banners, Categories, ProductImages, Brands, Users, Subcategories, Ad, Socials, Explore, Contacts,
+    News
 }
