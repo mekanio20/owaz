@@ -69,6 +69,7 @@ const IndexSchema = {
         brandId: Joi.number().positive().required(),
     }),
     addNews: Joi.object({
+        id: Joi.number().positive().optional(),
         name_tm: Joi.string().required(),
         name_ru: Joi.string().required(),
         name_en: Joi.string().required(),

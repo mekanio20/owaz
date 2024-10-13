@@ -469,6 +469,20 @@ class IndexController {
             return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
         }
     }
+    async updateNews(req, res) {
+        try {
+            let data = null
+            // const image = req?.file?.filename
+            // if (image) { body.img = image }
+            await Models.News.update(req.body, { where: { id: req.body.id } })
+                .catch((err) => console.log(err))
+            data = await Response.Success('News üýtgedildi!', [])
+            return res.status(data.status).json(data)
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
+        }
+    }
     // DELETE
     async deleteBrand(req, res) {
         try {
@@ -563,6 +577,20 @@ class IndexController {
                 return res.status(data.status).json(data)
             }
             data = await Response.Success('Contact pozuldy!', [])
+            return res.status(data.status).json(data)
+        } catch (error) {
+            return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
+        }
+    }
+    async deleteNews(req, res) {
+        try {
+            let data = null
+            const news = await Models.News.destroy({ where: { id: req.params.id } })
+            if (!news) {
+                data = await Response.BadRequest('Ýalňyşlyk ýüze çykdy!', [])
+                return res.status(data.status).json(data)
+            }
+            data = await Response.Success('News pozuldy!', [])
             return res.status(data.status).json(data)
         } catch (error) {
             return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })

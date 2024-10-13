@@ -115,6 +115,12 @@ router.put('/update/explore',
   valdidationMiddleware(IndexSchema.updateExplore, 'body'),
   IndexController.updateExplore)
 
+router.put('/update/news', 
+  authMiddleware,
+  // imageMiddleware(process.env.IMAGES).single('img'),
+  valdidationMiddleware(IndexSchema.addNews, 'body'),
+  IndexController.updateNews)
+
 // DELETE
 router.delete('/brand/:id',
   authMiddleware,
@@ -150,5 +156,10 @@ router.delete('/contact/:id',
   authMiddleware,
   valdidationMiddleware(IndexSchema.idController, 'params'),
   IndexController.deleteContact)
+
+router.delete('/news/:id',
+  authMiddleware,
+  valdidationMiddleware(IndexSchema.idController, 'params'),
+  IndexController.deleteNews)
 
 module.exports = router;
