@@ -108,6 +108,11 @@ const router = createRouter({
       component: () => import("@/views/client/NewsView.vue"),
     },
     {
+      path: "/news/detail/:id",
+      name: "NewsDetail",
+      component: () => import("@/views/client/NewsDetailView.vue"),
+    },
+    {
       path: "/subcategories/:id",
       name: "ClientSubcategories",
       component: () => import("@/views/client/SubcategoriesView.vue"),

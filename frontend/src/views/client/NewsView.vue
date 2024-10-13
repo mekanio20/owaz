@@ -13,13 +13,14 @@
                 
             </div>
             <div class="w-full my-10 grid lg:grid-cols-4 md:grid-cols-3 min-[400px]:grid-cols-2 grid-cols-1 gap-10">
-                <router-link to="/"
+                <router-link v-for="item in news" :key="item.id" :to="`/news/detail/${item.id}`"
                     class="flex items-start flex-col space-y-4">
                     <div class="w-full h-64 bg-m_gray-100 rounded-xl">
                         <img class="w-full h-full object-contain mt-4" crossorigin="anonymous"
-                            src="#">
+                        :src="`${$uploadUrl}/${item.img}`">
                     </div>
-                    <p class="font-sf_pro font-medium md:text-xl text-lg">Test</p>
+                    <p class="font-sf_pro text-m_gray-200 font-medium md:text-lg text-base">{{ item.createdAt.substring(0, 10) }}</p>
+                    <p class="font-sf_pro font-medium md:text-xl text-lg">{{ getLocalizedName(item) }}</p>
                 </router-link>
             </div>
         </div>
@@ -36,6 +37,28 @@ export default {
     components: {
         Navbar,
         Footer
+    },
+    data() {
+        return {
+            news: null,
+            name: null
+        }
+    },
+    created() {
+        this.allNews()
+    },
+    methods: {
+        async allNews() {
+            const data = await api.get('/news')
+            this.news = data.data.detail.rows
+        },
+        getLocalizedName(item) {
+            const locale = this.$i18n.locale;
+            if (locale === 'tm') return item.name_tm;
+            if (locale === 'ru') return item.name_ru;
+            if (locale === 'en') return item.name_en;
+            return item.name_ru;
+        },
     }
 }
 </script>
