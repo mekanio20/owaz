@@ -85,29 +85,6 @@ export default {
             this.desc_ru = data.data.detail.rows[0].desc_ru;
             this.desc_en = data.data.detail.rows[0].desc_en;
         },
-        async deleteNews(id) {
-            try {
-                const token = localStorage.getItem('token');
-                const confirmed = confirm("News pozmak isleýärsiňizmi!");
-                if (confirmed) {
-                    const data = await api.delete(`/news/${id}`, {
-                        headers: {
-                            'Authorization': `Bearer ${token}`,
-                        }
-                    })
-                    let toast = useToast();
-                    if (data.data.status === 200) {
-                        toast.success(data.data.msg);
-                    } else {
-                        toast.error(data.data.msg);
-                    }
-                    await this.allNews(this.currentPage)
-                }
-            } catch (error) {
-                let toast = useToast();
-                toast.error(error.response.data.msg);
-            }
-        },
         async updateNews() {
             try {
                 const token = localStorage.getItem('token');
@@ -130,6 +107,29 @@ export default {
                     toast.success(news.data.msg);
                 } else {
                     toast.error(news.data.msg);
+                }
+            } catch (error) {
+                let toast = useToast();
+                toast.error(error.response.data.msg);
+            }
+        },
+        async deleteNews() {
+            try {
+                const token = localStorage.getItem('token');
+                const confirmed = confirm("News pozmak isleýärsiňizmi!");
+                if (confirmed) {
+                    const data = await api.delete(`/news/${this.id}`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                        }
+                    })
+                    let toast = useToast();
+                    if (data.data.status === 200) {
+                        toast.success(data.data.msg);
+                    } else {
+                        toast.error(data.data.msg);
+                    }
+                    this.$router.push({ name: 'AdminNews' })
                 }
             } catch (error) {
                 let toast = useToast();
