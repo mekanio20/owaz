@@ -27,6 +27,15 @@
                     {{ getLocalizedDesc(about) }}
                 </div>
             </div>
+            <div class="w-full flex items-center justify-between mt-20 mb-16 overflow-x-auto scrollbar-hide">
+                <div class="flex items-center mr-10 bg-m_gray-500 px-10 py-4 rounded-lg" v-for="item in services" :key="item.id">
+                    <img class="sm:w-[40px] w-[20px] mr-4" crossorigin="anonymous" :src="`${$uploadUrl}/${item.img}`" />
+                    <div class="flex flex-col space-y-1">
+                        <p class="font-sf_pro text-nowrap font-bold md:text-lg text-base">{{ getLocalizedName(item) }}</p>
+                        <p class="font-sf_pro text-nowrap md:text-base text-sm">{{ getLocalizedDesc(item) }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <Footer />
@@ -55,12 +64,14 @@ export default {
             modules: [Pagination, Navigation, Autoplay],
             slidesPerView: null,
             images: null,
-            about: null
+            about: null,
+            services: null
         }
     },
     created() {
         this.allImages()
         this.getAbout()
+        this.allServices()
     },
     methods: {
         async allImages() {
@@ -70,6 +81,10 @@ export default {
         async getAbout() {
             const data = await api.get('/about')
             this.about = data.data.detail
+        },
+        async allServices() {
+            const data = await api.get('/services')
+            this.services = data.data.detail.rows
         },
         getLocalizedName(item) {
             const locale = this.$i18n.locale;
