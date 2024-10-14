@@ -20,6 +20,7 @@
                                         <th scope="col" class="px-4 py-3">Id</th>
                                         <th scope="col" class="px-4 py-3">Icon</th>
                                         <th scope="col" class="px-4 py-3">Name</th>
+                                        <th scope="col" class="px-4 py-3">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -40,6 +41,11 @@
                                         <td
                                             class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                             {{ item.name_en }}
+                                        </td>
+                                        <td class="flex items-center px-6 py-4">
+                                            <div @click="deleteService(item.id)"
+                                                class="font-medium text-red-600 dark:text-red-500 hover:underline cursor-pointer">
+                                                Remove</div>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -167,6 +173,29 @@ export default {
                 toast.error(error.response.data.msg);
             }
         },
+        async deleteService(id) {
+            try {
+                const token = localStorage.getItem('token');
+                const confirmed = confirm("Suraty pozmak isleýärsiňizmi!");
+                if (confirmed) {
+                    const data = await api.delete(`/service/${id}`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                        }
+                    })
+                    let toast = useToast();
+                    if (data.data.status === 200) {
+                        toast.success(data.data.msg);
+                    } else {
+                        toast.error(data.data.msg);
+                    }
+                    await this.allServices()
+                }
+            } catch (error) {
+                let toast = useToast();
+                toast.error(error.response.data.msg);
+            }
+        }
     }
 }
 </script>
