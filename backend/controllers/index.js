@@ -182,7 +182,7 @@ class IndexController {
     }
     async allNews(req, res) {
         try {
-            const { page = 1, limit = 10 } = req.query
+            const { page = 1, limit = 100 } = req.query
             const whereState = { ...(req.query.id && { id: req.query.id }) }
             const news = await Models.News.findAndCountAll({
                 where: whereState,

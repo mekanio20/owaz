@@ -33,7 +33,8 @@
                                         <th scope="row">
                                             <router-link :to="`/admin/news/detail/${item.id}`"
                                                 class="flex items-center px-4 py-2 font-medium text-gray-900 whitespace-nowrap dark:text-white hover:underline">
-                                                <img crossorigin="anonymous" :src="`${$uploadUrl}/${item.img}`" class="w-auto h-8 mr-3">
+                                                <img crossorigin="anonymous" :src="`${$uploadUrl}/${item.img}`"
+                                                    class="w-auto h-8 mr-3">
                                             </router-link>
                                         </th>
                                         <td
@@ -112,7 +113,7 @@ export default {
     name: "AdminNews",
     components: {
         Paginator,
-        Sidebar
+        Sidebar,
     },
     data() {
         return {
