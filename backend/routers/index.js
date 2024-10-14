@@ -60,6 +60,23 @@ router.post('/add/news',
   valdidationMiddleware(IndexSchema.addNews, 'body'),
   IndexController.addNews)
 
+router.post('/add/about',
+  authMiddleware,
+  valdidationMiddleware(IndexSchema.addAbout, 'body'),
+  IndexController.addAbout)
+
+router.post('/add/about/image',
+  authMiddleware,
+  imageMiddleware(process.env.IMAGES).fields([
+    { name: 'img', maxCount: 5 }
+  ]),
+  IndexController.addAboutImage)
+
+router.post('/add/service',
+  authMiddleware,
+  valdidationMiddleware(IndexSchema.addService, 'body'),
+  IndexController.addService)
+
 // GET
 router.get('/products',
   valdidationMiddleware(IndexSchema.allProducts, 'query'),
@@ -102,6 +119,12 @@ router.get('/news',
   IndexController.allNews)
   
 router.get('/explore', IndexController.getExplore)
+  
+router.get('/about', IndexController.getAbout)
+  
+router.get('/about/images', IndexController.getAboutImages)
+  
+router.get('/services', IndexController.getServices)
 
 // UPDATE
 router.put('/update/product', 
@@ -120,6 +143,11 @@ router.put('/update/news',
   // imageMiddleware(process.env.IMAGES).single('img'),
   valdidationMiddleware(IndexSchema.addNews, 'body'),
   IndexController.updateNews)
+
+router.put('/update/about', 
+  authMiddleware,
+  valdidationMiddleware(IndexSchema.addAbout, 'body'),
+  IndexController.updateAbout)
 
 // DELETE
 router.delete('/brand/:id',
@@ -161,5 +189,15 @@ router.delete('/news/:id',
   authMiddleware,
   valdidationMiddleware(IndexSchema.idController, 'params'),
   IndexController.deleteNews)
+
+router.delete('/about/images/:id',
+  authMiddleware,
+  valdidationMiddleware(IndexSchema.idController, 'params'),
+  IndexController.deleteAboutImages)
+
+router.delete('/service/:id',
+  authMiddleware,
+  valdidationMiddleware(IndexSchema.idController, 'params'),
+  IndexController.deleteService)
 
 module.exports = router;

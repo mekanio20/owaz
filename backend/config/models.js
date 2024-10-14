@@ -39,8 +39,31 @@ const Banners = database.define('banners', {
 
 const Ad = database.define('ads', {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, allowNull: false, unique: true },
-    title: { type: DataTypes.STRING, allowNull: false },
-    desc: { type: DataTypes.STRING, allowNull: false },
+    name_tm: { type: DataTypes.STRING, allowNull: false },
+    name_ru: { type: DataTypes.STRING, allowNull: false },
+    name_en: { type: DataTypes.STRING, allowNull: false },
+    desc_tm: { type: DataTypes.TEXT, allowNull: false },
+    desc_ru: { type: DataTypes.TEXT, allowNull: false },
+    desc_en: { type: DataTypes.TEXT, allowNull: false },
+    img: { type: DataTypes.STRING, allowNull: false },
+    createdAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updatedAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW }
+})
+
+const About = database.define('abouts', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, allowNull: false, unique: true },
+    name_tm: { type: DataTypes.STRING, allowNull: false },
+    name_ru: { type: DataTypes.STRING, allowNull: false },
+    name_en: { type: DataTypes.STRING, allowNull: false },
+    desc_tm: { type: DataTypes.TEXT, allowNull: false },
+    desc_ru: { type: DataTypes.TEXT, allowNull: false },
+    desc_en: { type: DataTypes.TEXT, allowNull: false },
+    createdAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
+    updatedAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW }
+})
+
+const AboutImages = database.define('ad_images', {
+    id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true, allowNull: false, unique: true },
     img: { type: DataTypes.STRING, allowNull: false },
     createdAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW },
     updatedAt: { type: DataTypes.DATE, defaultValue: Sequelize.NOW }
@@ -156,5 +179,5 @@ Explore.belongsTo(Categories)
 
 module.exports = {
     Products, Banners, Categories, ProductImages, Brands, Users, Subcategories, Ad, Socials, Explore, Contacts,
-    News
+    News, AboutImages, About
 }

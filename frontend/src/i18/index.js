@@ -8,7 +8,8 @@ const messages = {
       title3: 'Habarlaşmak',
       title4: 'Täzelikler',
       title5: 'Gözleg...',
-      title6: 'Netijeler'
+      title6: 'Netijeler',
+      title7: 'Biz barada'
     },
     banners: {
       free: {
@@ -63,7 +64,8 @@ const messages = {
       title3: 'Контакты',
       title4: 'Новости',
       title5: 'Поиск...',
-      title6: 'Результаты'
+      title6: 'Результаты',
+      title7: 'О нас'
     },
     banners: {
       free: {
@@ -118,7 +120,8 @@ const messages = {
       title3: 'Contact us',
       title4: 'News',
       title5: 'Search...',
-      title6: 'Results'
+      title6: 'Results',
+      title7: 'About us'
     },
     banners: {
       free: {

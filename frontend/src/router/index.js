@@ -117,11 +117,11 @@ const router = createRouter({
       name: "ClientSubcategories",
       component: () => import("@/views/client/SubcategoriesView.vue"),
     },
-    // {
-    //   path: "/about",
-    //   name: "About",
-    //   component: () => import("@/views/client/AboutView.vue"),
-    // },
+    {
+      path: "/about",
+      name: "About",
+      component: () => import("@/views/client/AboutView.vue"),
+    },
     {
       path: "/contacts",
       name: "Contacts",

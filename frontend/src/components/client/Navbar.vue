@@ -89,6 +89,10 @@
                         class="font-sf_pro font-medium uppercase md:text-base text-sm text-nowrap text-black">
                         {{ $t('routes.title2') }}
                     </router-link>
+                    <router-link to="/about"
+                        class="font-sf_pro font-medium uppercase md:text-base text-sm text-nowrap text-black">
+                        {{ $t('routes.title7') }}
+                    </router-link>
                     <router-link v-for="item in categories" :key="item.id" :to="`/subcategories/${item.id}`"
                         class="font-sf_pro font-medium uppercase md:text-base text-sm text-nowrap text-black flex items-center">
                         {{ getLocalizedName(item) }}

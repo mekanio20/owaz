@@ -180,6 +180,36 @@ class IndexController {
             return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
         }
     }
+    async getAbout(req, res) {
+        try {
+            const about = await Models.About.findOne()
+                .catch((err) => console.log(err))
+            const data = await Response.Success('Üstünlikli!', about)
+            return res.status(data.status).json(data)
+        } catch (error) {
+            return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
+        }
+    }
+    async getAboutImages(req, res) {
+        try {
+            const about = await Models.AboutImages.findAndCountAll()
+                .catch((err) => console.log(err))
+            const data = await Response.Success('Üstünlikli!', about)
+            return res.status(data.status).json(data)
+        } catch (error) {
+            return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
+        }
+    }
+    async getServices(req, res) {
+        try {
+            const services = await Models.Ad.findAndCountAll()
+                .catch((err) => console.log(err))
+            const data = await Response.Success('Üstünlikli!', services)
+            return res.status(data.status).json(data)
+        } catch (error) {
+            return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
+        }
+    }
     async allNews(req, res) {
         try {
             const { page = 1, limit = 100 } = req.query
@@ -405,10 +435,74 @@ class IndexController {
                 desc_tm: req.body.desc_tm,
                 desc_ru: req.body.desc_ru,
                 desc_en: req.body.desc_en,
-                desc: req.body.subtitle,
                 img: image
             }).catch((err) => console.log(err))
             data = await Response.Created('News goşuldy!', [])
+            return res.status(data.status).json(data)
+        } catch (error) {
+            return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
+        }
+    }
+    async addAbout(req, res) {
+        try {
+            let data = null
+            const count = await Models.About.count()
+            if (count >= 1) {
+                data = await Response.BadRequest('About goşup bolmaýar!', [])
+                return res.status(data.status).json(data)
+            }
+            await Models.About.create({
+                name_tm: req.body.name_tm,
+                name_ru: req.body.name_ru,
+                name_en: req.body.name_en,
+                desc_tm: req.body.desc_tm,
+                desc_ru: req.body.desc_ru,
+                desc_en: req.body.desc_en,
+            }).catch((err) => console.log(err))
+            data = await Response.Created('Goşuldy!', [])
+            return res.status(data.status).json(data)
+        } catch (error) {
+            return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
+        }
+    }
+    async addAboutImage(req, res) {
+        try {
+            let data = null
+            const images = req?.files?.img
+            if (images === undefined) {
+                data = await Response.BadRequest('Surat gerek!', [])
+                return res.status(data.status).json(data)
+            }
+            images.forEach(async (item) => {
+                await Models.AboutImages.create({
+                    img: item.filename
+                }).then(() => console.log(true))
+                .catch((err) => console.log(err))
+            })
+            data = await Response.Created('Surat Goşuldy!', [])
+            return res.status(data.status).json(data)
+        } catch (error) {
+            return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
+        }
+    }
+    async addService(req, res) {
+        try {
+            let data = null
+            const image = req?.file?.filename
+            if (!image) {
+                data = await Response.BadRequest('Surat gerek!', [])
+                return res.status(data.status).json(data)
+            }
+            await Models.Ad.create({
+                name_tm: req.body.name_tm,
+                name_ru: req.body.name_ru,
+                name_en: req.body.name_en,
+                desc_tm: req.body.desc_tm,
+                desc_ru: req.body.desc_ru,
+                desc_en: req.body.desc_en,
+                img: image
+            }).catch((err) => console.log(err))
+            data = await Response.Created('Service Goşuldy!', [])
             return res.status(data.status).json(data)
         } catch (error) {
             return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
@@ -477,6 +571,18 @@ class IndexController {
             await Models.News.update(req.body, { where: { id: req.body.id } })
                 .catch((err) => console.log(err))
             data = await Response.Success('News üýtgedildi!', [])
+            return res.status(data.status).json(data)
+        } catch (error) {
+            console.log(error);
+            return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
+        }
+    }
+    async updateAbout(req, res) {
+        try {
+            let data = null
+            await Models.About.update(req.body, { where: { id: req.body.id } })
+                .catch((err) => console.log(err))
+            data = await Response.Success('About üýtgedildi!', [])
             return res.status(data.status).json(data)
         } catch (error) {
             console.log(error);
@@ -591,6 +697,34 @@ class IndexController {
                 return res.status(data.status).json(data)
             }
             data = await Response.Success('News pozuldy!', [])
+            return res.status(data.status).json(data)
+        } catch (error) {
+            return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
+        }
+    }
+    async deleteAboutImages(req, res) {
+        try {
+            let data = null
+            const about = await Models.AboutImages.destroy({ where: { id: req.params.id } })
+            if (!about) {
+                data = await Response.BadRequest('Ýalňyşlyk ýüze çykdy!', [])
+                return res.status(data.status).json(data)
+            }
+            data = await Response.Success('About pozuldy!', [])
+            return res.status(data.status).json(data)
+        } catch (error) {
+            return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
+        }
+    }
+    async deleteService(req, res) {
+        try {
+            let data = null
+            const ad = await Models.Ad.destroy({ where: { id: req.params.id } })
+            if (!ad) {
+                data = await Response.BadRequest('Ýalňyşlyk ýüze çykdy!', [])
+                return res.status(data.status).json(data)
+            }
+            data = await Response.Success('Service pozuldy!', [])
             return res.status(data.status).json(data)
         } catch (error) {
             return res.status(500).json({ status: 500, type: 'error', msg: error, detail: [] })
