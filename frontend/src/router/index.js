@@ -88,6 +88,12 @@ const router = createRouter({
       component: () => import("@/views/admin/AdminAboutImagesView.vue"),
       meta: { requiresAuth: true },
     },
+    {
+      path: "/admin/service",
+      name: "AdminService",
+      component: () => import("@/views/admin/AdminServiceView.vue"),
+      meta: { requiresAuth: true },
+    },
     // CLIENT
     {
       path: "/",

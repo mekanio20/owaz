@@ -72,6 +72,7 @@ router.post('/add/about/image',
 
 router.post('/add/service',
   authMiddleware,
+  imageMiddleware(process.env.IMAGES).single('img'),
   valdidationMiddleware(IndexSchema.addService, 'body'),
   IndexController.addService)
 

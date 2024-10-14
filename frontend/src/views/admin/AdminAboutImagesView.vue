@@ -20,6 +20,7 @@
                                         <th scope="col" class="px-4 py-3">Id</th>
                                         <th scope="col" class="px-4 py-3">Image</th>
                                         <th scope="col" class="px-4 py-3">CreatedAt</th>
+                                        <th scope="col" class="px-4 py-3">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -39,9 +40,14 @@
                                         </th>
                                         <th scope="row">
                                             <div class="flex items-center">
-                                               {{ item.createdAt.substring(0, 10) }}
+                                                {{ item.createdAt.substring(0, 10) }}
                                             </div>
                                         </th>
+                                        <td class="flex items-center px-6 py-4">
+                                            <div @click="deleteAboutImage(item.id)"
+                                                class="font-medium text-red-600 dark:text-red-500 hover:underline cursor-pointer">
+                                                Remove</div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -69,14 +75,12 @@
 </template>
 
 <script>
-import Paginator from '@/components/admin/Paginator.vue';
 import Sidebar from '@/components/admin/Sidebar.vue';
 import { useToast } from 'vue-toastification';
 import api from '@/api/index'
 export default {
     name: "AdminAboutImages",
     components: {
-        Paginator,
         Sidebar,
     },
     data() {
@@ -122,6 +126,29 @@ export default {
                 toast.error(error.response.data.msg);
             }
         },
+        async deleteAboutImage(id) {
+            try {
+                const token = localStorage.getItem('token');
+                const confirmed = confirm("Suraty pozmak isleýärsiňizmi!");
+                if (confirmed) {
+                    const data = await api.delete(`/about/images/${id}`, {
+                        headers: {
+                            'Authorization': `Bearer ${token}`,
+                        }
+                    })
+                    let toast = useToast();
+                    if (data.data.status === 200) {
+                        toast.success(data.data.msg);
+                    } else {
+                        toast.error(data.data.msg);
+                    }
+                    await this.aboutImages()
+                }
+            } catch (error) {
+                let toast = useToast();
+                toast.error(error.response.data.msg);
+            }
+        }
     }
 }
 </script>

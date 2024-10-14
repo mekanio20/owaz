@@ -49,14 +49,12 @@
 </template>
 
 <script>
-import Paginator from '@/components/admin/Paginator.vue';
 import Sidebar from '@/components/admin/Sidebar.vue';
 import { useToast } from 'vue-toastification';
 import api from '@/api/index'
 export default {
     name: "AdminAbout",
     components: {
-        Paginator,
         Sidebar,
     },
     data() {

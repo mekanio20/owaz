@@ -30,6 +30,9 @@
                             <router-link to="/brands" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
                                 {{ $t('routes.title2') }}
                             </router-link>
+                            <router-link to="/about" class="font-dm_sans font-normal lg:text-lg sm:text-base mobile:text-sm text-xs text-m_gray-400">
+                                {{ $t('routes.title7') }}
+                            </router-link>
                         </div>
                     </div>
                 </div>
