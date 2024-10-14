@@ -82,6 +82,12 @@ const router = createRouter({
       component: () => import("@/views/admin/AdminAboutView.vue"),
       meta: { requiresAuth: true },
     },
+    {
+      path: "/admin/about/images",
+      name: "AdminAboutImages",
+      component: () => import("@/views/admin/AdminAboutImagesView.vue"),
+      meta: { requiresAuth: true },
+    },
     // CLIENT
     {
       path: "/",

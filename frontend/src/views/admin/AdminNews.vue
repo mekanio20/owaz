@@ -122,6 +122,12 @@ export default {
             currentPage: 1,
             dataLength: 0,
             count: 0,
+            name_tm: null,
+            name_ru: null,
+            name_en: null,
+            desc_tm: null,
+            desc_ru: null,
+            desc_en: null
         }
     },
     created() {

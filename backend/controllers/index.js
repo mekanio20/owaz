@@ -473,6 +473,11 @@ class IndexController {
                 data = await Response.BadRequest('Surat gerek!', [])
                 return res.status(data.status).json(data)
             }
+            const count = await Models.About.count()
+            if (count >= 5) {
+                data = await Response.BadRequest('Max 5!', [])
+                return res.status(data.status).json(data)
+            }
             await Models.AboutImages.create({ img: image }).then(() => console.log(true))
             data = await Response.Created('Surat Goşuldy!', [])
             return res.status(data.status).json(data)
