@@ -67,9 +67,7 @@ router.post('/add/about',
 
 router.post('/add/about/image',
   authMiddleware,
-  imageMiddleware(process.env.IMAGES).fields([
-    { name: 'img', maxCount: 5 }
-  ]),
+  imageMiddleware(process.env.IMAGES).single('img'),
   IndexController.addAboutImage)
 
 router.post('/add/service',

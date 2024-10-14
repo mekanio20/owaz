@@ -468,17 +468,12 @@ class IndexController {
     async addAboutImage(req, res) {
         try {
             let data = null
-            const images = req?.files?.img
-            if (images === undefined) {
+            const image = req?.file?.filename
+            if (!image) {
                 data = await Response.BadRequest('Surat gerek!', [])
                 return res.status(data.status).json(data)
             }
-            images.forEach(async (item) => {
-                await Models.AboutImages.create({
-                    img: item.filename
-                }).then(() => console.log(true))
-                .catch((err) => console.log(err))
-            })
+            await Models.AboutImages.create({ img: image }).then(() => console.log(true))
             data = await Response.Created('Surat Goşuldy!', [])
             return res.status(data.status).json(data)
         } catch (error) {
