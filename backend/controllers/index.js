@@ -128,7 +128,7 @@ class IndexController {
     }
     async allBanners(req, res) {
         try {
-            const whereState = { ...(req.query.type && { types: req.query.type }) }
+            const whereState = { ...(req.query.types && { types: req.query.types }) }
             const banners = await Models.Banners.findAndCountAll({ where: whereState })
             const data = await Response.Success('Üstünlikli!', banners)
             return res.status(data.status).json(data)
@@ -368,12 +368,12 @@ class IndexController {
                 data = await Response.BadRequest('Surat gerek!', [])
                 return res.status(data.status).json(data)
             }
-            const count = await Models.Banners.count({})
+            const count = await Models.Banners.count({ where: { types: 'home' } })
             if (count >= 3) {
                 data = await Response.BadRequest('3 bannerden artyk goşup bolmaýar!', [])
                 return res.status(data.status).json(data)
             }
-            await Models.Banners.create({ img: image })
+            await Models.Banners.create({ types: req.body.types, img: image })
                 .catch((err) => console.log(err))
             data = await Response.Created('Banner döredildi!', [])
             return res.status(data.status).json(data)

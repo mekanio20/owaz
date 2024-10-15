@@ -37,7 +37,7 @@ const IndexSchema = {
     allBanners: Joi.object({
         limit: Joi.number().positive().optional(),
         page: Joi.number().positive().optional(),
-        type: Joi.string().valid('home', 'category', 'subcategory', 'product')
+        types: Joi.string().valid('home', 'category', 'subcategory', 'product').optional()
     }),
     allNews: Joi.object({
         id: Joi.number().positive().optional(),
@@ -99,6 +99,9 @@ const IndexSchema = {
         fullname: Joi.string().max(100).required(),
         phone: Joi.string().max(100).required(),
         message: Joi.string().required()
+    }),
+    addBanner: Joi.object({
+        types: Joi.string().valid('home', 'category', 'subcategory', 'product').optional()
     }),
     addBrand: Joi.object({
         title: Joi.string().max(100).required()

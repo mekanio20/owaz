@@ -19,6 +19,15 @@
             <div class="my-3 font-sf_pro font-medium md:text-xl sm:text-lg text-base">
                 {{ desc }}
             </div>
+            <div class="w-full flex items-center space-x-4">
+                <swiper :slides-per-view="1" :spaceBetween="30" :modules="modules"
+                    :autoplay="{ delay: 2000, disableOnInteraction: false, }" :speed="1000">
+                    <swiper-slide class="w-full lg:!h-[400px] my-5" v-for="item in banners" :key="item.id">
+                        <img crossorigin="anonymous" class="w-full h-full object-cover rounded-xl"
+                            :src="`${$uploadUrl}/${item.img}`">
+                    </swiper-slide>
+                </swiper>
+            </div>
             <div class="w-full my-10 grid lg:grid-cols-4 md:grid-cols-3 min-[400px]:grid-cols-2 grid-cols-1 gap-10">
                 <router-link v-for="item in products?.rows" :key="item.id" :to="`/product/detail/${item.id}`"
                     class="flex items-start flex-col space-y-4">
@@ -39,14 +48,22 @@
 </template>
 
 <script>
+import { Swiper, SwiperSlide } from 'swiper/vue';
+import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import Navbar from '@/components/client/Navbar.vue';
 import Footer from '@/components/client/Footer.vue';
 import api from '@/api/index'
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+import 'swiper/css/effect-coverflow';
 export default {
     name: "Products",
     components: {
         Navbar,
-        Footer
+        Footer,
+        Swiper,
+        SwiperSlide,
     },
     data() {
         return {
@@ -54,12 +71,19 @@ export default {
             name: null,
             desc: null,
             products: null,
+            banners: null,
+            modules: [Pagination, Navigation, Autoplay],
         }
     },
     created() {
         this.allProducts()
+        this.subcategoryBanners()
     },
     methods: {
+        async subcategoryBanners() {
+            const data = await api.get('/banners?types=subcategory')
+            this.banners = data.data.detail.rows
+        },
         async allProducts() {
             const locale = this.$i18n.locale.toLowerCase();
             const data = await api.get(`/products?subcategoryId=${this.$route.params.id}&limit=1000`)

@@ -42,6 +42,7 @@ router.post('/add/subcategory',
 router.post('/add/banner',
   authMiddleware,
   imageMiddleware(process.env.IMAGES).single('img'),
+  valdidationMiddleware(IndexSchema.addBanner, 'body'),
   IndexController.addBanner)
 
 router.post('/add/contact',
@@ -112,7 +113,7 @@ router.get('/subcategories',
 router.get('/contacts',
   authMiddleware,
   IndexController.allContacts)
-  
+
 router.get('/news',
   valdidationMiddleware(IndexSchema.allNews, 'query'),
   IndexController.allNews)
@@ -126,7 +127,7 @@ router.get('/about/images', IndexController.getAboutImages)
 router.get('/services', IndexController.getServices)
 
 // UPDATE
-router.put('/update/product', 
+router.put('/update/product',
   authMiddleware,
   valdidationMiddleware(IndexSchema.updateProduct, 'body'),
   IndexController.updateProduct)

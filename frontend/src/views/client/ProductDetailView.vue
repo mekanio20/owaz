@@ -66,9 +66,18 @@
                     </div>
                 </div>
             </div>
-            <div class="w-full sm:my-20 mb-10">
+            <div class="w-full sm:my-10">
                 <h3 class="font-sf_pro font-bold md:text-3xl sm:text-2xl text-xl">{{ $t('product.desc') }}</h3>
                 <p class="font-sf_pro font-normal md:text-lg sm:text-base text-sm text-m_gray-600 my-5">{{ getLocalizedDesc(product) }}</p>
+            </div>
+            <div class="w-full flex items-center space-x-4 mb-10">
+                <swiper :slides-per-view="1" :spaceBetween="30" :modules="modules"
+                    :autoplay="{ delay: 2000, disableOnInteraction: false, }" :speed="1000">
+                    <swiper-slide class="w-full lg:!h-[400px] my-5" v-for="item in banners" :key="item.id">
+                        <img crossorigin="anonymous" class="w-full h-full object-cover rounded-xl"
+                            :src="`${$uploadUrl}/${item.img}`">
+                    </swiper-slide>
+                </swiper>
             </div>
             <div class="w-full mb-20">
                 <div class="w-full flex items-center justify-between mb-10">
@@ -134,6 +143,7 @@ export default {
             product: null,
             products: null,
             slidesPerView: null,
+            banners: null,
             p1_breakpoints: {
                 200: { slidesPerView: 1 },
                 500: { slidesPerView: 2 },
@@ -145,8 +155,13 @@ export default {
     async created() {
         await this.getProduct(),
             await this.allProducts()
+            await this.subcategoryBanners()
     },
     methods: {
+        async subcategoryBanners() {
+            const data = await api.get('/banners?types=product')
+            this.banners = data.data.detail.rows
+        },
         async getProduct() {
             const data = await api.get(`/product/${this.$route.params.id}`)
             this.product = data.data.detail
