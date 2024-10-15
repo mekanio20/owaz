@@ -368,8 +368,9 @@ class IndexController {
                 data = await Response.BadRequest('Surat gerek!', [])
                 return res.status(data.status).json(data)
             }
+            const type = req.body?.types
             const count = await Models.Banners.count({ where: { types: 'home' } })
-            if (count >= 3) {
+            if (count >= 3 && type === 'home') {
                 data = await Response.BadRequest('3 bannerden artyk goşup bolmaýar!', [])
                 return res.status(data.status).json(data)
             }
