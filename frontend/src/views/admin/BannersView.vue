@@ -15,6 +15,9 @@
                                     Image
                                 </th>
                                 <th scope="col" class="px-6 py-3">
+                                    Type
+                                </th>
+                                <th scope="col" class="px-6 py-3">
                                     Action
                                 </th>
                             </tr>
@@ -28,9 +31,12 @@
                                 <td class="px-6 py-4">
                                     <div class="w-10">
                                         <img crossorigin="anonymous" class="w-full h-full object-cover"
-                                            :src="`${$uploadUrl}/${item.img}`">
+                                        :src="`${$uploadUrl}/${item.img}`">
                                     </div>
                                 </td>
+                                <th class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                    {{ item.types }}
+                                </th>
                                 <td class="flex items-center px-6 py-4">
                                     <div @click="deleteBanner(item.id)"
                                         class="font-medium text-red-600 dark:text-red-500 hover:underline cursor-pointer">
@@ -43,6 +49,14 @@
             </div>
             <div class="w-full">
                 <form @submit.prevent="addBanner" class="max-w-lg mx-auto bg-slate-100 py-10 px-10 rounded-xl">
+                    <div class="mb-5">
+                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Types</label>
+                        <select v-model="type_name"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option v-for="item in types" :key="item.id" :value="item.id">{{ item.type }}
+                            </option>
+                        </select>
+                    </div>
                     <div class="mb-5">
                         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Upload
                             file</label>
@@ -73,6 +87,14 @@ export default {
         return {
             banners: null,
             imageFile: null,
+            type_name: null,
+            types: [
+                { id: 1, type: 'home' },
+                { id: 2, type: 'category' },
+                { id: 3, type: 'category' },
+                { id: 4, type: 'subcategory' },
+                { id: 5, type: 'product' },
+            ]
         }
     },
     created() {
@@ -86,6 +108,7 @@ export default {
             try {
                 const token = localStorage.getItem('token');
                 const formData = new FormData();
+                formData.append('types', this.type_name)
                 if (this.imageFile) {
                     formData.append('img', this.imageFile);
                 }
