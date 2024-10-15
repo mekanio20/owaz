@@ -242,7 +242,7 @@ export default {
             this.services = data.data.detail.rows
         },
         async allBanners() {
-            const data = await api.get('/banners')
+            const data = await api.get('/banners?types=home')
             this.banners = data.data.detail.rows
         },
         async allCategories() {
