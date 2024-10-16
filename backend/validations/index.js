@@ -10,6 +10,8 @@ const IndexSchema = {
         brandId: Joi.number().positive().optional(),
         dis: Joi.boolean().optional(),
         isNew: Joi.boolean().optional(),
+        sort: Joi.string().valid('id', 'final_price').optional(),
+        order: Joi.string().valid('asc', 'desc').optional()
     }),
     searchProducts: Joi.object({
         q: Joi.string().min(2).max(100).required()

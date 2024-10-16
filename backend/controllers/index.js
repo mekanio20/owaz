@@ -11,6 +11,8 @@ class IndexController {
             let page = req.query.page || 1
             let limit = req.query.limit || 10
             let offset = page * limit - limit
+            const sort = req.query.sort || 'id'
+            const order = req.query.order || 'desc'
             let whereState = {}
             if (req.query.dis) {
                 whereState = {
@@ -31,7 +33,8 @@ class IndexController {
                     attributes: ['id', 'img']
                 },
                 limit: Number(limit),
-                offset: Number(offset)
+                offset: Number(offset),
+                order: [[sort, order]]
             }).catch((err) => console.log(err))
             const count = await Models.Products.count({ where: whereState }).catch((err) => console.log(err))
             const data = await Response.Success('Üstünlikli!', { count: count, rows: products })

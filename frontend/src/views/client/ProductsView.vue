@@ -28,19 +28,61 @@
                     </swiper-slide>
                 </swiper>
             </div>
-            <div class="w-full my-10 grid lg:grid-cols-4 md:grid-cols-3 min-[400px]:grid-cols-2 grid-cols-1 gap-10">
-                <router-link v-for="item in products?.rows" :key="item.id" :to="`/product/detail/${item.id}`"
-                    class="flex items-start flex-col space-y-4">
-                    <div class="w-full h-64 bg-m_gray-100 rounded-xl">
-                        <img class="w-full h-full object-contain mt-4" crossorigin="anonymous"
-                            :src="`${$uploadUrl}/${item.product_images[0].img}`">
+            <div class="flex items-start">
+                <div class="flex flex-col items-start space-y-4 mr-10  my-10">
+                    <!-- Category Dropdown -->
+                    <div class="relative">
+                        <button
+                            class="px-4 py-2 bg-white border rounded-md shadow-sm focus:outline-none flex justify-between items-center"
+                            @click="toggleDropdown('category')">
+                            Subcategory {{ selectedCategory }}
+                            <span class="ml-2">&#9662;</span>
+                        </button>
+                        <div v-if="openDropdown === 'category'"
+                            class="absolute mt-2 w-full bg-white shadow-lg rounded-md">
+                            <ul>
+                                <li v-for="item in subcategories" :key="item.id"
+                                    class="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                                    @click="selectOption('category', getLocalizedName(item))">
+                                    {{ getLocalizedName(item) }}
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                    <p class="font-sf_pro font-medium md:text-xl text-lg">{{ item.name_en }}</p>
-                    <div class="flex items-center space-x-2">
-                        <span class="font-sf_pro font-bold md:text-base text-sm text-m_red-200">{{ item.final_price }}
-                            tmt</span>
+
+                    <div class="relative">
+                        <button
+                            class="px-4 py-2 bg-white border rounded-md shadow-sm focus:outline-none flex justify-between items-center"
+                            @click="toggleDropdown('brand')">
+                            Brand {{ brandValue }}
+                            <span class="ml-2">&#9662;</span>
+                        </button>
+                        <div v-if="openDropdown === 'brand'" class="absolute mt-2 w-32 bg-white shadow-lg rounded-md">
+                            <ul>
+                                <li v-for="brand in brands" :key="brand.id"
+                                    class="px-4 py-2 hover:bg-gray-100 cursor-pointer"
+                                    @click="selectOption('brand', brand)">
+                                    {{ brand.title }}
+                                </li>
+                            </ul>
+                        </div>
                     </div>
-                </router-link>
+                </div>
+                <div class="w-full my-10 grid lg:grid-cols-3 md:grid-cols-2 min-[400px]:grid-cols-2 grid-cols-1 gap-10">
+                    <router-link v-for="item in products?.rows" :key="item.id" :to="`/product/detail/${item.id}`"
+                        class="flex items-start flex-col space-y-4">
+                        <div class="w-full h-64 bg-m_gray-100 rounded-xl">
+                            <img class="w-full h-full object-contain mt-4" crossorigin="anonymous"
+                                :src="`${$uploadUrl}/${item.product_images[0].img}`">
+                        </div>
+                        <p class="font-sf_pro font-medium md:text-xl text-lg">{{ item.name_en }}</p>
+                        <div class="flex items-center space-x-2">
+                            <span class="font-sf_pro font-bold md:text-base text-sm text-m_red-200">{{ item.final_price
+                                }}
+                                tmt</span>
+                        </div>
+                    </router-link>
+                </div>
             </div>
         </div>
     </div>
@@ -72,14 +114,29 @@ export default {
             desc: null,
             products: null,
             banners: null,
+            openDropdown: null,
+            brandValue: null,
+            selectedCategory: null,
+            subcategories: null,
+            brands: null,
             modules: [Pagination, Navigation, Autoplay],
         }
     },
     created() {
         this.allProducts()
         this.subcategoryBanners()
+        this.allBrands()
+        this.allSubcategories()
     },
     methods: {
+        async allBrands() {
+            const data = await api.get('/brands')
+            this.brands = data.data.detail.rows
+        },
+        async allSubcategories() {
+            const data = await api.get('/subcategories')
+            this.subcategories = data.data.detail.rows
+        },
         async subcategoryBanners() {
             const data = await api.get('/banners?types=subcategory')
             this.banners = data.data.detail.rows
@@ -96,7 +153,26 @@ export default {
             if (locale === 'en') this.desc = category.data.detail.rows[0].desc_en
             this.products = data.data.detail
             this.count = this.products.count
-        }
+        },
+        toggleDropdown(type) {
+            this.openDropdown = this.openDropdown === type ? null : type;
+        },
+        selectOption(type, value) {
+            if (type === "brand") {
+                this.brandValue = value.title;
+            }
+            if (type === "category") {
+                this.selectedCategory = value;
+            }
+            this.openDropdown = null
+        },
+        getLocalizedName(item) {
+            const locale = this.$i18n.locale;
+            if (locale === 'tm') return item.name_tm;
+            if (locale === 'ru') return item.name_ru;
+            if (locale === 'en') return item.name_en;
+            return item.name_ru;
+        },
     },
     watch: {
         '$route.params.id': function () {
