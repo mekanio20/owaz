@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- Filter Button (Visible on small screens) -->
     <button @click="toggleSidebar" class="sm:hidden m-2 p-4 bg-blue-500 text-white rounded-full shadow-lg">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
