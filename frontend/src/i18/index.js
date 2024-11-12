@@ -38,7 +38,7 @@ const messages = {
       news: 'Täze harytlar'
     },
     footer: {
-      desc: 'Owaz, ýokary hilli aýdym-saz gurallaryny satýan dükan.',
+      desc: 'Saz we ses enjamlary, yşyklandyryş enjamlary dükany.',
       privacy: 'Ähli hukuklary goralan',
       company: 'Kompaniýa'
     },
@@ -94,7 +94,7 @@ const messages = {
       news: 'Новые товары'
     },
     footer: {
-      desc: 'Owaz — это магазин, продающий музыкальные инструменты высокого качества.',
+      desc: 'Магазин музыкальных инструментов и звукового, сетового оборудования.',
       privacy: 'Все права защищены',
       company: 'Компания'
     },
@@ -150,7 +150,7 @@ const messages = {
       news: 'New products'
     },
     footer: {
-      desc: 'Owaz is the store selling high quality musical instruments.',
+      desc: 'A store for musical instruments, sound, and lighting equipment.',
       privacy: 'All Rights Reserved',
       company: 'Company',
     },
