@@ -38,7 +38,7 @@ const messages = {
       news: 'Täze harytlar'
     },
     footer: {
-      desc: 'Saz we ses enjamlary, yşyklandyryş enjamlary dükany.',
+      desc: 'Saz gurallary we ses, ýagtylandyryş enjamlary dükan. Tel: +99 (361) 699449 duşenbe - ýekşenbe 10.00 - 20.00 aralygy.',
       privacy: 'Ähli hukuklary goralan',
       company: 'Kompaniýa'
     },
@@ -94,7 +94,7 @@ const messages = {
       news: 'Новые товары'
     },
     footer: {
-      desc: 'Магазин музыкальных инструментов и звукового, сетового оборудования.',
+      desc: 'Магазин музыкальных инструментов и звукового, сетового оборудования. Teл: +99 (361) 699449   пн-вс 10.00-20.00',
       privacy: 'Все права защищены',
       company: 'Компания'
     },
@@ -150,7 +150,7 @@ const messages = {
       news: 'New products'
     },
     footer: {
-      desc: 'A store for musical instruments, sound, and lighting equipment.',
+      desc: 'Music instruments and sound, lighting equipment store. Tel: +99 (361) 699449 Mon-Sun 10:00 AM - 8:00 PM.',
       privacy: 'All Rights Reserved',
       company: 'Company',
     },
